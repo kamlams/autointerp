@@ -93,6 +93,8 @@ def main():
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--n-explainer", type=int, default=24)
     ap.add_argument("--n-test", type=int, default=20, help="activating and negative probes each")
+    ap.add_argument("--n-fuzz", type=int, default=20,
+                    help="fuzzing pairs (one correct + one wrongly marked snippet drawn from the same bin)")
     ap.add_argument("--explain-max-tokens", type=int, default=32768,
                     help="completion budget for the explainer call; reasoning models spend "
                          "15-30k tokens thinking on this task")
@@ -112,7 +114,7 @@ def main():
     os.makedirs(out_dir, exist_ok=True)
 
     cfg = SamplerConfig(seed=args.seed, n_explainer=args.n_explainer,
-                        n_test_act=args.n_test, n_test_neg=args.n_test)
+                        n_test_act=args.n_test, n_test_neg=args.n_test, n_fuzz=args.n_fuzz)
     client = LLMClient(model=args.model, log_path=os.path.join(out_dir, "calls.jsonl"))
     scorer_client = None
     if args.scorer_model and args.scorer_model != args.model:

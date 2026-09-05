@@ -42,7 +42,7 @@ class SamplerConfig:
     explainer_top_frac: float = 0.33  # fraction of explainer examples from the top pool
     n_test_act: int = 20        # activating detection probes
     n_test_neg: int = 20        # non-activating detection probes
-    n_fuzz: int = 10            # per class (correct / incorrect highlighting)
+    n_fuzz: int = 20            # fuzzing PAIRS (one correct + one wrongly marked per pair), spread over rank and value bins
     n_bins: int = 10            # bins for stratification (rank and value modes)
     top_pool: int = 200         # strongest firings considered for the top set
     bigram_cap_min: int = 2     # floor on slots per (preceding, fired-on) bigram
@@ -233,6 +233,47 @@ def _stratified(rows: list, n_want: int, modes: tuple, picker: _Picker, quotas: 
     return picked
 
 
+def _stratified_pairs(rows: list, n_pairs: int, modes: tuple, picker: _Picker, quotas: dict,
+                      cfg: SamplerConfig, rng: random.Random) -> list:
+    """Pairs (a, b) drawn from the SAME bin, so that the two fuzzing classes (a keeps
+    its true marks, b gets deliberately wrong marks) have identical strength
+    distributions bin by bin. Pairs are spread over the bins of each mode; a bin that
+    cannot supply two eligible rows yields its turn to the next bin."""
+    pairs = []
+    per_mode = [n_pairs // len(modes)] * len(modes)
+    per_mode[-1] += n_pairs - sum(per_mode)
+    for mode, n_mode in zip(modes, per_mode):
+        bins = _bins(rows, cfg.n_bins, mode)
+        cands = []
+        for lo, hi in bins:
+            c = list(range(lo, hi))
+            rng.shuffle(c)
+            cands.append(c)
+        if n_mode < len(bins):  # evenly spaced bins over the strength range
+            order = [round(i * (len(bins) - 1) / max(1, n_mode - 1)) for i in range(n_mode)]
+        else:
+            order = list(range(len(bins))) * ((n_mode + len(bins) - 1) // len(bins))
+        counts = picker.new_counts()
+        got = 0
+        for overflow in (False, True):
+            for bi in order:
+                if got >= n_mode:
+                    break
+                pair = []
+                c = cands[bi]
+                while c and len(pair) < 2:
+                    row = rows[c.pop()]
+                    if picker.take(row, quotas, counts, overflow):
+                        pair.append(row)
+                if len(pair) == 2:
+                    pairs.append(tuple(pair))
+                    got += 1
+                else:  # bin exhausted: release a lone pick so it is not wasted
+                    for row in pair:
+                        picker.used.discard((row[0], row[1], row[2]))
+    return pairs
+
+
 def _negatives(feat: FeatureRecord, corpus: Corpus, n: int, picker: _Picker,
                cfg: SamplerConfig, rng: random.Random) -> list:
     out, tries = [], 0
@@ -286,14 +327,14 @@ def build_examples(feat: FeatureRecord, corpus: Corpus, cfg: SamplerConfig) -> F
 
     # --- held-out probes ---
     test_rows = _stratified(rows, cfg.n_test_act, ("rank", "value"), picker, all_quotas, cfg, rng)
-    fuzz_rows = _stratified(rows, cfg.n_fuzz * 2, ("rank", "value"), picker, all_quotas, cfg, rng)
+    fuzz_pairs = _stratified_pairs(rows, cfg.n_fuzz, ("rank", "value"), picker, all_quotas, cfg, rng)
     neg_rows = _negatives(feat, corpus, cfg.n_test_neg, picker, cfg, rng)
     contrast_rows = _negatives(feat, corpus, cfg.n_dense_negatives, picker, cfg, rng) if dense else []
 
     mk = lambda r: _make_snippet(feat, corpus, r[0], r[1], r[2], cfg, thr, r[3], dense)
-    fuzz_correct = [mk(r) for r in fuzz_rows[: cfg.n_fuzz]]
+    fuzz_correct = [mk(a) for a, _ in fuzz_pairs]
     fuzz_incorrect = []
-    for r in fuzz_rows[cfg.n_fuzz: cfg.n_fuzz * 2]:
+    for _, r in fuzz_pairs:
         s = mk(r)
         k = max(1, len(s.strong))
         non_firing = [i for i in range(len(s.tokens)) if i not in s.strong and i not in s.weak]
