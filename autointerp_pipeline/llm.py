@@ -2,11 +2,13 @@
 
 Credentials resolution order:
   1. env RIVAULT_BASE_URL / RIVAULT_API_KEY
-  2. ~/.config/opencode/opencode.json (opencode provider config)
+  2. ~/.config/rivault.env (shell-style `export KEY="value"` lines)
+  3. ~/.config/opencode/opencode.json (opencode provider config)
 Never hardcode keys in this repo.
 """
 import json
 import os
+import re
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
@@ -14,12 +16,31 @@ from dataclasses import dataclass, field
 
 import requests
 
+RIVAULT_ENV = os.path.expanduser("~/.config/rivault.env")
 OPENCODE_CONFIG = os.path.expanduser("~/.config/opencode/opencode.json")
+
+_ENV_LINE = re.compile(r'^(?:export\s+)?([A-Z_][A-Z0-9_]*)\s*=\s*"?([^"\n]*)"?\s*$')
+
+
+def _read_env_file(path: str) -> dict:
+    out = {}
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                m = _ENV_LINE.match(line.strip())
+                if m:
+                    out[m.group(1)] = m.group(2)
+    return out
 
 
 def resolve_credentials() -> tuple[str, str]:
     base_url = os.environ.get("RIVAULT_BASE_URL")
     api_key = os.environ.get("RIVAULT_API_KEY")
+    if base_url and api_key:
+        return base_url.rstrip("/"), api_key
+    filed = _read_env_file(RIVAULT_ENV)
+    base_url = base_url or filed.get("RIVAULT_BASE_URL")
+    api_key = api_key or filed.get("RIVAULT_API_KEY")
     if base_url and api_key:
         return base_url.rstrip("/"), api_key
     if os.path.exists(OPENCODE_CONFIG):
@@ -58,6 +79,10 @@ class Usage:
         )
 
 
+class _LengthTruncated(RuntimeError):
+    pass
+
+
 class LLMClient:
     def __init__(self, model: str, base_url: str | None = None, api_key: str | None = None,
                  timeout: int = 600, max_retries: int = 4, log_path: str | None = None):
@@ -85,6 +110,9 @@ class LLMClient:
         last_err = None
         for attempt in range(self.max_retries):
             try:
+                if isinstance(last_err, _LengthTruncated):
+                    # reasoning models can burn the whole budget thinking; give room
+                    payload["max_tokens"] = min(payload["max_tokens"] * 2, 131072)
                 resp = requests.post(
                     self.url,
                     headers={"Content-Type": "application/json",
@@ -101,9 +129,11 @@ class LLMClient:
                 self.usage.add(data.get("usage", {}))
                 self._log(tag, messages, msg, data.get("usage", {}))
                 if not content.strip():
-                    # reasoning model ran out of budget before emitting text
-                    raise RuntimeError(
-                        f"empty content (finish_reason={data['choices'][0].get('finish_reason')})")
+                    finish = data["choices"][0].get("finish_reason")
+                    if finish == "length":
+                        # reasoning model ran out of budget before emitting text
+                        raise _LengthTruncated(f"empty content, max_tokens={payload['max_tokens']}")
+                    raise RuntimeError(f"empty content (finish_reason={finish})")
                 return content
             except Exception as e:  # noqa: BLE001
                 last_err = e

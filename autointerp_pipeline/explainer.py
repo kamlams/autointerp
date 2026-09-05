@@ -7,7 +7,7 @@ from .sampler import FeatureExamples, SamplerConfig
 
 
 def explain(client: LLMClient, ex: FeatureExamples, cfg: SamplerConfig,
-            max_tokens: int = 8192) -> dict:
+            max_tokens: int = 16384) -> dict:
     density = ex.stats["density"] if ex.stats.get("dense") else None
     user = prompts.format_explainer_user(ex.explainer, density, cfg.dense_highlight_q)
     reply = client.chat(
