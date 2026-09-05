@@ -4,7 +4,7 @@ EXPLAINER_SYSTEM = """You are an interpretability researcher analyzing one featu
 
 You receive two kinds of evidence:
 1. A STATISTICS CARD computed over ALL of the feature's firings in the corpus: firing rate by token position, and the most common fired-on and preceding tokens among the strongest firings and among all firings. Each listed token carries two numbers: its count among those firings, and in parentheses the CONDITIONAL RATE — how often any occurrence of that token in the corpus fires (fired-on tokens) or is followed by a firing (preceding tokens). Compare conditional rates with the baseline firing probability: a token at 90% is a reliable trigger and points at the mechanism; a token at 5% is merely frequent text and points at background noise.
-2. Sampled text SNIPPETS. Tokens on which the feature fires are wrapped in << >> (strong) or < > (weak; dense features only); unmarked tokens do not fire. A snippet that begins with [START] starts at the first token of its sequence. Each snippet header gives the anchor token's strength on a 0-10 scale relative to this feature's maximum, and its position in the sequence.
+2. Sampled text SNIPPETS. Tokens on which the feature fires are wrapped in << >> (strong: at least 30% of the feature's maximum activation) or < > (weak: below that, often noise-like spillover); unmarked tokens do not fire. A snippet that begins with [START] starts at the first token of its sequence. Each snippet header gives the anchor token's strength on a 0-10 scale relative to this feature's maximum, and its position in the sequence.
 
 Treat these pattern types as hypotheses and pick whichever the evidence supports best (combinations are common):
 - identity of the fired-on token, word form, or subword;
@@ -20,7 +20,7 @@ End your reply with exactly these two lines (no markdown, nothing after them):
 LABEL: <2-6 word name for the feature>
 EXPLANATION: <one to three sentences: when it fires, what makes it fire strongly, and where it does NOT fire if that is informative>"""
 
-EXPLAINER_DENSE_NOTE = """NOTE: this feature fires on {density:.0%} of ALL tokens — it is a dense feature, not a selective one. In the snippets, firings above the {q:.0%} activation quantile are marked <<...>> and weaker firings <...>; unmarked tokens do not fire. After the firing snippets you will see CONTRAST snippets in which the [[marked]] token does NOT fire. Describe what separates firing from non-firing tokens (position, token type, ...) as well as what separates strong from weak firing."""
+EXPLAINER_DENSE_NOTE = """NOTE: this feature fires on {density:.0%} of ALL tokens — it is a dense feature, not a selective one. In the snippets, only firings above the {q:.0%} activation quantile count as strong <<...>>; the many weaker firings are marked <...>; unmarked tokens do not fire. After the firing snippets you will see CONTRAST snippets in which the [[marked]] token does NOT fire. Describe what separates firing from non-firing tokens (position, token type, ...) as well as what separates strong from weak firing."""
 
 
 def format_explainer_user(ex, dense_q: float) -> str:
@@ -55,7 +55,7 @@ FUZZING_SYSTEM = """You will evaluate a proposed explanation of a language-model
 Explanation of the feature:
 {explanation}
 
-You will see {n} snippets in which some tokens are wrapped in << >> marks; a snippet beginning with [START] starts at the first token of its sequence. In some snippets the marks are placed correctly on tokens where this feature fires; in others the marks are placed on wrong tokens where it does not fire. For each snippet, answer 1 if the marked tokens are where the explanation says the feature fires, and 0 if the marking contradicts the explanation.
+You will see {n} snippets in which some tokens are wrapped in << >> marks; a snippet beginning with [START] starts at the first token of its sequence. In some snippets the marks are placed correctly on tokens where this feature fires strongly (weaker firings may be left unmarked — that is not an error); in others the marks are placed on wrong tokens where it does not fire at all. For each snippet, answer 1 if the marked tokens are where the explanation says the feature fires, and 0 if the marking contradicts the explanation.
 
 Reply with ONLY a JSON array of {n} integers (0 or 1), e.g. [1,0,0,1,1]. No other text."""
 

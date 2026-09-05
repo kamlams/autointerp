@@ -49,7 +49,11 @@ class SamplerConfig:
     bigram_share_factor: float = 0.5  # dominant bigram gets share*n*factor slots (>= floor)
     max_per_prompt: int = 4     # loose diversity cap per (batch, prompt)
     dense_threshold: float = 0.10    # density above which "dense" handling kicks in
-    dense_highlight_q: float = 0.75  # strong/weak split quantile for dense features
+    dense_highlight_q: float = 0.75  # dense features: strong/weak split at least this quantile
+    strong_floor: float = 0.30  # firing is "strong" at >= this fraction of the feature max;
+                                # weaker firings are noise-like spillover (feature28617 marks
+                                # " pass"/" at" at 0.1-0.2 of max next to " to" at 0.9)
+    fuzz_mark_cap: int = 5      # marks per fuzzing probe (strongest kept)
     n_dense_negatives: int = 6  # non-firing contrast snippets shown to the explainer (dense only)
     seed: int = 0
 
@@ -124,10 +128,9 @@ def _make_snippet(feat: FeatureRecord, corpus: Corpus, b: int, p: int, pos: int,
             merged.append([t, a, an])
     tokens = [m[0] for m in merged]
     anchor = next(i for i, m in enumerate(merged) if m[2])
-    strong = {i for i, m in enumerate(merged) if m[1] > thr}
-    if act > 0:
-        strong.add(anchor)  # every activating snippet carries at least its anchor mark
-    weak = ({i for i, m in enumerate(merged) if 0 < m[1] <= thr} - strong) if dense else set()
+    # every firing is marked, but by its true class: strong (>= thr) or weak spillover
+    strong = {i for i, m in enumerate(merged) if m[1] > 0 and m[1] >= thr}
+    weak = {i for i, m in enumerate(merged) if 0 < m[1] < thr}
     norm = int(round(10 * act / feat.max_act)) if feat.max_act > 0 else 0
     return Snippet(batch=b, prompt=p, pos=pos, tokens=tokens, anchor_offset=anchor,
                    strong=strong, weak=weak, at_start=(lo == 0), max_act=act, norm_score=norm)
@@ -298,7 +301,9 @@ def build_examples(feat: FeatureRecord, corpus: Corpus, cfg: SamplerConfig) -> F
     density = feat.density(corpus)
     dense = density >= cfg.dense_threshold
     acts = feat.acts
-    thr = float(torch.quantile(acts, cfg.dense_highlight_q)) if dense else 0.0
+    thr = cfg.strong_floor * feat.max_act
+    if dense:
+        thr = max(thr, float(torch.quantile(acts, cfg.dense_highlight_q)))
 
     order = torch.argsort(acts)
     rec = feat.records[order]
@@ -327,15 +332,29 @@ def build_examples(feat: FeatureRecord, corpus: Corpus, cfg: SamplerConfig) -> F
 
     # --- held-out probes ---
     test_rows = _stratified(rows, cfg.n_test_act, ("rank", "value"), picker, all_quotas, cfg, rng)
-    fuzz_pairs = _stratified_pairs(rows, cfg.n_fuzz, ("rank", "value"), picker, all_quotas, cfg, rng)
+    # fuzzing tests token-level precision of the explained regime, so its anchors are
+    # strong firings only; weak-regime coverage is reported by detection's tpr_by_strength
+    strong_rows = [r for r in rows if r[3] >= thr] or rows[-2 * cfg.n_fuzz:]
+    fuzz_pairs = _stratified_pairs(strong_rows, cfg.n_fuzz, ("rank", "value"), picker,
+                                   all_quotas, cfg, rng)
     neg_rows = _negatives(feat, corpus, cfg.n_test_neg, picker, cfg, rng)
     contrast_rows = _negatives(feat, corpus, cfg.n_dense_negatives, picker, cfg, rng) if dense else []
 
     mk = lambda r: _make_snippet(feat, corpus, r[0], r[1], r[2], cfg, thr, r[3], dense)
-    fuzz_correct = [mk(a) for a, _ in fuzz_pairs]
+
+    def trim_marks(s: Snippet) -> Snippet:
+        """Keep the anchor plus the strongest other marks, up to fuzz_mark_cap."""
+        pacts = feat.acts_by_prompt.get((s.batch, s.prompt), {})
+        lo_off = s.pos - s.anchor_offset
+        others = sorted((i for i in s.strong if i != s.anchor_offset),
+                        key=lambda i: -pacts.get(lo_off + i, 0.0))
+        s.strong = {s.anchor_offset} | set(others[: cfg.fuzz_mark_cap - 1])
+        return s
+
+    fuzz_correct = [trim_marks(mk(a)) for a, _ in fuzz_pairs]
     fuzz_incorrect = []
     for _, r in fuzz_pairs:
-        s = mk(r)
+        s = trim_marks(mk(r))
         k = max(1, len(s.strong))
         non_firing = [i for i in range(len(s.tokens)) if i not in s.strong and i not in s.weak]
         if len(non_firing) < k:  # dense feature: fall back to the weakest positions
