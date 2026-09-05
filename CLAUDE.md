@@ -68,7 +68,9 @@ Outputs land in `outputs/<run>/`: `report.md`, `feature{ID}.json`, `calls.jsonl`
   ≥ 10% density also require ≥ P75) or `<weak>` spillover; dense features get non-firing
   contrast snippets; byte-fragment tokens merged. Fuzzing probes are strength-matched
   PAIRS from the same bin (one correct, one wrongly marked), anchors from strong
-  firings only, ≤ 5 strong marks per probe, wrong marks on zero-activation tokens
+  firings only, exactly ONE mark per probe (the anchor; the wrong twin carries one mark on a
+  zero-activation token) so every probe is a single judgment — multi-mark probes with
+  mixed evidence made reasoning examiners ruminate for 100k tokens (`fuzz_mark_cap`)
 - `prompts.py` — all three prompt templates (explainer, detection, fuzzing)
 - `explainer.py` — one LLM call → `LABEL` + `EXPLANATION` (reasoning models spend
   15-30k thinking tokens here; `--explain-max-tokens` defaults to 32k)

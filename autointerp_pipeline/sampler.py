@@ -53,7 +53,9 @@ class SamplerConfig:
     strong_floor: float = 0.30  # firing is "strong" at >= this fraction of the feature max;
                                 # weaker firings are noise-like spillover (feature28617 marks
                                 # " pass"/" at" at 0.1-0.2 of max next to " to" at 0.9)
-    fuzz_mark_cap: int = 5      # marks per fuzzing probe (strongest kept)
+    fuzz_mark_cap: int = 1      # marks per fuzzing probe; 1 = the anchor only, so every probe is a
+                                # single judgment (multi-mark probes with mixed evidence made
+                                # reasoning examiners ruminate for 100k tokens; cap 5 = v6 protocol)
     n_dense_negatives: int = 6  # non-firing contrast snippets shown to the explainer (dense only)
     seed: int = 0
 

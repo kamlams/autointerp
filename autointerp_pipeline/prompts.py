@@ -55,7 +55,7 @@ FUZZING_SYSTEM = """You will evaluate a proposed explanation of a language-model
 Explanation of the feature:
 {explanation}
 
-You will see {n} snippets in which some tokens are wrapped in << >> marks; a snippet beginning with [START] starts at the first token of its sequence. In some snippets the marks are placed correctly on tokens where this feature fires strongly (weaker firings may be left unmarked — that is not an error); in others the marks are placed on wrong tokens where it does not fire at all. For each snippet, answer 1 if the marked tokens are where the explanation says the feature fires, and 0 if the marking contradicts the explanation.
+You will see {n} snippets, each with EXACTLY ONE token wrapped in << >> marks; a snippet beginning with [START] starts at the first token of its sequence. In some snippets the mark is on a token where this feature fires strongly; in others it is on a wrong token where the feature does not fire at all. No other token is ever marked, even if the feature also fires elsewhere in the snippet — judge only the marked token. For each snippet, answer 1 if the explanation predicts that the feature fires on the marked token, and 0 if it does not.
 
 Reply with ONLY a JSON array of {n} integers (0 or 1), e.g. [1,0,0,1,1]. No other text."""
 
