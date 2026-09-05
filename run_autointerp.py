@@ -22,15 +22,34 @@ DEFAULT_DATA_DIR = "/hs/work0/home/users/lingqi.zhang/workspace/wengang/autointe
 
 def process_feature(path: str, corpus, client: LLMClient, cfg: SamplerConfig,
                     workers: int, out_dir: str, scorer_client: LLMClient | None = None,
-                    explain_max_tokens: int = 32768) -> dict:
+                    explain_max_tokens: int = 32768, reuse_dir: str | None = None,
+                    scorers: tuple = ("detect", "fuzz")) -> dict:
+    """reuse_dir: take label/explanation from that run's feature JSON instead of calling
+    the explainer, so a scoring-protocol change can be measured against a FIXED
+    explanation (reasoning explainers are not deterministic). Scorers not in `scorers`
+    are carried over from the reused run."""
     t0 = time.time()
     scorer_client = scorer_client or client
     feat = load_feature(path)
     ex = build_examples(feat, corpus, cfg)
-    expl = explain(client, ex, cfg, max_tokens=explain_max_tokens)
-    det = detection(scorer_client, expl["explanation"], ex, workers=workers, seed=cfg.seed)
-    fuz = fuzzing(scorer_client, expl["explanation"], ex, workers=workers, seed=cfg.seed)
+    prev = None
+    if reuse_dir:
+        with open(os.path.join(reuse_dir, f"feature{feat.feature_id}.json")) as f:
+            prev = json.load(f)
+        expl = {"label": prev["label"], "explanation": prev["explanation"],
+                "raw": prev.get("explanation"), "prompt": prev.get("explainer_prompt", "")}
+    else:
+        expl = explain(client, ex, cfg, max_tokens=explain_max_tokens)
+    if "detect" in scorers:
+        det = detection(scorer_client, expl["explanation"], ex, workers=workers, seed=cfg.seed)
+    else:
+        det = prev["detection_raw"] | {"carried_over": True}
+    if "fuzz" in scorers:
+        fuz = fuzzing(scorer_client, expl["explanation"], ex, workers=workers, seed=cfg.seed)
+    else:
+        fuz = prev["fuzzing_raw"] | {"carried_over": True}
     result = {
+        "explanation_source": reuse_dir or "explainer",
         "feature_id": feat.feature_id,
         "human_label": feat.human_label,
         "file": os.path.basename(path),
@@ -98,6 +117,11 @@ def main():
     ap.add_argument("--explain-max-tokens", type=int, default=32768,
                     help="completion budget for the explainer call; reasoning models spend "
                          "15-30k tokens thinking on this task")
+    ap.add_argument("--reuse-explanations", default=None, metavar="RUN_DIR",
+                    help="skip the explainer and score the explanations stored in RUN_DIR")
+    ap.add_argument("--scorers", default="detect,fuzz",
+                    help="comma list of scorers to run; skipped ones are carried over from "
+                         "--reuse-explanations")
     args = ap.parse_args()
 
     token_pkl = args.token_list
@@ -132,7 +156,9 @@ def main():
         try:
             r = process_feature(path, corpus, client, cfg, args.workers, out_dir,
                                 scorer_client=scorer_client,
-                                explain_max_tokens=args.explain_max_tokens)
+                                explain_max_tokens=args.explain_max_tokens,
+                                reuse_dir=args.reuse_explanations,
+                                scorers=tuple(s.strip() for s in args.scorers.split(",")))
         except Exception as e:  # noqa: BLE001
             print(f"  FAILED: {e}", file=sys.stderr, flush=True)
             continue
