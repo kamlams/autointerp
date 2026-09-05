@@ -46,8 +46,15 @@ Never commit API keys; the client reads them at runtime only.
 
 ## Sanity results (5 hand-labeled sample features)
 
-See `outputs/*/report.md`. First smoke run (Kimi-K3): feature28617 (human "to") →
-LLM label "'to' token detector", detection 1.00, fuzzing 1.00 balanced accuracy.
+See `outputs/*/report.md`. Highlights so far:
+
+- Kimi-K3 smoke run: feature28617 (human "to") → "'to' token detector",
+  detection 1.00 / fuzzing 1.00.
+- DeepSeek-V4-Flash full run: all 5 features in ~20s of LLM time. Scores are honest —
+  the two wrong explanations (feature25337 "kick-related", feature14825 "God/Lord")
+  landed at chance level (0.40–0.53), the correct one (feature28617) at 0.82/1.00.
+  Fast models are adequate scorers but weak explainers on features that need
+  abstraction (e.g. "token preceded by a verb").
 
 ## Next: router → expert mapping (planned)
 

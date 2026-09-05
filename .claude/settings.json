@@ -1,0 +1,8 @@
+{
+  "model": "fable",
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "xhigh",
+  "worktree": {
+    "bgIsolation": "none"
+  }
+}
