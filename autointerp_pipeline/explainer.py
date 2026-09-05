@@ -7,9 +7,8 @@ from .sampler import FeatureExamples, SamplerConfig
 
 
 def explain(client: LLMClient, ex: FeatureExamples, cfg: SamplerConfig,
-            max_tokens: int = 32768) -> dict:
-    density = ex.stats["density"] if ex.stats.get("dense") else None
-    user = prompts.format_explainer_user(ex.explainer, density, cfg.dense_highlight_q)
+            max_tokens: int = 16384) -> dict:
+    user = prompts.format_explainer_user(ex, cfg.dense_highlight_q)
     reply = client.chat(
         [{"role": "system", "content": prompts.EXPLAINER_SYSTEM},
          {"role": "user", "content": user}],
@@ -20,7 +19,7 @@ def explain(client: LLMClient, ex: FeatureExamples, cfg: SamplerConfig,
     if explanation is None:  # fall back to last non-empty line
         lines = [l.strip() for l in reply.strip().splitlines() if l.strip()]
         explanation = lines[-1] if lines else reply.strip()
-    return {"label": label or "", "explanation": explanation, "raw": reply}
+    return {"label": label or "", "explanation": explanation, "raw": reply, "prompt": user}
 
 
 def _extract(text: str, key: str) -> str | None:

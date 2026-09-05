@@ -40,9 +40,11 @@ def process_feature(path: str, corpus, client: LLMClient, cfg: SamplerConfig,
         "fuzzing": {k: v for k, v in fuz.items() if k not in ("preds", "labels")},
         "elapsed_s": round(time.time() - t0, 1),
         "examples_shown": [s.render(True) for s in ex.explainer[:6]],
+        "stats_card": ex.card,
     }
     with open(os.path.join(out_dir, f"feature{feat.feature_id}.json"), "w") as f:
-        json.dump(result | {"detection_raw": det, "fuzzing_raw": fuz}, f,
+        json.dump(result | {"detection_raw": det, "fuzzing_raw": fuz,
+                            "explainer_prompt": expl["prompt"]}, f,
                   ensure_ascii=False, indent=1, default=str)
     return result
 
