@@ -1,0 +1,15 @@
+loading corpus /hs/work0/home/users/lingqi.zhang/workspace/wengang/autointerp/token_list_260904.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/5] feature12298__after_a__260904.pt
+  -> label='Reduplicated indefinite article "a a"' det=0.50 fuzz=0.55 (10.9s)
+[2/5] feature14825__a_ubiquitous_feature__260904.pt
+  -> label='Religious discourse divine-noun detector' det=0.65 fuzz=0.68 (5.7s)
+[3/5] feature24792__content_word_marker__260904.pt
+  -> label='sequence position detector' det=0.55 fuzz=0.57 (8.8s)
+[4/5] feature25337__preceded_by_a_verb__260904.pt
+  -> label='verb-particle completion trigger' det=0.57 fuzz=0.57 (3.0s)
+[5/5] feature28617__to__260904.pt
+  -> label='Infinitive "to" token detector' det=0.68 fuzz=0.88 (4.7s)
+
+usage: {'explainer': '87 calls, 61945 prompt tok, 4479 completion tok (of which 0 reasoning)'}
+report: outputs/v9_full_dsflash/report.md
