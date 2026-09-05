@@ -51,27 +51,44 @@ Outputs land in `outputs/<run>/`: `report.md`, `feature{ID}.json`, `calls.jsonl`
 ## Architecture (autointerp_pipeline/)
 
 - `data.py` — corpus + feature loading, firing index for O(1) negative sampling
-- `sampler.py` — top-k + activation-quantile-stratified snippets; disjoint
-  explainer/detection/fuzzing sets; dense-feature branch (density ≥ 10%: highlight only
-  > P75 activations and tell the explainer the density)
+- `stats.py` — the statistics card shown to the explainer: density, firing rate and mean
+  activation by sequence position, top fired-on / preceding tokens among the strongest
+  2000 and among 5000 random firings. Computed over ALL firings at zero LLM cost; it is
+  the primary evidence for aggregate patterns that 24 snippets hide (feature25337's
+  phrasal-verb particles were invisible in the snippets, obvious in the table)
+- `sampler.py` — top pool + stratified snippets (half rank bins, half activation-value
+  bins so heavy-tailed features get their strong regime probed); diversity quotas
+  proportional to pool share (x0.5, floor 2, overflow when exhausted) on the
+  (preceding, fired-on) bigram and on each token alone; disjoint explainer / detection /
+  fuzzing sets; `[START]` marker and position in headers; dense-feature branch
+  (density ≥ 10%: `<<strong>>` above P75, `<weak>` below, plus non-firing contrast
+  snippets); byte-fragment tokens merged
 - `prompts.py` — all three prompt templates (explainer, detection, fuzzing)
-- `explainer.py` — one LLM call → `LABEL` + `EXPLANATION`
-- `scorer.py` — detection (does the feature fire on the FINAL token of the snippet? —
-  final-token protocol, deviates from delphi's whole-window judgment on purpose) and
-  fuzzing (are the `<<>>` marks placed correctly vs deliberately-wrong marks?);
-  balanced accuracy, parse failures excluded from metrics and counted
+- `explainer.py` — one LLM call → `LABEL` + `EXPLANATION` (reasoning models spend
+  15-30k thinking tokens here; `--explain-max-tokens` defaults to 32k)
+- `scorer.py` — detection: the probed token is wrapped in `[[ ]]` with context on both
+  sides and named in the header ("does the feature fire on the probe token?"; per-token
+  protocol, well-defined for dense features, robust to examiners that would otherwise
+  judge the wrong token) and fuzzing (are the `<<>>` marks placed correctly vs
+  deliberately-wrong marks?); balanced accuracy, chance = 0.5, parse failures excluded
+  from metrics and counted
 - `llm.py` — OpenAI-compatible client: credential chain (env → ~/.config/rivault.env →
   ~/.config/opencode/opencode.json), retries with adaptive max_tokens doubling when a
   reasoning model burns the whole budget thinking (finish_reason=length, empty content)
+- `compare_runs.py` (repo root) — side-by-side table of several output dirs
 
 ## Conventions
 
 - API keys are never committed; the client resolves them at runtime (see llm.py).
 - Reproducibility: per-feature RNG `seed*100003 + feature_id`, temperature 0.
 - LLM endpoint is RiVault (RIKEN R-CCS gateway); model choice is a config string, local
-  vLLM later is the same interface. Known models: moonshotai/Kimi-K3 (reasoning, slow,
-  strong), deepseek-ai/DeepSeek-V4-Flash (no reasoning, ~0.2s/call, weak explainer but
-  adequate scorer), zai-org/GLM-5.2, qwen3-coder:30b.
+  vLLM later is the same interface. Known models: moonshotai/Kimi-K3 (reasoning, ~30
+  tok/s, strong; thinking cannot be disabled by any API parameter; requests over ~10 min
+  get HTTP 504 from the gateway), deepseek-ai/DeepSeek-V4-Flash (no reasoning,
+  ~0.2s/call, weak explainer), deepseek-ai/DeepSeek-V4-Flash-reasoning (reasoning at
+  ~320 tok/s — the default for validation runs; its usage reports text_tokens=0 even
+  when content is present), zai-org/GLM-5.2, Qwen/Qwen3.8-27B, and others listed by
+  GET /v1/models.
 - Scoring reads: balanced accuracy, chance = 0.5; a good explanation needs BOTH detection
   and fuzzing high. `tpr_by_strength` in detection results diagnoses which activation
   regime an explanation fails on.

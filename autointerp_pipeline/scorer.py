@@ -65,10 +65,11 @@ def _score_batches(client: LLMClient, system: str, probes: list, workers: int,
 
 
 def detection(client: LLMClient, explanation: str, ex: FeatureExamples,
-              workers: int = 4, seed: int = 0, max_tokens: int = 6144) -> dict:
-    """Probe: does the feature fire on the FINAL token of each snippet?"""
+              workers: int = 4, seed: int = 0, max_tokens: int = 12288) -> dict:
+    """Probe: does the feature fire on the [[marked]] token of each snippet?"""
     rng = random.Random(seed)
-    probes = [(f"final token at position {s.pos}", s.render(False, upto_anchor=True), y, s)
+    probes = [(f'probe token "{s.anchor_token}" at position {s.pos}',
+               s.render(False, mark_anchor=True), y, s)
               for s, y in [(s, 1) for s in ex.test_act] + [(s, 0) for s in ex.test_neg]]
     rng.shuffle(probes)
     system = prompts.DETECTION_SYSTEM.replace("{explanation}", explanation)
@@ -82,7 +83,7 @@ def detection(client: LLMClient, explanation: str, ex: FeatureExamples,
 
 
 def fuzzing(client: LLMClient, explanation: str, ex: FeatureExamples,
-            workers: int = 4, seed: int = 0, max_tokens: int = 6144) -> dict:
+            workers: int = 4, seed: int = 0, max_tokens: int = 12288) -> dict:
     """Probe: are the << >> marks placed where the explanation says the feature fires?"""
     rng = random.Random(seed + 1)
     probes = [("", s.render(True, show_weak=False), y, s)

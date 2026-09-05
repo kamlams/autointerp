@@ -19,7 +19,7 @@ End your reply with exactly these two lines (no markdown, nothing after them):
 LABEL: <2-6 word name for the feature>
 EXPLANATION: <one to three sentences: when it fires, what makes it fire strongly, and where it does NOT fire if that is informative>"""
 
-EXPLAINER_DENSE_NOTE = """NOTE: this feature fires on {density:.0%} of ALL tokens — it is a dense feature, not a selective one. In the snippets, firings above the {q:.0%} activation quantile are marked <<...>> and weaker firings <...>; unmarked tokens do not fire. After the firing snippets you will see CONTRAST snippets whose final token does NOT fire. Describe what separates firing from non-firing tokens (position, token type, ...) as well as what separates strong from weak firing."""
+EXPLAINER_DENSE_NOTE = """NOTE: this feature fires on {density:.0%} of ALL tokens — it is a dense feature, not a selective one. In the snippets, firings above the {q:.0%} activation quantile are marked <<...>> and weaker firings <...>; unmarked tokens do not fire. After the firing snippets you will see CONTRAST snippets in which the [[marked]] token does NOT fire. Describe what separates firing from non-firing tokens (position, token type, ...) as well as what separates strong from weak firing."""
 
 
 def format_explainer_user(ex, dense_q: float) -> str:
@@ -33,10 +33,10 @@ def format_explainer_user(ex, dense_q: float) -> str:
         parts.append(s.render(highlighted=True))
     if ex.explainer_negatives:
         parts.append("")
-        parts.append("CONTRAST snippets — the feature does NOT fire on the final token:")
+        parts.append("CONTRAST snippets — the feature does NOT fire on the [[marked]] token:")
         for i, s in enumerate(ex.explainer_negatives, 1):
-            parts.append(f"--- Contrast {i} (final token at position {s.pos}) ---")
-            parts.append(s.render(highlighted=False, upto_anchor=True))
+            parts.append(f'--- Contrast {i} (non-firing token "{s.anchor_token}" at position {s.pos}) ---')
+            parts.append(s.render(highlighted=False, mark_anchor=True))
     return "\n".join(parts)
 
 
@@ -45,7 +45,7 @@ DETECTION_SYSTEM = """You will evaluate a proposed explanation of a language-mod
 Explanation of the feature:
 {explanation}
 
-You will see {n} snippets. Each snippet is cut exactly at the token being probed, and its header gives that token's position in the sequence; a snippet beginning with [START] starts at the first token of its sequence. For each snippet, decide whether this feature fires ON THE FINAL TOKEN (judge that last token in its left context). Answer 1 if, per the explanation, the feature fires on the final token; answer 0 if it does not.
+You will see {n} snippets. In each snippet exactly one token is wrapped in [[ ]] — the probe token; the header repeats it and gives its position in the sequence. A snippet beginning with [START] starts at the first token of its sequence. The feature reads only the probe token and the text BEFORE it (the text after it is shown for readability only). For each snippet, decide whether this feature fires ON THE PROBE TOKEN. Answer 1 if, per the explanation, the feature fires on the [[probe token]]; answer 0 if it does not. Ignore other occurrences of similar tokens elsewhere in the snippet.
 
 Reply with ONLY a JSON array of {n} integers (0 or 1), e.g. [1,0,0,1,1]. No other text."""
 

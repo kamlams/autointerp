@@ -67,8 +67,15 @@ class Snippet:
     max_act: float              # anchor activation (0 for negatives)
     norm_score: int             # 0-10 vs feature max (0 for negatives)
 
+    @property
+    def anchor_token(self) -> str:
+        return self.tokens[self.anchor_offset]
+
     def render(self, highlighted: bool, upto_anchor: bool = False,
-               show_weak: bool = True) -> str:
+               show_weak: bool = True, mark_anchor: bool = False) -> str:
+        """mark_anchor wraps only the probed token in [[ ]] (detection view): the
+        examiner must not have to count tokens to find it — weak examiners judged
+        a "to" explanation against whichever "to" appeared anywhere in the snippet."""
         n = self.anchor_offset + 1 if upto_anchor else len(self.tokens)
         marks = {}
         if highlighted:
@@ -77,19 +84,14 @@ class Snippet:
             if show_weak:
                 for i in self.weak:
                     marks.setdefault(i, ("<", ">"))
+        if mark_anchor:
+            marks[self.anchor_offset] = ("[[", "]]")
+        # one mark per token (not merged runs): the explainer needs to see that
+        # "a<< lot>><< of>>" is two firing tokens, not one firing phrase
         out = ["[START]"] if self.at_start else []
-        i = 0
-        while i < n:
+        for i in range(n):
             m = marks.get(i)
-            if m is None:
-                out.append(self.tokens[i])
-                i += 1
-                continue
-            j = i
-            while j + 1 < n and marks.get(j + 1) == m:
-                j += 1
-            out.append(m[0] + "".join(self.tokens[i: j + 1]) + m[1])
-            i = j + 1
+            out.append(self.tokens[i] if m is None else m[0] + self.tokens[i] + m[1])
         return "".join(out)
 
 

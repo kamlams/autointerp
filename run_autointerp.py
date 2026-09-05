@@ -21,12 +21,13 @@ DEFAULT_DATA_DIR = "/hs/work0/home/users/lingqi.zhang/workspace/wengang/autointe
 
 
 def process_feature(path: str, corpus, client: LLMClient, cfg: SamplerConfig,
-                    workers: int, out_dir: str, scorer_client: LLMClient | None = None) -> dict:
+                    workers: int, out_dir: str, scorer_client: LLMClient | None = None,
+                    explain_max_tokens: int = 32768) -> dict:
     t0 = time.time()
     scorer_client = scorer_client or client
     feat = load_feature(path)
     ex = build_examples(feat, corpus, cfg)
-    expl = explain(client, ex, cfg)
+    expl = explain(client, ex, cfg, max_tokens=explain_max_tokens)
     det = detection(scorer_client, expl["explanation"], ex, workers=workers, seed=cfg.seed)
     fuz = fuzzing(scorer_client, expl["explanation"], ex, workers=workers, seed=cfg.seed)
     result = {
@@ -92,6 +93,9 @@ def main():
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--n-explainer", type=int, default=24)
     ap.add_argument("--n-test", type=int, default=20, help="activating and negative probes each")
+    ap.add_argument("--explain-max-tokens", type=int, default=32768,
+                    help="completion budget for the explainer call; reasoning models spend "
+                         "15-30k tokens thinking on this task")
     args = ap.parse_args()
 
     token_pkl = args.token_list
@@ -125,7 +129,8 @@ def main():
         print(f"[{len(results)+1}/{len(feature_paths)}] {os.path.basename(path)}", flush=True)
         try:
             r = process_feature(path, corpus, client, cfg, args.workers, out_dir,
-                                scorer_client=scorer_client)
+                                scorer_client=scorer_client,
+                                explain_max_tokens=args.explain_max_tokens)
         except Exception as e:  # noqa: BLE001
             print(f"  FAILED: {e}", file=sys.stderr, flush=True)
             continue
