@@ -47,6 +47,9 @@ $PY run_autointerp.py --features ../autointerp/feature28617__to__260904.pt --n-t
 
 Outputs land in `outputs/<run>/`: `report.md`, `feature{ID}.json`, `calls.jsonl`
 (full LLM traces), `run_config.json`.
+`outputs/` is scratch (gitignored; old experiments under `outputs/archive/`). Full
+records of runs on the accepted protocol are committed under `results/<run>/`
+(see `results/README.md` for the index and scores).
 
 ## Architecture (autointerp_pipeline/)
 

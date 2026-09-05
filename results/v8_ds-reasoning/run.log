@@ -1,0 +1,15 @@
+loading corpus /hs/work0/home/users/lingqi.zhang/workspace/wengang/autointerp/token_list_260904.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/5] feature12298__after_a__260904.pt
+  -> label='after indefinite article' det=0.75 fuzz=0.90 (58.6s)
+[2/5] feature14825__a_ubiquitous_feature__260904.pt
+  -> label='religious/divine topic' det=0.62 fuzz=0.68 (65.1s)
+[3/5] feature24792__content_word_marker__260904.pt
+  -> label='dense text continuation' det=0.65 fuzz=0.55 (176.9s)
+[4/5] feature25337__preceded_by_a_verb__260904.pt
+  -> label='post-stem continuation' det=0.62 fuzz=0.72 (180.1s)
+[5/5] feature28617__to__260904.pt
+  -> label='space-to token detector' det=0.80 fuzz=1.00 (24.6s)
+
+usage: {'explainer': '88 calls, 70716 prompt tok, 282730 completion tok (of which 280222 reasoning)'}
+report: outputs/v8_full_dsreasoning/report.md
