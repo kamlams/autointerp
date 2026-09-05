@@ -101,11 +101,16 @@ class LLMClient:
 
     def chat(self, messages: list[dict], max_tokens: int = 4096, temperature: float = 0.0,
              tag: str = "") -> str:
+        # Streamed (SSE) on purpose: long reasoning generations (>~10 min) exceed the
+        # RiVault gateway's HTTP timeout on non-streaming requests (nginx 504), while a
+        # stream delivers bytes continuously and survives.
         payload = {
             "model": self.model,
             "messages": messages,
             "max_tokens": max_tokens,
             "temperature": temperature,
+            "stream": True,
+            "stream_options": {"include_usage": True},
         }
         last_err = None
         for attempt in range(self.max_retries):
@@ -113,23 +118,11 @@ class LLMClient:
                 if isinstance(last_err, _LengthTruncated):
                     # reasoning models can burn the whole budget thinking; give room
                     payload["max_tokens"] = min(payload["max_tokens"] * 2, 131072)
-                resp = requests.post(
-                    self.url,
-                    headers={"Content-Type": "application/json",
-                             "Authorization": f"Bearer {self.api_key}"},
-                    json=payload,
-                    timeout=self.timeout,
-                )
-                if resp.status_code in (429, 500, 502, 503, 504):
-                    raise RuntimeError(f"HTTP {resp.status_code}: {resp.text[:200]}")
-                resp.raise_for_status()
-                data = resp.json()
-                msg = data["choices"][0]["message"]
-                content = msg.get("content") or ""
-                self.usage.add(data.get("usage", {}))
-                self._log(tag, messages, msg, data.get("usage", {}))
+                content, reasoning, finish, usage = self._stream_once(payload)
+                self.usage.add(usage)
+                self._log(tag, messages,
+                          {"content": content, "reasoning_content": reasoning}, usage)
                 if not content.strip():
-                    finish = data["choices"][0].get("finish_reason")
                     if finish == "length":
                         # reasoning model ran out of budget before emitting text
                         raise _LengthTruncated(f"empty content, max_tokens={payload['max_tokens']}")
@@ -140,6 +133,45 @@ class LLMClient:
                 wait = 2.0 * (2 ** attempt)
                 time.sleep(wait)
         raise RuntimeError(f"LLM call failed after {self.max_retries} attempts: {last_err}")
+
+    def _stream_once(self, payload: dict) -> tuple[str, str, str | None, dict]:
+        resp = requests.post(
+            self.url,
+            headers={"Content-Type": "application/json",
+                     "Authorization": f"Bearer {self.api_key}"},
+            json=payload,
+            stream=True,
+            # (connect, read): the read timeout applies between chunks, not to the whole
+            # generation, so slow-but-alive streams are fine and true stalls still fail
+            timeout=(30, 120),
+        )
+        if resp.status_code != 200:
+            body = resp.text[:200]
+            resp.close()
+            raise RuntimeError(f"HTTP {resp.status_code}: {body}")
+        content_parts, reasoning_parts = [], []
+        finish, usage = None, {}
+        try:
+            for line in resp.iter_lines(decode_unicode=True):
+                if not line or not line.startswith("data:"):
+                    continue
+                data = line[5:].strip()
+                if data == "[DONE]":
+                    break
+                chunk = json.loads(data)
+                if chunk.get("usage"):
+                    usage = chunk["usage"]
+                for choice in chunk.get("choices", []):
+                    delta = choice.get("delta", {})
+                    if delta.get("content"):
+                        content_parts.append(delta["content"])
+                    if delta.get("reasoning_content"):
+                        reasoning_parts.append(delta["reasoning_content"])
+                    if choice.get("finish_reason"):
+                        finish = choice["finish_reason"]
+        finally:
+            resp.close()
+        return "".join(content_parts), "".join(reasoning_parts), finish, usage
 
     def _log(self, tag: str, messages: list[dict], reply_msg: dict, usage: dict):
         if not self.log_path:
