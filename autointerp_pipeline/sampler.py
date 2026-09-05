@@ -31,7 +31,9 @@ class SamplerConfig:
     n_fuzz: int = 10            # per class (correct / incorrect highlighting)
     n_bins: int = 10            # quantile bins for stratification
     max_per_prompt: int = 2     # diversity cap per (batch, prompt)
-    dense_threshold: float = 0.15    # density above which "dense" handling kicks in
+    dense_threshold: float = 0.10    # density above which "dense" handling kicks in
+                                     # (feature14825 at 12.3% needs it: probes are mostly
+                                     # weak firings, explaining only the strong regime scores ~0.5)
     dense_highlight_q: float = 0.75  # highlight only acts above this quantile when dense
     seed: int = 0
 
