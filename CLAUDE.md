@@ -53,9 +53,12 @@ Outputs land in `outputs/<run>/`: `report.md`, `feature{ID}.json`, `calls.jsonl`
 - `data.py` — corpus + feature loading, firing index for O(1) negative sampling
 - `stats.py` — the statistics card shown to the explainer: density, firing rate and mean
   activation by sequence position, top fired-on / preceding tokens among the strongest
-  2000 and among 5000 random firings. Computed over ALL firings at zero LLM cost; it is
-  the primary evidence for aggregate patterns that 24 snippets hide (feature25337's
-  phrasal-verb particles were invisible in the snippets, obvious in the table)
+  2000 and among all firings, each with its CONDITIONAL RATE P(fire | token) computed
+  against corpus-wide token counts (`Corpus.token_counts()`, 0.3 s once). Shares say what
+  is common among firings; conditional rates say how reliably a token triggers the
+  feature (feature25337: ' cut'/' pick'/' click' → firing 100% of the time, ' up' fires
+  on 21% of its occurrences — the mechanism is the preceding token's form). Zero LLM
+  cost, 0.2 s per feature
 - `sampler.py` — top pool + stratified snippets (half rank bins, half activation-value
   bins so heavy-tailed features get their strong regime probed); diversity quotas
   proportional to pool share (x0.5, floor 2, overflow when exhausted) on the
