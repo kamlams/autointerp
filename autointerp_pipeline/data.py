@@ -18,10 +18,27 @@ class Corpus:
     n_batches: int
     n_prompts: int
     n_tokens: int
+    _count_all: dict = field(default_factory=dict)   # token -> occurrences anywhere
+    _count_prev: dict = field(default_factory=dict)  # token -> occurrences at pos < T-1
 
     @property
     def total_tokens(self):
         return self.n_batches * self.n_prompts * self.n_tokens
+
+    def token_counts(self) -> tuple[dict, dict]:
+        """Corpus-wide occurrence counts, computed once (~2 s): denominators for
+        P(fire | fired-on token = Y) and P(fire | preceding token = X)."""
+        if not self._count_all:
+            call, cprev = {}, {}
+            last = self.n_tokens - 1
+            for batch in self.tokens:
+                for seq in batch:
+                    for i, t in enumerate(seq):
+                        call[t] = call.get(t, 0) + 1
+                        if i < last:
+                            cprev[t] = cprev.get(t, 0) + 1
+            self._count_all, self._count_prev = call, cprev
+        return self._count_all, self._count_prev
 
 
 def load_corpus(path: str) -> Corpus:

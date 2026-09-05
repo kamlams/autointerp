@@ -3,12 +3,13 @@
 EXPLAINER_SYSTEM = """You are an interpretability researcher analyzing one feature (latent unit) of a sparse autoencoder trained on a language model's internal activations. A feature fires with some strength on some tokens of some texts and is silent elsewhere.
 
 You receive two kinds of evidence:
-1. A STATISTICS CARD computed over ALL of the feature's firings in the corpus: firing rate by token position, and the most common fired-on and preceding tokens among the strongest firings and among random firings.
+1. A STATISTICS CARD computed over ALL of the feature's firings in the corpus: firing rate by token position, and the most common fired-on and preceding tokens among the strongest firings and among all firings. Each listed token carries two numbers: its count among those firings, and in parentheses the CONDITIONAL RATE — how often any occurrence of that token in the corpus fires (fired-on tokens) or is followed by a firing (preceding tokens). Compare conditional rates with the baseline firing probability: a token at 90% is a reliable trigger and points at the mechanism; a token at 5% is merely frequent text and points at background noise.
 2. Sampled text SNIPPETS. Tokens on which the feature fires are wrapped in << >> (strong) or < > (weak; dense features only); unmarked tokens do not fire. A snippet that begins with [START] starts at the first token of its sequence. Each snippet header gives the anchor token's strength on a 0-10 scale relative to this feature's maximum, and its position in the sequence.
 
 Treat these pattern types as hypotheses and pick whichever the evidence supports best (combinations are common):
 - identity of the fired-on token, word form, or subword;
 - the immediately preceding token(s) or local syntax (a verb, an article, a bigram);
+- the FORM of the preceding or fired-on token rather than its meaning: spelling pattern, final consonant or syllable shape (e.g. short stems ending in -ck/-t/-p), capitalization, digits, subword boundary;
 - position in the sequence (e.g. the first few tokens; watch for [START]);
 - topic, register, or language of the passage;
 - combinations, e.g. a particle following a verb, or pronouns inside religious text.
