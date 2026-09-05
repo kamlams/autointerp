@@ -1,9 +1,10 @@
 # RouterInterp
 
 Goal: understand superposed specialisation in Mixture-of-Experts routing by mapping
-interpretable (SAE) features to experts. Step 1 (this directory): an automated
+interpretable (SAE) features to experts. Stage A (this directory): an automated
 feature-interpretation ("autointerp") pipeline that runs on open-weight LLM APIs or
-local vLLM — no OpenAI/Anthropic dependency.
+local vLLM — no OpenAI/Anthropic dependency. Stage B (planned): feature → expert
+attribution.
 
 ## Autointerp pipeline
 
@@ -14,47 +15,71 @@ re-implemented against our own activation-dump format:
 - corpus `token_list_*.pkl`: `tokens[batch][prompt][pos] -> str`
 - feature `feature{ID}__{label}__*.pt`: `[N,4]` rows `(batch, prompt, pos, activation)` — all firings
 
-Stages per feature (`autointerp_pipeline/`):
+Per feature (`autointerp_pipeline/`):
 
-1. **sampler** — top-k + activation-quantile-stratified snippets (±32/8 token context,
-   firing tokens marked `<<...>>`), held-out probe sets, uniform non-firing negatives.
-   Dense features (density ≥ 15%, e.g. feature24792 at 92.7%) get strength-graded
-   handling: only firings above the P75 activation are highlighted and the explainer is
-   told the density.
-2. **explainer** — LLM writes `LABEL` + `EXPLANATION` from the marked snippets.
-3. **scorers** —
-   - *detection*: does the feature fire on the final token of a left-context snippet?
-     20 held-out firing probes (stratified over strength) + 20 negatives, balanced accuracy.
-     (Final-token probing instead of delphi's whole-window judgment: stays well-defined
-     for dense features and matches per-token routing decisions.)
-   - *fuzzing*: are `<<>>` marks placed correctly? 10 correctly vs 10 wrongly marked.
-4. outputs: `outputs/<run>/feature{ID}.json`, `report.md`, `calls.jsonl` (full LLM traces),
-   `run_config.json`.
+1. **statistics card** (`stats.py`, no LLM cost) — density, firing rate by sequence
+   position, top fired-on / preceding tokens with their conditional rates
+   P(fire | token) against corpus-wide counts. Shares say what is common among firings;
+   conditional rates say how reliably a token triggers the feature.
+2. **sampler** — 24 snippets for the explainer: a diversity-quota'd top set plus a set
+   stratified over activation rank and value bins; every firing marked by class
+   (`<<strong>>` ≥ 30% of the feature max, `<weak>` otherwise), `[START]` marker and
+   position in headers. Dense features (density ≥ 10%) additionally get non-firing
+   contrast snippets. Probe sets are disjoint from the explainer set.
+3. **explainer** — one LLM call → `LABEL` + `EXPLANATION`.
+4. **detection** — 20 held-out firing probes (stratified over strength) + 20 uniform
+   non-firing probes; the probed token is wrapped in `[[ ]]` and named in the header;
+   "does the feature fire on the probe token?" Balanced accuracy, chance = 0.5;
+   `tpr_by_strength` shows which activation regime the explanation covers.
+5. **fuzzing** — 20 strength-matched pairs of strong firings: one snippet with the
+   anchor correctly marked `<<...>>`, its twin with a single mark on a zero-activation
+   token. Exactly one mark per probe, so every probe is a single judgment (multi-mark
+   probes with mixed evidence made reasoning examiners ruminate for 100k tokens).
+   "Does the explanation predict that the feature fires on the marked token?"
+6. outputs: `outputs/<run>/feature{ID}.json`, `report.md`, `calls.jsonl` (full LLM
+   traces incl. reasoning excerpts), `run_config.json`. `compare_runs.py` tabulates
+   several runs side by side.
 
 ## Running
 
 ```bash
-# credentials: env RIVAULT_API_KEY / RIVAULT_BASE_URL, or ~/.config/opencode/opencode.json
-~/miniconda3_x86/envs/vllm/bin/python run_autointerp.py \
-    --data-dir ../autointerp --model moonshotai/Kimi-K3 --workers 6
+PY=~/miniconda3_x86/envs/vllm/bin/python   # needs torch + requests
+
+# full run, validation default model
+$PY run_autointerp.py --data-dir ../autointerp --model deepseek-ai/DeepSeek-V4-Flash-reasoning
+
+# split explainer / examiner models
+$PY run_autointerp.py --model moonshotai/Kimi-K3 --scorer-model deepseek-ai/DeepSeek-V4-Flash
+
+# change a scoring protocol and re-score the SAME explanations
+$PY run_autointerp.py --reuse-explanations outputs/<run> --scorers fuzz --out outputs/<new>
 ```
 
-Any OpenAI-compatible endpoint works (`--model`, env `RIVAULT_BASE_URL`): RiVault-served
-Kimi-K3 / GLM-5.2 / DeepSeek-V4-Flash today, local vLLM later.
+Credentials: env `RIVAULT_API_KEY` / `RIVAULT_BASE_URL`, or `~/.config/rivault.env`, or
+`~/.config/opencode/opencode.json`. Any OpenAI-compatible endpoint works; responses are
+streamed (SSE) because long reasoning generations exceed the gateway's HTTP timeout
+otherwise. Never commit API keys.
 
-Never commit API keys; the client reads them at runtime only.
+## Results on the 5 hand-labeled sample features
 
-## Sanity results (5 hand-labeled sample features)
+Explanations from DeepSeek-V4-Flash-reasoning, scored by the same model
+(detection / fuzzing balanced accuracy, `outputs/v7_fuzz_single_rescore`):
 
-See `outputs/*/report.md`. Highlights so far:
+| feature | human label | density | det | fuzz |
+|---|---|---|---|---|
+| 28617 | to | 1.9% | 0.80 | 1.00 |
+| 12298 | after_a | 3.5% | 0.77 | 0.93 |
+| 14825 | a_ubiquitous_feature | 12.3% | 0.72 | 0.60 |
+| 24792 | content_word_marker | 92.7% | 0.65 | 0.55 |
+| 25337 | preceded_by_a_verb | 4.3% | 0.65 | 0.68 |
 
-- Kimi-K3 smoke run: feature28617 (human "to") → "'to' token detector",
-  detection 1.00 / fuzzing 1.00.
-- DeepSeek-V4-Flash full run: all 5 features in ~20s of LLM time. Scores are honest —
-  the two wrong explanations (feature25337 "kick-related", feature14825 "God/Lord")
-  landed at chance level (0.40–0.53), the correct one (feature28617) at 0.82/1.00.
-  Fast models are adequate scorers but weak explainers on features that need
-  abstraction (e.g. "token preceded by a verb").
+Notes: the scores are honest — wrong explanations land at chance level. Corpus
+statistics show feature25337 keys on the FORM of the preceding token (short stems ending
+in -ck/-t/-p: cut, pick, click → firing 100% of the time), of which the human label
+"preceded by a verb" is a subset; the explainer has not yet recovered this, and fuzzing
+TPR 0.35 quantifies the gap. Dense features remain hard to fuzz: a single wrong mark on a
+93%-dense feature is only detectable if the explanation pins down the 7% of positions
+where it does not fire.
 
 ## Next: router → expert mapping (planned)
 
