@@ -63,9 +63,12 @@ Outputs land in `outputs/<run>/`: `report.md`, `feature{ID}.json`, `calls.jsonl`
   bins so heavy-tailed features get their strong regime probed); diversity quotas
   proportional to pool share (x0.5, floor 2, overflow when exhausted) on the
   (preceding, fired-on) bigram and on each token alone; disjoint explainer / detection /
-  fuzzing sets; `[START]` marker and position in headers; dense-feature branch
-  (density ≥ 10%: `<<strong>>` above P75, `<weak>` below, plus non-firing contrast
-  snippets); byte-fragment tokens merged
+  fuzzing sets; `[START]` marker and position in headers; every firing is marked by
+  class — `<<strong>>` at ≥ 30% of the feature max (`strong_floor`; dense features
+  ≥ 10% density also require ≥ P75) or `<weak>` spillover; dense features get non-firing
+  contrast snippets; byte-fragment tokens merged. Fuzzing probes are strength-matched
+  PAIRS from the same bin (one correct, one wrongly marked), anchors from strong
+  firings only, ≤ 5 strong marks per probe, wrong marks on zero-activation tokens
 - `prompts.py` — all three prompt templates (explainer, detection, fuzzing)
 - `explainer.py` — one LLM call → `LABEL` + `EXPLANATION` (reasoning models spend
   15-30k thinking tokens here; `--explain-max-tokens` defaults to 32k)
