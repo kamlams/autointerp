@@ -1,0 +1,550 @@
+<title>RouterInterp Autointerp Report</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #F6F7F4;
+    --surface: #FFFFFF;
+    --ink: #1C201D;
+    --ink-2: #59645C;
+    --ink-3: #8A948C;
+    --line: #DCE1DB;
+    --line-2: #EEF1EC;
+    --accent: #2E6B5B;
+    --accent-soft: #DCEDE6;
+    --probe: #B4701C;
+    --probe-soft: #F5E7CF;
+    --weak-soft: #EEF1EC;
+    --chance: #B9C1BA;
+    --bar-track: #EDF0EC;
+    --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --sans: "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #131614; --surface: #1B1F1C; --ink: #E7EBE7; --ink-2: #A9B3AB; --ink-3: #7B857D;
+      --line: #2B312D; --line-2: #222824; --accent: #6FC3A4; --accent-soft: #1F3A31;
+      --probe: #E2A94F; --probe-soft: #3B2E17; --weak-soft: #242A26; --chance: #4A534C; --bar-track: #232925;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #131614; --surface: #1B1F1C; --ink: #E7EBE7; --ink-2: #A9B3AB; --ink-3: #7B857D;
+    --line: #2B312D; --line-2: #222824; --accent: #6FC3A4; --accent-soft: #1F3A31;
+    --probe: #E2A94F; --probe-soft: #3B2E17; --weak-soft: #242A26; --chance: #4A534C; --bar-track: #232925;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--sans); font-size: 17px; line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--probe); outline-offset: 2px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px 96px; }
+  .prose { max-width: 68ch; }
+
+  header.masthead { padding: 56px 0 28px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(38px, 5vw, 56px); line-height: 1.05; margin: 10px 0 14px; text-wrap: balance; letter-spacing: -0.01em; }
+  .lede { font-size: 20px; color: var(--ink-2); max-width: 62ch; margin: 0 0 26px; text-wrap: pretty; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px 28px; }
+  .fact .k { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+  .fact .v { font-family: var(--serif); font-size: 24px; line-height: 1.2; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .fact .s { font-size: 14px; color: var(--ink-2); }
+
+  nav.toc { display: flex; flex-wrap: wrap; gap: 6px 22px; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  nav.toc a { color: var(--ink-2); text-decoration: none; }
+  nav.toc a:hover { color: var(--accent); }
+
+  section { padding-top: 56px; }
+  h2 { font-family: var(--serif); font-weight: 500; font-size: 34px; line-height: 1.15; margin: 0 0 6px; text-wrap: balance; letter-spacing: -0.005em; }
+  h3 { font-family: var(--serif); font-weight: 600; font-size: 22px; line-height: 1.25; margin: 34px 0 8px; text-wrap: balance; }
+  .sub { color: var(--ink-2); margin: 0 0 22px; max-width: 68ch; font-size: 17px; }
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 14px; padding-left: 22px; }
+  li { margin: 4px 0; }
+  li::marker { color: var(--ink-3); }
+  code, .tok { font-family: var(--mono); font-size: 0.88em; }
+  code { background: var(--line-2); padding: 1px 5px; border-radius: 3px; }
+  pre { font-family: var(--mono); font-size: 13.5px; line-height: 1.55; background: var(--surface); border: 1px solid var(--line); padding: 16px 18px; overflow-x: auto; margin: 10px 0 18px; white-space: pre-wrap; word-break: break-word; }
+  pre .cmt { color: var(--ink-3); }
+  .mk { padding: 1px 2px; border-radius: 3px; font-weight: 500; }
+  .mk-strong { background: var(--accent-soft); color: var(--accent); }
+  .mk-weak { background: var(--weak-soft); color: var(--ink-2); }
+  .mk-probe { background: var(--probe-soft); color: var(--probe); }
+  .mk-start { color: var(--ink-3); }
+
+  .tablewrap { overflow-x: auto; margin: 14px 0 6px; }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-family: var(--mono); font-weight: 500; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); border-bottom: 1px solid var(--ink-3); white-space: nowrap; }
+  th.group { text-align: center; border-bottom: 1px solid var(--line); color: var(--ink); font-family: var(--sans); font-size: 14px; letter-spacing: 0; text-transform: none; font-weight: 600; }
+  td.num { text-align: right; white-space: nowrap; }
+  tr.mean td { border-top: 1px solid var(--ink-3); border-bottom: none; color: var(--ink-2); }
+  .fid { font-family: var(--mono); font-size: 13.5px; color: var(--ink-2); }
+  .hl { font-weight: 600; }
+
+  /* score cell: number + single-hue bar with a chance tick at 0.5 */
+  .score { display: grid; grid-template-columns: 34px 1fr; align-items: center; gap: 8px; min-width: 122px; }
+  .score .n { font-family: var(--mono); font-size: 13.5px; text-align: right; }
+  .score .bar { position: relative; height: 8px; background: var(--bar-track); border-radius: 2px; }
+  .score .bar i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); border-radius: 2px; }
+  .score .bar b { position: absolute; left: 50%; top: -3px; bottom: -3px; width: 1px; background: var(--chance); }
+  .legend { font-size: 13.5px; color: var(--ink-2); margin: 8px 0 0; }
+  .legend .sw { display: inline-block; width: 22px; height: 8px; background: var(--accent); border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+  .legend .tick { display: inline-block; width: 1px; height: 12px; background: var(--chance); vertical-align: middle; margin: 0 6px 0 14px; }
+
+  /* per-feature records */
+  .rec { border-top: 2px solid var(--ink); margin-top: 30px; padding-top: 14px; }
+  .rec-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin-bottom: 4px; }
+  .rec-head .name { font-family: var(--serif); font-size: 26px; font-weight: 600; }
+  .rec-head .meta { font-family: var(--mono); font-size: 13px; color: var(--ink-2); }
+  .verdict { color: var(--ink-2); margin: 4px 0 14px; max-width: 78ch; }
+  .rows { display: grid; gap: 0; }
+  .row { display: grid; grid-template-columns: 190px 1fr 210px; gap: 18px; padding: 14px 0; border-top: 1px solid var(--line); align-items: start; }
+  .row .model { font-size: 14px; color: var(--ink-2); }
+  .row .model b { display: block; color: var(--ink); font-weight: 600; font-size: 15px; }
+  .row .label { font-family: var(--serif); font-size: 19px; font-weight: 600; margin-bottom: 4px; text-wrap: balance; }
+  .row .expl { font-size: 15.5px; color: var(--ink); max-width: 72ch; }
+  .row .expl.wrong { color: var(--ink-2); }
+  .flag { display: inline-block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; border: 1px solid var(--line); color: var(--ink-2); margin-left: 8px; vertical-align: middle; }
+  .flag.bad { border-color: var(--probe); color: var(--probe); }
+  .flag.best { border-color: var(--accent); color: var(--accent); }
+  .scores { display: grid; gap: 8px; font-size: 13px; color: var(--ink-2); }
+  .scores .score .n { color: var(--ink); }
+  .scores .sub2 { font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
+  @media (max-width: 760px) {
+    .row { grid-template-columns: 1fr; gap: 8px; }
+    body { font-size: 16px; }
+  }
+
+  .callout { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 18px 0; color: var(--ink); max-width: 72ch; }
+  .callout.amber { border-left-color: var(--probe); }
+  .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px 32px; }
+  .spec { display: grid; grid-template-columns: 200px 1fr; gap: 6px 16px; font-size: 15.5px; margin: 8px 0 18px; }
+  .spec dt { font-family: var(--mono); font-size: 13px; color: var(--ink-2); padding-top: 2px; }
+  .spec dd { margin: 0; }
+  @media (max-width: 600px) { .spec { grid-template-columns: 1fr; gap: 2px 0; } .spec dd { margin-bottom: 8px; } }
+  footer { margin-top: 64px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-2); }
+  footer code { background: transparent; padding: 0; }
+</style>
+
+<div class="wrap">
+<header class="masthead">
+  <div class="eyebrow">RouterInterp · Stage A · automated feature interpretation</div>
+  <h1>Five sample features, three explainer models</h1>
+  <p class="lede">Human labels against the labels, explanations and scores produced by DeepSeek-V4-Flash-reasoning, DeepSeek-V4-Flash and Kimi-K3 on the same pipeline — with the detection and fuzzing protocol and the sampling rules spelled out.</p>
+  <div class="facts">
+    <div class="fact"><div class="k">Corpus</div><div class="v">1.69M</div><div class="s">tokens · 13,200 sequences × 128</div></div>
+    <div class="fact"><div class="k">Features</div><div class="v">5</div><div class="s">hand-labeled, 1.9% – 92.6% density</div></div>
+    <div class="fact"><div class="k">Probes per feature</div><div class="v">80</div><div class="s">40 detection · 40 fuzzing</div></div>
+    <div class="fact"><div class="k">Runs</div><div class="v">3</div><div class="s">v8 · v9 · v10, Sep 5–6 2026</div></div>
+    <div class="fact"><div class="k">Pipeline</div><div class="v">95621ad</div><div class="s">+ af0e66d retry policy</div></div>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#glance">Scores at a glance</a>
+  <a href="#features">Feature by feature</a>
+  <a href="#detection">Detection</a>
+  <a href="#fuzzing">Fuzzing</a>
+  <a href="#sampling">Sampling principles</a>
+  <a href="#runs">Runs &amp; cost</a>
+</nav>
+
+<!-- ============================== 1. GLANCE ============================== -->
+<section id="glance">
+  <h2>Scores at a glance</h2>
+  <p class="sub">Each cell is a balanced accuracy over held-out probes: detection (does the explanation predict where the feature fires?) and fuzzing (does it locate the firing token?). Chance is 0.50; the tick on every bar marks it.</p>
+  <div class="tablewrap">
+  <table>
+    <thead>
+      <tr>
+        <th rowspan="2">Feature</th><th rowspan="2">Human label</th><th rowspan="2">Density</th>
+        <th class="group" colspan="2">DeepSeek-V4-Flash-reasoning</th>
+        <th class="group" colspan="2">DeepSeek-V4-Flash</th>
+        <th class="group" colspan="2">Kimi-K3</th>
+      </tr>
+      <tr><th>det</th><th>fuzz</th><th>det</th><th>fuzz</th><th>det</th><th>fuzz</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fid">28617</td><td>to</td><td class="num">1.9%</td>
+        <td><div class="score"><span class="n">0.80</span><span class="bar"><i style="width:80%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">1.00</span><span class="bar"><i style="width:100%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.68</span><span class="bar"><i style="width:68%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.88</span><span class="bar"><i style="width:88%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.80</span><span class="bar"><i style="width:80%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">1.00</span><span class="bar"><i style="width:100%"></i><b></b></span></div></td>
+      </tr>
+      <tr>
+        <td class="fid">12298</td><td>after_a</td><td class="num">3.5%</td>
+        <td><div class="score"><span class="n">0.75</span><span class="bar"><i style="width:75%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.90</span><span class="bar"><i style="width:90%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.50</span><span class="bar"><i style="width:50%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.55</span><span class="bar"><i style="width:55%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.90</span><span class="bar"><i style="width:90%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">1.00</span><span class="bar"><i style="width:100%"></i><b></b></span></div></td>
+      </tr>
+      <tr>
+        <td class="fid">25337</td><td>preceded_by_a_verb</td><td class="num">4.3%</td>
+        <td><div class="score"><span class="n">0.62</span><span class="bar"><i style="width:62%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.72</span><span class="bar"><i style="width:72%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.57</span><span class="bar"><i style="width:57%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.57</span><span class="bar"><i style="width:57%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.62</span><span class="bar"><i style="width:62%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.68</span><span class="bar"><i style="width:68%"></i><b></b></span></div></td>
+      </tr>
+      <tr>
+        <td class="fid">14825</td><td>a_ubiquitous_feature</td><td class="num">12.3%</td>
+        <td><div class="score"><span class="n">0.62</span><span class="bar"><i style="width:62%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.68</span><span class="bar"><i style="width:68%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.65</span><span class="bar"><i style="width:65%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.68</span><span class="bar"><i style="width:68%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.60</span><span class="bar"><i style="width:60%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.53</span><span class="bar"><i style="width:53%"></i><b></b></span></div></td>
+      </tr>
+      <tr>
+        <td class="fid">24792</td><td>content_word_marker</td><td class="num">92.6%</td>
+        <td><div class="score"><span class="n">0.65</span><span class="bar"><i style="width:65%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.55</span><span class="bar"><i style="width:55%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.55</span><span class="bar"><i style="width:55%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.57</span><span class="bar"><i style="width:57%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.75</span><span class="bar"><i style="width:75%"></i><b></b></span></div></td>
+        <td><div class="score"><span class="n">0.57</span><span class="bar"><i style="width:57%"></i><b></b></span></div></td>
+      </tr>
+      <tr class="mean">
+        <td></td><td>mean</td><td></td>
+        <td class="num">0.69</td><td class="num">0.77</td>
+        <td class="num">0.59</td><td class="num">0.65</td>
+        <td class="num">0.73</td><td class="num">0.76</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="legend"><span class="sw"></span>balanced accuracy, 0 – 1 <span class="tick"></span>chance (0.50). 20 firing + 20 non-firing probes per detection score; 20 correct + 20 wrongly-marked probes per fuzzing score, so one probe moves a score by 0.025.</p>
+
+  <div class="callout">
+    <p><b>What the table says.</b> The reasoning DeepSeek model and Kimi-K3 explain every feature correctly; Kimi's explanations are the most complete and win on 12298 and on the dense 24792, at roughly twenty times the wall time. The non-reasoning DeepSeek model misreads two of five features (12298, 25337) — its scores drop to chance exactly there, which is the scoring system working as intended. The two lowest rows are not explanation failures: 14825 carries a diffuse weak background that no sentence can predict, and 24792 fires on 93% of tokens, so only its silences are informative.</p>
+  </div>
+</section>
+
+<!-- ============================== 2. FEATURES ============================== -->
+<section id="features">
+  <h2>Feature by feature</h2>
+  <p class="sub">The human label comes from the collaborator's filename. Each model wrote its label and explanation from the same statistics card and the same 24 snippets; the scores below are its own explanation scored by the same model as examiner. TPR = share of firing (or correctly-marked) probes accepted; TNR = share of non-firing (or wrongly-marked) probes rejected.</p>
+
+  <!-- 28617 -->
+  <div class="rec">
+    <div class="rec-head"><span class="name">28617 · <span class="tok">to</span></span><span class="meta">human label: to · density 1.9% · 31,970 firings · max activation 1.66</span></div>
+    <p class="verdict">All three models reproduce the label. Detection sits at 0.80 for both reasoning models because the firing probes are stratified over strength and the weakest ones are spillover onto neighbouring tokens (" pass", " at"), which a correct explanation rightly refuses: TPR is 1.0 at strengths ≥ 4 and 0 below. Fuzzing is perfect.</p>
+    <div class="rows">
+      <div class="row">
+        <div class="model"><b>DeepSeek-V4-Flash-reasoning</b>v8 · 25 s</div>
+        <div><div class="label">space-to token detector</div><div class="expl">This feature fires on every occurrence of the token " to" (space + "to"), regardless of whether it is an infinitive marker or preposition, and is silent on all other tokens. It fires most strongly after punctuation and certain subword endings, and somewhat more weakly after highly predictive verbs like "need" or "able"; it does not fire on "to" without the leading-space tokenization or on other words.</div></div>
+        <div class="scores">
+          <div class="score"><span class="n">0.80</span><span class="bar"><i style="width:80%"></i><b></b></span></div><div class="sub2">detection · TPR 0.60 · TNR 1.00</div>
+          <div class="score"><span class="n">1.00</span><span class="bar"><i style="width:100%"></i><b></b></span></div><div class="sub2">fuzzing · TPR 1.00 · TNR 1.00</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="model"><b>DeepSeek-V4-Flash</b>v9 · 5 s · no reasoning</div>
+        <div><div class="label">Infinitive "to" token detector</div><div class="expl">This feature fires almost exclusively on the token " to" (the standalone word with a leading space), firing on 100% of its occurrences and essentially nowhere else. It fires strongly when "to" is part of a clear infinitive construction (e.g., "able to", "want to", "going to", "purpose to"), with strength increasing when the preceding verb or phrase is semantically salient, and weakly or not at all on other tokens like " the" or " be" which appear as rare noise. It does not fire on "to" embedded in other words (e.g., "today") and shows no positional, topic, or register dependence.</div></div>
+        <div class="scores">
+          <div class="score"><span class="n">0.68</span><span class="bar"><i style="width:68%"></i><b></b></span></div><div class="sub2">detection · TPR 0.50 · TNR 0.85</div>
+          <div class="score"><span class="n">0.88</span><span class="bar"><i style="width:88%"></i><b></b></span></div><div class="sub2">fuzzing · TPR 1.00 · TNR 0.75</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="model"><b>Kimi-K3</b>v10 · 300 s</div>
+        <div><div class="label">" to" token detector</div><div class="expl">It fires on virtually every occurrence of the exact token " to" (100% of its corpus occurrences, ~98% of all firings), whether it is an infinitive marker, a preposition, or even a subword chunk inside words like "tote", and it stays silent on "to" without the leading space. Strength is uniformly high with no reliable contextual modulator — perhaps slightly weaker inside the most frequent verb+to collocations — and the rare weak firings on other tokens ("\n", ".", " the") are noise-level spillover.</div></div>
+        <div class="scores">
+          <div class="score"><span class="n">0.80</span><span class="bar"><i style="width:80%"></i><b></b></span></div><div class="sub2">detection · TPR 0.60 · TNR 1.00</div>
+          <div class="score"><span class="n">1.00</span><span class="bar"><i style="width:100%"></i><b></b></span></div><div class="sub2">fuzzing · TPR 1.00 · TNR 1.00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12298 -->
+  <div class="rec">
+    <div class="rec-head"><span class="name">12298 · <span class="tok">after_a</span></span><span class="meta">human label: after_a · density 3.5% · 58,808 firings · max activation 3.40</span></div>
+    <p class="verdict">The reasoning models reproduce the label and add what the label leaves out: the article itself fires at sequence start, "the" never triggers, and weak firings spill onto the function word after the noun phrase. The non-reasoning model turns the statistics card's <em>preceding-token</em> column (" a" followed by a firing 100% of the time) into a claim about the <em>fired-on</em> token and invents a "reduplicated a a" pattern — a misreading it also produced in an earlier run, so it is a stable weakness, not noise. Its detection TPR is 0.00.</p>
+    <div class="rows">
+      <div class="row">
+        <div class="model"><b>DeepSeek-V4-Flash-reasoning</b>v8 · 59 s</div>
+        <div><div class="label">after indefinite article</div><div class="expl">This feature fires on the token immediately following the indefinite determiners "a", "an", "another" (and sometimes "one"), i.e. the first content word of an indefinite noun phrase; it also fires weakly on the article itself, especially at sequence start. It fires most strongly on the head word after the article, particularly common adjectives/quantifiers like "more", "much", "well", "given", and when the article is at position 0. It stays silent on words not preceded by an indefinite determiner, and frequent "of", "to", "that" firings are weak spillover onto the next function word after the noun phrase.</div></div>
+        <div class="scores">
+          <div class="score"><span class="n">0.75</span><span class="bar"><i style="width:75%"></i><b></b></span></div><div class="sub2">detection · TPR 0.50 · TNR 1.00</div>
+          <div class="score"><span class="n">0.90</span><span class="bar"><i style="width:90%"></i><b></b></span></div><div class="sub2">fuzzing · TPR 0.80 · TNR 1.00</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="model"><b>DeepSeek-V4-Flash</b>v9 · 11 s · no reasoning</div>
+        <div><div class="label">Reduplicated indefinite article "a a" <span class="flag bad">misread</span></div><div class="expl wrong">The feature fires on the token " a" (the word "a" with a leading space) when it is immediately preceded by another indefinite article or determiner like " a", " an", " A", "a", "A", or "another", creating a reduplicated or doubled article pattern. It fires strongly when the preceding token is exactly " a" or "an" (100% conditional rate), and weakly when the pattern is less direct or the " a" is followed by a noun. It does not fire on " a" in other contexts, such as after "the" or at the start of a sentence without a preceding determiner.</div></div>
+        <div class="scores">
+          <div class="score"><span class="n">0.50</span><span class="bar"><i style="width:50%"></i><b></b></span></div><div class="sub2">detection · TPR 0.00 · TNR 1.00</div>
+          <div class="score"><span class="n">0.55</span><span class="bar"><i style="width:55%"></i><b></b></span></div><div class="sub2">fuzzing · TPR 0.10 · TNR 1.00</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="model"><b>Kimi-K3</b>v10 · 3,267 s</div>
+        <div><div class="label">Word following indefinite article "a/an" <span class="flag best">best</span></div><div class="expl">It fires on the token immediately after "a"/"an" — essentially every occurrence of the article (any capitalization, plus "another", and even word-initial subword "a" as in "aft"/"aurally") is followed by a firing, while "the" almost never triggers it; sequence-initial "a" also fires on itself. It fires most strongly on that first post-article token, especially sequence-initial "a" and modifiers/quantifiers ("a more/much/given/lot/bit"), and spills weakly onto the next token, which explains frequent weak firings on "of", punctuation, "to", "that" ("a lot of", "a vaccine,"). Weaker secondary firing also follows the determiner "one" (33%) and occasionally "some"/"every".</div></div>
+        <div class="scores">
+          <div class="score"><span class="n">0.90</span><span class="bar"><i style="width:90%"></i><b></b></span></div><div class="sub2">detection · TPR 0.80 · TNR 1.00</div>
+          <div class="score"><span class="n">1.00</span><span class="bar"><i style="width:100%"></i><b></b></span></div><div class="sub2">fuzzing · TPR 1.00 · TNR 1.00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 25337 -->
+  <div class="rec">
+    <div class="rec-head"><span class="name">25337 · <span class="tok">preceded_by_a_verb</span></span><span class="meta">human label: preceded_by_a_verb · density 4.3% · 73,448 firings · max activation 1.58</span></div>
+    <p class="verdict">The corpus disagrees with the human label: the feature keys on the <em>form</em> of the preceding token. Short stems ending in a stop consonant are followed by a firing far more often than others (-ck 59%, -t/-p 39%, voiced or nasal codas 11–15%), and cut / pick / click / kick are followed by a firing 100% of the time whether or not they act as verbs. Kimi-K3 states this mechanism outright; the reasoning DeepSeek model gets halfway ("short consonant-final stem, most reliably after verbs"); the non-reasoning model stays with verbs. Fuzzing TPR (0.40–0.45 for the two reasoning models) measures how much of the strong regime each explanation covers — the examiner still rejects correct probes such as compound nouns ending in -cks.</p>
+    <div class="rows">
+      <div class="row">
+        <div class="model"><b>DeepSeek-V4-Flash-reasoning</b>v8 · 180 s</div>
+        <div><div class="label">post-stem continuation</div><div class="expl">The feature fires on the token immediately following a short, consonant-final stem, most reliably after verbs like cut, pick, click, dump, break, and jump (100% of those occurrences trigger the next token) and after subword stems like "ump" and "ck". It fires strongly when the continuation is a phrasal-verb particle ("up", "out", "on") or a derivational suffix ("ster", "ings", "ers"), and stays silent after common function words and in most other positions.</div></div>
+        <div class="scores">
+          <div class="score"><span class="n">0.62</span><span class="bar"><i style="width:62%"></i><b></b></span></div><div class="sub2">detection · TPR 0.25 · TNR 1.00</div>
+          <div class="score"><span class="n">0.72</span><span class="bar"><i style="width:72%"></i><b></b></span></div><div class="sub2">fuzzing · TPR 0.45 · TNR 1.00</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="model"><b>DeepSeek-V4-Flash</b>v9 · 3 s · no reasoning</div>
+        <div><div class="label">verb-particle completion trigger <span class="flag bad">verb-only</span></div><div class="expl wrong">This feature fires on the token immediately following short, action-oriented verbs (e.g., "cut", "pick", "click", "dump", "jump", "break") that are part of phrasal verbs or gerund constructions, with the fired-on token being a particle like "up", "out", "on" or a suffix like "-t" or "-ing". It fires strongly (strength 8-10) when the verb is a reliable trigger (100% conditional rate) and the following token completes the phrasal verb; it fires weakly (strength 1-3) on common function words and punctuation as noise, and does not fire on verbs without a following particle or on non-action verbs.</div></div>
+        <div class="scores">
+          <div class="score"><span class="n">0.57</span><span class="bar"><i style="width:57%"></i><b></b></span></div><div class="sub2">detection · TPR 0.15 · TNR 1.00</div>
+          <div class="score"><span class="n">0.57</span><span class="bar"><i style="width:57%"></i><b></b></span></div><div class="sub2">fuzzing · TPR 0.15 · TNR 1.00</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="model"><b>Kimi-K3</b>v10 · 2,079 s</div>
+        <div><div class="label">Particles and suffixes after stop-final stems <span class="flag best">true mechanism</span></div><div class="expl">The feature fires on the token immediately following a short stem ending in a stop consonant (-t, -ck, -k, -p, -mp, and voiced -d/-g): after cut, pick, click, kick, break, jump, dump, put it fires on essentially 100% of occurrences. The fired-on token is usually a phrasal-verb particle (up, on, out, off, away, by — "break up", "cut out") or a subword suffix completing the stem ("cut+t+ings", "flick+ering", "dump+ster", "Pack+aging"), and these completions fire strongest, with a mild boost early in sequences. It stays silent on the same particles after other verbs ("fuel up") and after function words; weak scatter on "the/to/of/with" is noise.</div></div>
+        <div class="scores">
+          <div class="score"><span class="n">0.62</span><span class="bar"><i style="width:62%"></i><b></b></span></div><div class="sub2">detection · TPR 0.25 · TNR 1.00</div>
+          <div class="score"><span class="n">0.68</span><span class="bar"><i style="width:68%"></i><b></b></span></div><div class="sub2">fuzzing · TPR 0.40 · TNR 0.95</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14825 -->
+  <div class="rec">
+    <div class="rec-head"><span class="name">14825 · <span class="tok">a_ubiquitous_feature</span></span><span class="meta">human label: a_ubiquitous_feature · density 12.3% · 208,234 firings · max activation 4.58</span></div>
+    <p class="verdict">The human label says only that the feature is everywhere; the corpus gives it content. " God" fires on 74% of its occurrences and " Lord" on 75%, position 0 fires twice as often as elsewhere, and the remaining 12% is a diffuse weak background over ordinary tokens. All three models describe the religious register; Kimi adds the sequence-opening component. Detection TPR is 1.0 at strengths ≥ 3 and ≈ 0 below — the low scores are the background, which no explanation can predict.</p>
+    <div class="rows">
+      <div class="row">
+        <div class="model"><b>DeepSeek-V4-Flash-reasoning</b>v8 · 65 s</div>
+        <div><div class="label">religious/divine topic</div><div class="expl">This feature fires on tokens in religious/scriptural passages, most strongly on divine nouns and pronouns (God, Lord, Allah, His, Him, He) and on religious keywords like creation and works, especially at sequence-initial positions. Weak firings are broad spillover onto surrounding content words in religious/spiritual/moral texts and onto common pronouns/nouns elsewhere, while ordinary non-religious words and punctuation are much less likely to fire.</div></div>
+        <div class="scores">
+          <div class="score"><span class="n">0.62</span><span class="bar"><i style="width:62%"></i><b></b></span></div><div class="sub2">detection · TPR 0.30 · TNR 0.95</div>
+          <div class="score"><span class="n">0.68</span><span class="bar"><i style="width:68%"></i><b></b></span></div><div class="sub2">fuzzing · TPR 0.65 · TNR 0.70</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="model"><b>DeepSeek-V4-Flash</b>v9 · 6 s · no reasoning</div>
+        <div><div class="label">Religious discourse divine-noun detector</div><div class="expl">This feature fires on tokens in religious or spiritual passages, most strongly on capitalized divine nouns like "God", "Lord", "His", and at sequence starts, where it marks the opening of such discourse. It fires weakly on common function words within these passages, but stays silent in secular, technical, or conversational contexts, indicating it tracks topic and register rather than specific syntax or word forms.</div></div>
+        <div class="scores">
+          <div class="score"><span class="n">0.65</span><span class="bar"><i style="width:65%"></i><b></b></span></div><div class="sub2">detection · TPR 0.30 · TNR 1.00</div>
+          <div class="score"><span class="n">0.68</span><span class="bar"><i style="width:68%"></i><b></b></span></div><div class="sub2">fuzzing · TPR 0.50 · TNR 0.85</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="model"><b>Kimi-K3</b>v10 · 1,197 s (rerun)</div>
+        <div><div class="label">Sequence openings and religious vocabulary</div><div class="expl">A dense feature with weak, patternless background firing on common tokens, but strong firing concentrated at the very start of sequences (position 0 fires at 24% with the highest mean activation, decaying over the first ~15 tokens) and on religious vocabulary — " God" (74% conditional), " Lord" (75%), " His", " He", Allah, creation — especially within Bible/Quran/sermon passages. It stays silent on most ordinary mid/late-sequence tokens, whitespace, and subword continuations.</div></div>
+        <div class="scores">
+          <div class="score"><span class="n">0.60</span><span class="bar"><i style="width:60%"></i><b></b></span></div><div class="sub2">detection · TPR 0.20 · TNR 1.00</div>
+          <div class="score"><span class="n">0.53</span><span class="bar"><i style="width:53%"></i><b></b></span></div><div class="sub2">fuzzing · TPR 0.40 · TNR 0.65</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 24792 -->
+  <div class="rec">
+    <div class="rec-head"><span class="name">24792 · <span class="tok">content_word_marker</span></span><span class="meta">human label: content_word_marker · density 92.6% · 1,565,334 firings · max activation 1.94</span></div>
+    <p class="verdict">A feature that fires on 93% of tokens is described by its silences. All three models find the two systematic ones — sequence position 0 (18% firing rate) and highly predictable tokens such as mid-sentence " the" — and Kimi reads the whole thing as a context-gated prediction-difficulty signal. Fuzzing is structurally hard here: a single wrong mark on a zero-activation token is only recognisable if the explanation pins down every silent position, so TNR stays at 0.15–0.30 for all models.</p>
+    <div class="rows">
+      <div class="row">
+        <div class="model"><b>DeepSeek-V4-Flash-reasoning</b>v8 · 177 s</div>
+        <div><div class="label">dense text continuation</div><div class="expl">Fires on almost every token after the first, acting as a dense text-flow/continuation feature. It stays silent mainly on sequence-initial tokens, on the article "the" (and "a") in ordinary mid-sentence contexts, and on non-sentence punctuation such as the period in "common.exceptions". It fires most strongly on tokens that follow sentence/clause boundaries — spaces, apostrophes, parentheses, quotes, and capitalized pronouns like "It" — and more weakly at the very start and end of sequences.</div></div>
+        <div class="scores">
+          <div class="score"><span class="n">0.65</span><span class="bar"><i style="width:65%"></i><b></b></span></div><div class="sub2">detection · TPR 0.85 · TNR 0.45</div>
+          <div class="score"><span class="n">0.55</span><span class="bar"><i style="width:55%"></i><b></b></span></div><div class="sub2">fuzzing · TPR 0.90 · TNR 0.20</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="model"><b>DeepSeek-V4-Flash</b>v9 · 9 s · no reasoning</div>
+        <div><div class="label">sequence position detector</div><div class="expl">This feature fires on nearly every token after the first, acting as a dense "in-sequence" signal that is strongest at the start of a sequence and at sentence/clause boundaries, and weakest at the very first token and in the final quarter of long sequences. It is not selective for any word, topic, or syntax; the only reliable predictor is position, with token identity being irrelevant. Non-firing tokens are rare random misses in the middle of text, not systematic exclusions.</div></div>
+        <div class="scores">
+          <div class="score"><span class="n">0.55</span><span class="bar"><i style="width:55%"></i><b></b></span></div><div class="sub2">detection · TPR 0.95 · TNR 0.15</div>
+          <div class="score"><span class="n">0.57</span><span class="bar"><i style="width:57%"></i><b></b></span></div><div class="sub2">fuzzing · TPR 1.00 · TNR 0.15</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="model"><b>Kimi-K3</b>v10 · 3,438 s</div>
+        <div><div class="label">Dense context-gated surprisal signal <span class="flag best">best detection</span></div><div class="expl">It fires on ~93% of tokens — essentially any token with preceding context — but stays silent at sequence position 0 (18.5% fire rate) and on highly predictable tokens, above all " the" (61% vs 93% baseline; e.g. "for the", "taking the time", deterministic code punctuation). Strength is dominated by position, peaking at tokens 1–15 and decaying toward the end of the 128-token window, and is maximal on apostrophes, opening quotes/parens, and sentence-initial "It"/"I" — consistent with a prediction-difficulty signal that requires context and fades as context makes tokens predictable.</div></div>
+        <div class="scores">
+          <div class="score"><span class="n">0.75</span><span class="bar"><i style="width:75%"></i><b></b></span></div><div class="sub2">detection · TPR 0.90 · TNR 0.60</div>
+          <div class="score"><span class="n">0.57</span><span class="bar"><i style="width:57%"></i><b></b></span></div><div class="sub2">fuzzing · TPR 0.85 · TNR 0.30</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 3. DETECTION ============================== -->
+<section id="detection">
+  <h2>How detection is scored</h2>
+  <p class="sub">Detection asks whether the explanation can <em>predict</em> where the feature fires, with no hints. The examiner sees the explanation and 40 snippets it has never seen during explanation, each with one probe token marked <span class="mk mk-probe">[[ ]]</span>, and answers 0 or 1 per snippet. The answer sheet is the activation record itself.</p>
+
+  <dl class="spec">
+    <dt>firing probes (20)</dt><dd>positions where the feature actually fired, drawn from the held-out pool and stratified over activation — half by rank bins (equal population), half by activation-value bins (equal width), so heavy-tailed features have their strong regime probed too.</dd>
+    <dt>non-firing probes (20)</dt><dd>uniformly random corpus positions where the feature did not fire (checked against the full firing index).</dd>
+    <dt>what the examiner sees</dt><dd>up to 31 tokens of left context, the probe token wrapped in <span class="mk mk-probe">[[ ]]</span>, 8 tokens of right context shown for readability only (activations are causal), the probe token repeated in the header with its sequence position, and <span class="mk mk-start">[START]</span> when the window begins at position 0.</dd>
+    <dt>question</dt><dd>"Does the feature fire on the probe token, per the explanation?" — 5 snippets per call, reply as a JSON array of 0/1.</dd>
+    <dt>score</dt><dd>balanced accuracy = (TPR + TNR) / 2, chance 0.50; unparseable or failed batches are excluded and counted. <code>tpr_by_strength</code> reports the hit rate per activation decile, which is how the weak-regime misses above were diagnosed.</dd>
+  </dl>
+
+  <h3>The exact prompt (system message)</h3>
+  <pre>You will evaluate a proposed explanation of a language-model feature against text snippets.
+
+Explanation of the feature:
+<span class="cmt">{explanation}</span>
+
+You will see 5 snippets. In each snippet exactly one token is wrapped in [[ ]] — the probe token; the header repeats it and gives its position in the sequence. A snippet beginning with [START] starts at the first token of its sequence. The feature reads only the probe token and the text BEFORE it (the text after it is shown for readability only). For each snippet, decide whether this feature fires ON THE PROBE TOKEN. Answer 1 if, per the explanation, the feature fires on the [[probe token]]; answer 0 if it does not. Ignore other occurrences of similar tokens elsewhere in the snippet.
+
+Reply with ONLY a JSON array of 5 integers (0 or 1), e.g. [1,0,0,1,1]. No other text.</pre>
+
+  <h3>A real batch — feature 12298, explanation "after indefinite article"</h3>
+  <pre>--- Snippet 1 (probe token " wind" at position 57) ---
+ used in combination): a near-standing position.
+- all but;
+nearly: a period of near 30 years.
+- close to the<span class="mk mk-probe">[[ wind]]</span>.
+- [Archaic.]
+--- Snippet 2 (probe token "imposed" at position 118) ---
+ free-market conservatism. Vargas Llosa drew his inspiration mostly from his Peruvian homeland, but preferred to live abroad in near self-<span class="mk mk-probe">[[imposed]]</span> exile for years at a time.
+--- Snippet 3 (probe token " variable" at position 8) ---
+<span class="mk mk-start">[START]</span>'t entirely rule out the possibility that another<span class="mk mk-probe">[[ variable]]</span> that we failed to look at accounts for
+<span class="cmt">... two more snippets ...</span>
+
+examiner reply: [0,0,1,0,0]   <span class="cmt">← " wind" follows "the" → 0 ✓; " variable" follows "another" → 1 ✓</span></pre>
+  <p class="prose">Why the probe is marked rather than placed last: an earlier version cut each snippet at the probed token and asked about "the final token". Weak examiners then judged whichever similar token they noticed anywhere in the text — a "to" explanation was scored against a "to" three words earlier. Marking the probe removed that failure without changing what is measured.</p>
+</section>
+
+<!-- ============================== 4. FUZZING ============================== -->
+<section id="fuzzing">
+  <h2>How fuzzing is scored</h2>
+  <p class="sub">Fuzzing asks whether the explanation is precise enough to <em>verify a location</em>. The examiner sees snippets in which exactly one token is marked <span class="mk mk-strong">&lt;&lt; &gt;&gt;</span>; in half of them the mark sits on a real strong firing, in the other half it was deliberately moved to a token where the feature does not fire. Correct and wrong probes come from the same kind of text, so an explanation that only names a topic cannot tell them apart.</p>
+
+  <dl class="spec">
+    <dt>pairs (20)</dt><dd>anchors are strong firings only (≥ 30% of the feature's maximum activation), stratified over rank and value bins; each bin yields one <b>correct</b> snippet and one <b>wrongly-marked</b> twin, so the two classes have identical strength distributions.</dd>
+    <dt>correct probe</dt><dd>the anchor token wrapped in <span class="mk mk-strong">&lt;&lt; &gt;&gt;</span>. Nothing else is marked, even where the feature also fires.</dd>
+    <dt>wrong probe</dt><dd>a snippet from the same bin whose mark is moved to a random token with zero activation inside the same window.</dd>
+    <dt>one mark per probe</dt><dd>every probe is a single judgment. Multi-mark probes (up to five marks) made the task ill-posed whenever the marks carried mixed evidence — e.g. <span class="tok">Flick<span class="mk mk-strong">&lt;&lt;ering&gt;&gt;</span></span> next to <span class="tok">batch<span class="mk mk-strong">&lt;&lt; renders&gt;&gt;</span></span> under a verb-based explanation — and reasoning examiners expanded every reading for up to 98k tokens without answering. With one mark the same batches finish in seconds.</dd>
+    <dt>question</dt><dd>"Does the explanation predict that the feature fires on the marked token?" — 5 snippets per call, JSON array reply.</dd>
+    <dt>score</dt><dd>balanced accuracy over 20 correct + 20 wrong probes. TPR = correct marks accepted (coverage of the strong regime); TNR = wrong marks rejected (precision).</dd>
+  </dl>
+
+  <h3>The exact prompt (system message)</h3>
+  <pre>You will evaluate a proposed explanation of a language-model feature against text snippets with marked tokens.
+
+Explanation of the feature:
+<span class="cmt">{explanation}</span>
+
+You will see 5 snippets, each with EXACTLY ONE token wrapped in &lt;&lt; &gt;&gt; marks; a snippet beginning with [START] starts at the first token of its sequence. In some snippets the mark is on a token where this feature fires strongly; in others it is on a wrong token where the feature does not fire at all. No other token is ever marked, even if the feature also fires elsewhere in the snippet — judge only the marked token. For each snippet, answer 1 if the explanation predicts that the feature fires on the marked token, and 0 if it does not.
+
+Reply with ONLY a JSON array of 5 integers (0 or 1), e.g. [1,0,0,1,1]. No other text.</pre>
+
+  <h3>Real probe pairs</h3>
+  <div class="two">
+    <div>
+      <p class="prose"><b>Feature 28617 ("to")</b> — a correct probe and its wrongly-marked twin from the same strength bin:</p>
+      <pre><span class="cmt">correct →</span> <span class="mk mk-start">[START]</span>? No invite<span class="mk mk-strong">&lt;&lt; to&gt;&gt;</span> DJ? Wharf Rat melded into
+<span class="cmt">wrong   →</span> <span class="mk mk-start">[START]</span> begging for mercy and pleading to Kamsa's reason –<span class="mk mk-strong">&lt;&lt; none&gt;&gt;</span></pre>
+    </div>
+    <div>
+      <p class="prose"><b>Feature 25337</b> — the probe that used to trigger 98k tokens of rumination, now a single judgment (the mark sits after a noun ending in -tch, which a verb-based explanation must reject and a stop-consonant explanation must accept):</p>
+      <pre><span class="cmt">correct →</span> 119. Final Render/Final Skin/ Flickering and unexpected Shadow Problem
+  120. batch<span class="mk mk-strong">&lt;&lt; renders&gt;&gt;</span> are different
+<span class="cmt">wrong   →</span> I<span class="mk mk-strong">&lt;&lt; think&gt;&gt;</span> even fully liberated persons would visibly react</pre>
+    </div>
+  </div>
+  <div class="callout amber">
+    <p><b>Reading detection and fuzzing together.</b> Detection rewards coverage: it samples the whole activation range, so an explanation that describes only the strong regime loses TPR on weak probes. Fuzzing rewards precision on the strong regime: its correct and wrong probes share the same text, so a vague explanation scores at chance. A trustworthy explanation needs both.</p>
+  </div>
+</section>
+
+<!-- ============================== 5. SAMPLING ============================== -->
+<section id="sampling">
+  <h2>Sampling principles</h2>
+  <p class="sub">What the explainer is shown decides what it can find. Every rule below was added after a specific failure on these five features; each is deterministic (per-feature seed, temperature 0) so runs are reproducible and comparable.</p>
+
+  <h3>1. A statistics card comes first</h3>
+  <p class="prose">Sampling throws away the sufficient statistics of a feature; the card restores them at no LLM cost. For every feature it lists density, firing rate and mean activation by sequence position, and the most common fired-on and preceding tokens — among the 2,000 strongest firings and among all firings — each with its <b>conditional rate</b>: how often any occurrence of that token in the corpus fires, or is followed by a firing. Shares say what is common among firings; conditional rates say how reliably a token triggers the feature. This is what separates feature 25337's mechanism (" cut" is followed by a firing 100% of the time) from its symptoms (" up" is the most common fired-on token but fires on only 21% of its occurrences).</p>
+  <pre>FEATURE STATISTICS (over all 73,448 firings in a 1,689,600-token corpus of 13,200 sequences x 128 tokens)
+- fires on 4.3% of all tokens (baseline: a random token fires with probability 4.3%); max activation 1.58
+- firing rate by token position: pos 0: 1.4% | pos 1-3: 3.0% | pos 4-15: 4.2% | pos 16-63: 4.6% | pos 64-127: 4.3%
+- strongest 2,000 firings — fired-on token: " up" 92 (fires on 21% of its 2,080 occurrences), " on" 63 (13% of 7,808), " out" 56 (21% of 2,039), "ster" 53 (61% of 115), ...
+- strongest 2,000 firings — preceding token: " cut" 148 (followed by a firing 100% of its 183 occurrences), " pick" 76 (100% of 84), " click" 75 (100% of 84), "ump" 61 (100% of 76), "ck" 48 (100% of 77), " dump" 45 (100% of 49), " break" 44 (100% of 144), " jump" 39 (100% of 44)
+- all firings — preceding token: " the" 1299 (followed by a firing 2% of its 56.5k occurrences), ... " down" 472 (60% of 793), " put" 423 (98% of 433), ...
+<span class="cmt">(feature 25337, card excerpt as shown to the explainer)</span></pre>
+
+  <h3>2. Twenty-four snippets, chosen against three failure modes</h3>
+  <div class="two">
+    <div>
+      <p class="prose"><b>Not only the top.</b> The strongest firings tell a cleaner story than the feature does — feature 12298 looks perfectly "after a" at the top and messy below. 8 of the 24 snippets come from the 200 strongest firings; the other 16 are stratified over the whole activation range, half by rank bins and half by activation-value bins, so heavy-tailed features (14825: median 0.36, maximum 4.58) still show their strong regime.</p>
+      <p class="prose"><b>Not one story.</b> Diversity quotas are proportional to each key's share of the candidate pool (compressed by ½, floor of 2, overflow when a key runs out) on three keys: the (preceding, fired-on) bigram, the preceding token alone, and the fired-on token alone. Before quotas, 7 of feature 25337's top 8 snippets were cut/kick. At most 4 snippets may come from one sequence.</p>
+    </div>
+    <div>
+      <p class="prose"><b>Not without position.</b> Feature 14825 fires twice as often at position 0. Windows that start at the first token carry a <span class="mk mk-start">[START]</span> marker, every snippet header gives the anchor's position and its strength on a 0–10 scale, and the card has a position profile.</p>
+      <p class="prose"><b>Marks by class.</b> Every firing in a window is marked, but by its true class: <span class="mk mk-strong">&lt;&lt;strong&gt;&gt;</span> at ≥ 30% of the feature's maximum, <span class="mk mk-weak">&lt;weak&gt;</span> below — so the explainer can see that " pass" at 0.2 of maximum next to " to" at 0.9 is spillover, not a second pattern. Marks are per token, never merged: "a&lt;&lt; lot&gt;&gt;&lt;&lt; of&gt;&gt;" is two firing tokens, not one firing phrase.</p>
+    </div>
+  </div>
+  <pre>--- Snippet 3 (strength 6/10, anchor at position 41) ---
+Marriage is an explaining factor of per capita GDP. This is an example of a left-handed<span class="mk mk-weak">&lt; proof&gt;</span><span class="mk mk-weak">&lt; using&gt;</span> Traditional Marriage. A left-handed<span class="mk mk-weak">&lt; proof&gt;</span> constitutes half<span class="mk mk-strong">&lt;&lt; of&gt;&gt;</span><span class="mk mk-weak">&lt; the&gt;</span> CAE Interpretive Proof. While
+<span class="cmt">(feature 25337 explainer snippet: one strong firing, four weak spillovers)</span></pre>
+
+  <h3>3. Dense features get a different treatment</h3>
+  <p class="prose">At ≥ 10% density (14825 and 24792 here) "where it fires" is not the question. Strong marks additionally require the 75th percentile of the feature's activations, the explainer is told the density outright, and it is shown six <b>contrast snippets</b> in which the probe token does not fire — because for a 93% feature the informative tokens are the silent ones.</p>
+
+  <h3>4. Held-out, disjoint, deterministic</h3>
+  <ul class="prose">
+    <li>The explainer's 24 snippets, the 40 detection probes and the 40 fuzzing probes never share a position; a probe the explainer has seen would let the explanation "quote the test".</li>
+    <li>Every random choice comes from <code>seed × 100003 + feature_id</code>; the sampler produced identical probe sets for all three runs, so the models are compared on the same questions.</li>
+    <li>Context is 31 tokens left and 8 right of the anchor; byte fragments of split multi-byte characters are merged so a mark never lands on half a character.</li>
+  </ul>
+</section>
+
+<!-- ============================== 6. RUNS ============================== -->
+<section id="runs">
+  <h2>Runs and cost</h2>
+  <p class="sub">All three runs use the same code, prompts and probes; the explainer and the examiner are the same model within a run. Full records — every prompt, reply, reasoning excerpt and token count — are committed under <code>results/</code>.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Run</th><th>Model</th><th>Reasoning</th><th>Wall time</th><th>LLM calls</th><th>Reasoning tokens</th><th>Explanation failures</th></tr></thead>
+    <tbody>
+      <tr><td class="fid">v8</td><td>deepseek-ai/DeepSeek-V4-Flash-reasoning</td><td>yes, ~320 tok/s</td><td class="num">505 s</td><td class="num">88</td><td class="num">280k</td><td>none</td></tr>
+      <tr><td class="fid">v9</td><td>deepseek-ai/DeepSeek-V4-Flash</td><td>no</td><td class="num">33 s</td><td class="num">87</td><td class="num">0</td><td>12298 misread, 25337 verb-only</td></tr>
+      <tr><td class="fid">v10</td><td>moonshotai/Kimi-K3</td><td>yes, ~30 tok/s</td><td class="num">10,280 s</td><td class="num">118</td><td class="num">714k</td><td>none (14825 rerun, see below)</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="two" style="margin-top:22px">
+    <div>
+      <p class="prose"><b>Reading the cost.</b> The reasoning DeepSeek model is the working default: correct explanations in eight minutes for five features. Kimi-K3 writes the most complete explanations and is the only model to state feature 25337's true mechanism, at twenty times the wall time — a spot-check or hard-case tool. The non-reasoning model is a usable examiner but not a reliable explainer.</p>
+    </div>
+    <div>
+      <p class="prose"><b>Retries are classed by cause.</b> Kimi's first pass lost feature 14825 when the gateway dropped seven of eight parallel streams at once. Since then a call that exhausts its thinking budget is retried with the budget doubled (up to 128k); a gateway or network failure is retried at the same budget up to 30 times; only a model that finishes without producing text is not retried. A batch that still fails is excluded and counted, never voiding the feature, and Kimi runs with 3 concurrent calls. The 14825 rerun under this policy saw three budget-doubling retries, all recovered, and no drops.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Records: <code>results/v8_ds-reasoning</code>, <code>results/v9_ds-flash</code>, <code>results/v10_kimi-k3</code> in the RouterInterp repository (pipeline commit <code>95621ad</code>; retry policy <code>af0e66d</code>). Methodology after Cunningham et al. (ICLR 2024) and Paulo et al. (2024), re-implemented for the collaborator's activation-dump format. Sample data: 5 features from <code>kamlams/autointerp</code>, source model and SAE to be confirmed.
+</footer>
+</div>
