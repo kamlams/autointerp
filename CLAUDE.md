@@ -84,8 +84,13 @@ records of runs on the accepted protocol are committed under `results/<run>/`
   deliberately-wrong marks?); balanced accuracy, chance = 0.5, parse failures excluded
   from metrics and counted
 - `llm.py` — OpenAI-compatible client: credential chain (env → ~/.config/rivault.env →
-  ~/.config/opencode/opencode.json), retries with adaptive max_tokens doubling when a
-  reasoning model burns the whole budget thinking (finish_reason=length, empty content)
+  ~/.config/opencode/opencode.json); streamed (SSE). Retry policy by failure class:
+  budget exhausted while thinking → double max_tokens up to 128k; gateway/network
+  failure (5xx/429, timeout, dropped or empty stream) → retry with backoff up to 30
+  times, budget unchanged; the model finishing without text → ModelGaveUp, no retry.
+  A scoring batch that still fails is excluded and counted (`n_failed_batches`), never
+  voiding the feature. `--workers` defaults to 3 when Kimi-K3 is the examiner (the
+  gateway dropped 7 of 8 parallel Kimi streams at once), else 12
 - `compare_runs.py` (repo root) — side-by-side table of several output dirs
 
 ## Conventions

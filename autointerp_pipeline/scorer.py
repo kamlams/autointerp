@@ -3,6 +3,7 @@ following Paulo et al. 2024, adapted to final-token probing)."""
 import json
 import random
 import re
+import sys
 
 from . import prompts
 from .llm import LLMClient, map_concurrent
@@ -33,18 +34,28 @@ def _score_batches(client: LLMClient, system: str, probes: list, workers: int,
     batches = [probes[i: i + BATCH] for i in range(0, len(probes), BATCH)]
 
     def run(batch):
+        """Returns (predictions, failed): a batch whose call ultimately fails (the model
+        gave up, or the gateway stayed down through all retries) is excluded from the
+        metrics and counted — it must not void the whole feature."""
         sys_msg = system.replace("{n}", str(len(batch)))
         user = prompts.format_batch_user([(h, t) for h, t, _, _ in batch])
         for _ in range(2):  # one extra attempt on unparseable reply
-            reply = client.chat([{"role": "system", "content": sys_msg},
-                                 {"role": "user", "content": user}],
-                                max_tokens=max_tokens, tag=tag)
+            try:
+                reply = client.chat([{"role": "system", "content": sys_msg},
+                                     {"role": "user", "content": user}],
+                                    max_tokens=max_tokens, tag=tag)
+            except Exception as e:  # noqa: BLE001
+                print(f"  [{tag}] batch excluded from metrics: {str(e)[:160]}",
+                      file=sys.stderr, flush=True)
+                return [None] * len(batch), 1
             preds = _parse_array(reply, len(batch))
             if preds is not None:
-                return preds
-        return [None] * len(batch)
+                return preds, 0
+        return [None] * len(batch), 0
 
-    preds = [p for batch in map_concurrent(run, batches, workers) for p in batch]
+    results = map_concurrent(run, batches, workers)
+    preds = [p for batch_preds, _ in results for p in batch_preds]
+    n_failed = sum(f for _, f in results)
     labels = [y for _, _, y, _ in probes]
 
     tp = sum(1 for p, y in zip(preds, labels) if p == 1 and y == 1)
@@ -58,6 +69,7 @@ def _score_batches(client: LLMClient, system: str, probes: list, workers: int,
         "tpr": tpr, "tnr": tnr,
         "n_pos": npos, "n_neg": nneg,
         "n_parse_errors": sum(1 for p in preds if p is None),
+        "n_failed_batches": n_failed,
         "preds": preds, "labels": labels,
         "positions": [s.pos for _, _, _, s in probes],
         "strengths": [s.norm_score for _, _, _, s in probes],

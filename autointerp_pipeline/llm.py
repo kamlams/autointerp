@@ -9,6 +9,7 @@ Never hardcode keys in this repo.
 import json
 import os
 import re
+import sys
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
@@ -80,12 +81,25 @@ class Usage:
 
 
 class _LengthTruncated(RuntimeError):
-    pass
+    """The model spent its whole completion budget thinking: retry with a larger budget."""
+
+
+class _InfraError(RuntimeError):
+    """Gateway/network failure (HTTP error, dropped stream, timeout): retry, same budget."""
+
+
+class _PermanentError(RuntimeError):
+    """A 4xx the server will keep returning (bad request, auth): not retried."""
+
+
+class ModelGaveUp(RuntimeError):
+    """The model finished on its own without producing text: not retried."""
 
 
 class LLMClient:
     def __init__(self, model: str, base_url: str | None = None, api_key: str | None = None,
-                 timeout: int = 600, max_retries: int = 4, log_path: str | None = None):
+                 max_infra_retries: int = 30, max_budget: int = 131072,
+                 max_backoff: float = 60.0, log_path: str | None = None):
         if base_url is None or api_key is None:
             rb, rk = resolve_credentials()
             base_url = base_url or rb
@@ -93,17 +107,26 @@ class LLMClient:
         self.url = base_url.rstrip("/") + "/chat/completions"
         self.api_key = api_key
         self.model = model
-        self.timeout = timeout
-        self.max_retries = max_retries
+        self.max_infra_retries = max_infra_retries  # gateway/network failures per call
+        self.max_budget = max_budget                # ceiling for the thinking budget
+        self.max_backoff = max_backoff
         self.usage = Usage()
         self.log_path = log_path
         self._log_lock = threading.Lock()
 
     def chat(self, messages: list[dict], max_tokens: int = 4096, temperature: float = 0.0,
              tag: str = "") -> str:
-        # Streamed (SSE) on purpose: long reasoning generations (>~10 min) exceed the
-        # RiVault gateway's HTTP timeout on non-streaming requests (nginx 504), while a
-        # stream delivers bytes continuously and survives.
+        """Retry policy, per failure class:
+        - budget exhausted while thinking (finish_reason=length, no text): retry with the
+          budget doubled, up to max_budget; still no text at the ceiling = the model cannot
+          answer -> ModelGaveUp;
+        - gateway/network failure (HTTP 5xx/429, timeout, dropped or empty stream): retry
+          with backoff, up to max_infra_retries, budget unchanged — the model never got to
+          answer, so we keep asking;
+        - the model finished on its own without text (finish_reason=stop): ModelGaveUp, no
+          retry; 4xx: _PermanentError, no retry.
+        Streamed (SSE) on purpose: long reasoning generations exceed the gateway's HTTP
+        timeout on non-streaming requests."""
         payload = {
             "model": self.model,
             "messages": messages,
@@ -112,27 +135,44 @@ class LLMClient:
             "stream": True,
             "stream_options": {"include_usage": True},
         }
-        last_err = None
-        for attempt in range(self.max_retries):
+        n_infra = 0
+        while True:
             try:
-                if isinstance(last_err, _LengthTruncated):
-                    # reasoning models can burn the whole budget thinking; give room
-                    payload["max_tokens"] = min(payload["max_tokens"] * 2, 131072)
                 content, reasoning, finish, usage = self._stream_once(payload)
-                self.usage.add(usage)
-                self._log(tag, messages,
-                          {"content": content, "reasoning_content": reasoning}, usage)
-                if not content.strip():
-                    if finish == "length":
-                        # reasoning model ran out of budget before emitting text
-                        raise _LengthTruncated(f"empty content, max_tokens={payload['max_tokens']}")
-                    raise RuntimeError(f"empty content (finish_reason={finish})")
+            except _PermanentError:
+                raise
+            except Exception as e:  # noqa: BLE001 — HTTP errors, timeouts, broken streams
+                n_infra += 1
+                self._infra_retry(n_infra, tag, e)
+                continue
+            self.usage.add(usage)
+            self._log(tag, messages, {"content": content, "reasoning_content": reasoning}, usage)
+            if content.strip():
                 return content
-            except Exception as e:  # noqa: BLE001
-                last_err = e
-                wait = 2.0 * (2 ** attempt)
-                time.sleep(wait)
-        raise RuntimeError(f"LLM call failed after {self.max_retries} attempts: {last_err}")
+            produced = bool(reasoning) or (usage.get("completion_tokens") or 0) > 0
+            if finish == "length":
+                if payload["max_tokens"] >= self.max_budget:
+                    raise ModelGaveUp(f"no text within the maximum budget of {self.max_budget} tokens")
+                payload["max_tokens"] = min(payload["max_tokens"] * 2, self.max_budget)
+                self._note(tag, f"budget exhausted while thinking; retrying with "
+                                f"max_tokens={payload['max_tokens']}")
+                continue
+            if finish is None or not produced:
+                n_infra += 1
+                self._infra_retry(n_infra, tag, _InfraError(
+                    f"stream ended without text (finish_reason={finish}, produced={produced})"))
+                continue
+            raise ModelGaveUp(f"model returned no text (finish_reason={finish})")
+
+    def _infra_retry(self, n: int, tag: str, err: Exception):
+        if n > self.max_infra_retries:
+            raise RuntimeError(f"gave up after {n - 1} infrastructure failures: {err}") from err
+        wait = min(self.max_backoff, 2.0 * 2 ** min(n, 5))
+        self._note(tag, f"infrastructure failure #{n} ({str(err)[:120]}); retrying in {wait:.0f}s")
+        time.sleep(wait)
+
+    def _note(self, tag: str, msg: str):
+        print(f"  [llm {self.model.split('/')[-1]} {tag}] {msg}", file=sys.stderr, flush=True)
 
     def _stream_once(self, payload: dict) -> tuple[str, str, str | None, dict]:
         resp = requests.post(
@@ -148,7 +188,9 @@ class LLMClient:
         if resp.status_code != 200:
             body = resp.text[:200]
             resp.close()
-            raise RuntimeError(f"HTTP {resp.status_code}: {body}")
+            if 400 <= resp.status_code < 500 and resp.status_code not in (408, 429):
+                raise _PermanentError(f"HTTP {resp.status_code}: {body}")
+            raise _InfraError(f"HTTP {resp.status_code}: {body}")
         content_parts, reasoning_parts = [], []
         finish, usage = None, {}
         try:

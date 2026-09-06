@@ -107,8 +107,9 @@ def main():
     ap.add_argument("--scorer-model", default=None,
                     help="lighter model for detection/fuzzing calls (default: same as --model)")
     ap.add_argument("--out", default=None, help="output dir (default outputs/<ts>_<model>)")
-    ap.add_argument("--workers", type=int, default=12,
-                    help="concurrent scorer calls; 12 runs all scoring batches in parallel")
+    ap.add_argument("--workers", type=int, default=None,
+                    help="concurrent scorer calls (default: 12; 3 when the examiner is Kimi-K3 — "
+                         "the gateway drops several parallel long reasoning streams at once)")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--n-explainer", type=int, default=24)
     ap.add_argument("--n-test", type=int, default=20, help="activating and negative probes each")
@@ -123,6 +124,9 @@ def main():
                     help="comma list of scorers to run; skipped ones are carried over from "
                          "--reuse-explanations")
     args = ap.parse_args()
+    if args.workers is None:
+        examiner = (args.scorer_model or args.model).lower()
+        args.workers = 3 if "kimi" in examiner else 12
 
     token_pkl = args.token_list
     if token_pkl is None:
