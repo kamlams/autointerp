@@ -43,27 +43,34 @@ Per feature (`autointerp_pipeline/`):
 ## Running
 
 ```bash
-PY=~/miniconda3_x86/envs/vllm/bin/python   # needs torch + requests
+pip install -r requirements.txt          # torch + requests, no GPU needed
 
-# full run, validation default model
-$PY run_autointerp.py --data-dir ../autointerp --model deepseek-ai/DeepSeek-V4-Flash-reasoning
+# credentials for any OpenAI-compatible endpoint (never committed):
+export RIVAULT_BASE_URL=https://api.class2.llm.ai.r-ccs.riken.jp/v1/
+export RIVAULT_API_KEY=...               # or put these lines in ~/.config/rivault.env
+
+# full run on the five sample features (data files sit next to the script)
+python run_autointerp.py --model deepseek-ai/DeepSeek-V4-Flash-reasoning
+
+# cheap smoke test
+python run_autointerp.py --features feature28617__to__260904.pt --n-test 5 --n-fuzz 5
 
 # split explainer / examiner models
-$PY run_autointerp.py --model moonshotai/Kimi-K3 --scorer-model deepseek-ai/DeepSeek-V4-Flash
+python run_autointerp.py --model moonshotai/Kimi-K3 --scorer-model deepseek-ai/DeepSeek-V4-Flash
 
 # change a scoring protocol and re-score the SAME explanations
-$PY run_autointerp.py --reuse-explanations outputs/<run> --scorers fuzz --out outputs/<new>
+python run_autointerp.py --reuse-explanations results/v8_ds-reasoning --scorers fuzz --out outputs/<new>
+python compare_runs.py results/v8_ds-reasoning outputs/<new>
 ```
 
-Credentials: env `RIVAULT_API_KEY` / `RIVAULT_BASE_URL`, or `~/.config/rivault.env`, or
-`~/.config/opencode/opencode.json`. Any OpenAI-compatible endpoint works; responses are
-streamed (SSE) because long reasoning generations exceed the gateway's HTTP timeout
-otherwise. Never commit API keys.
+Responses are streamed (SSE) because long reasoning generations exceed the gateway's HTTP
+timeout otherwise; retries are classed by cause (see `CLAUDE.md`). `CLAUDE.md` is the
+full usage and architecture guide.
 
 ## Results on the 5 hand-labeled sample features
 
 Explanations from DeepSeek-V4-Flash-reasoning, scored by the same model
-(detection / fuzzing balanced accuracy, `outputs/v7_fuzz_single_rescore`):
+(detection / fuzzing balanced accuracy; full three-model records in `results/`):
 
 | feature | human label | density | det | fuzz |
 |---|---|---|---|---|

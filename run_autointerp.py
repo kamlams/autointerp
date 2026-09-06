@@ -2,8 +2,8 @@
 """Run the autointerp pipeline over feature activation dumps.
 
 Example:
-    python run_autointerp.py --data-dir ../autointerp --model moonshotai/Kimi-K3
-    python run_autointerp.py --features ../autointerp/feature28617__to__260904.pt
+    python run_autointerp.py --model deepseek-ai/DeepSeek-V4-Flash-reasoning
+    python run_autointerp.py --features feature28617__to__260904.pt --n-test 10
 """
 import argparse
 import json
@@ -17,7 +17,8 @@ from autointerp_pipeline.llm import LLMClient
 from autointerp_pipeline.sampler import SamplerConfig, build_examples
 from autointerp_pipeline.scorer import detection, fuzzing
 
-DEFAULT_DATA_DIR = "/hs/work0/home/users/lingqi.zhang/workspace/wengang/autointerp"
+# the sample data (token_list_*.pkl, feature*.pt) lives next to this script
+DEFAULT_DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 def process_feature(path: str, corpus, client: LLMClient, cfg: SamplerConfig,

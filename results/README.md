@@ -6,7 +6,7 @@ detection + fuzzing) of the pipeline at the stated commit: `report.md`, one
 `calls.jsonl` (every LLM call: prompt, reply, reasoning excerpt, token usage),
 `run_config.json`, `run.log`. Scratch experiments live in the gitignored `outputs/`.
 
-Data: the 5 hand-labeled sample features in `../autointerp` (1.69M-token corpus).
+Data: the 5 hand-labeled sample features at the repository root (1.69M-token corpus).
 Scores are balanced accuracy (chance = 0.5): detection / fuzzing.
 
 | run | date | pipeline commit | explainer = examiner | 28617 to | 12298 after_a | 25337 preceded_by_a_verb | 14825 ubiquitous | 24792 content (93%) | wall | calls | reasoning tok |

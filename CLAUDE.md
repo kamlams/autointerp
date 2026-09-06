@@ -1,118 +1,142 @@
-# CLAUDE.md
+# CLAUDE.md — agent guide for this repository
 
-## Project
-
-RouterInterp: understanding superposed specialisation in Mixture-of-Experts routing by
-mapping interpretable (SAE) features to experts.
-
-- **Stage A (this repo, working)**: automated feature-interpretation ("autointerp")
-  pipeline over open-weight LLM APIs — no OpenAI/Anthropic dependency.
-- **Stage B (planned)**: feature → expert attribution. Router logits are linear in the
-  residual stream, so with x ≈ Σ aⱼdⱼ + b the contribution of feature j to expert e is
-  aⱼ·(W_r[e]·dⱼ); validate with routing-frequency statistics and ablation, then label the
-  involved features with the Stage-A pipeline.
+This repository holds (1) sample activation data for five hand-labeled SAE features and
+(2) the RouterInterp Stage-A **autointerp pipeline** that interprets such features with an
+LLM and scores the interpretations. Read this file before running or changing anything.
 
 ## Language policy
 
-Everything in this repo — code, comments, docstrings, prompts, docs, commit messages,
-reports — is written in **English** (the repo will be shared). Conversation with the user
-may be in Chinese, but no Chinese in files.
+Everything committed here — code, comments, prompts, docs, commit messages, results — is
+written in **English**. Discussion with a user may be in any language; files may not.
 
-## Data (external, do not modify)
+## What is in the repository
 
-`../autointerp/` (github.com/kamlams/autointerp) holds sample data from a collaborator:
-
-- `token_list_*.pkl` — corpus: `tokens[batch][prompt][pos] -> str`
-  (825 × 16 × 128 = 1.69M tokens)
-- `feature{ID}__{human_label}__*.pt` — `[N,4]` rows `(batch, prompt, pos, activation)`,
-  every position where that feature fired. The human labels in filenames are ground truth
-  for calibrating the pipeline.
-
-## Commands
-
-```bash
-# conda env with torch/requests (no torch in system python)
-PY=~/miniconda3_x86/envs/vllm/bin/python
-
-# full run over all features in the data dir
-$PY run_autointerp.py --model moonshotai/Kimi-K3 --workers 12
-
-# fast model, or split explainer/scorer models
-$PY run_autointerp.py --model deepseek-ai/DeepSeek-V4-Flash
-$PY run_autointerp.py --model moonshotai/Kimi-K3 --scorer-model deepseek-ai/DeepSeek-V4-Flash
-
-# single feature, reduced probes (cheap smoke test)
-$PY run_autointerp.py --features ../autointerp/feature28617__to__260904.pt --n-test 10
+```
+token_list_260904.pkl              corpus: tokens[batch][prompt][pos] -> str  (825 x 16 x 128 = 1.69M tokens)
+feature{ID}__{human_label}__260904.pt   [N,4] rows (batch, prompt, pos, activation): every firing of that feature
+feature_reading_demo.ipynb         original demo of reading the data
+run_autointerp.py                  pipeline entry point (CLI)
+compare_runs.py                    side-by-side table of several runs
+autointerp_pipeline/               the pipeline package (see Architecture)
+results/                           committed full records of runs on the accepted protocol + README index + HTML report
+outputs/                           scratch runs (gitignored)
 ```
 
-Outputs land in `outputs/<run>/`: `report.md`, `feature{ID}.json`, `calls.jsonl`
-(full LLM traces), `run_config.json`.
-`outputs/` is scratch (gitignored; old experiments under `outputs/archive/`). Full
-records of runs on the accepted protocol are committed under `results/<run>/`
-(see `results/README.md` for the index and scores).
+The human labels in the filenames are ground truth for calibrating the pipeline. **Never
+modify the data files.**
+
+## How to use
+
+### 1. Environment
+
+Any Python ≥ 3.10 with `torch` and `requests` (`pip install -r requirements.txt`). No GPU
+is needed: the pipeline only reads activation dumps and calls an LLM API.
+
+### 2. Credentials
+
+The LLM is reached through any OpenAI-compatible `/v1/chat/completions` endpoint.
+Resolution order, first hit wins:
+
+1. environment variables `RIVAULT_BASE_URL` and `RIVAULT_API_KEY`;
+2. `~/.config/rivault.env` with shell-style `export RIVAULT_API_KEY="..."` lines;
+3. `~/.config/opencode/opencode.json` (opencode provider config).
+
+Never commit a key. The client reads it at runtime only.
+
+### 3. Run
+
+```bash
+# all five features, the validated default model (~8 min, ~90 calls)
+python run_autointerp.py --model deepseek-ai/DeepSeek-V4-Flash-reasoning
+
+# cheap smoke test: one feature, fewer probes
+python run_autointerp.py --features feature28617__to__260904.pt --n-test 5 --n-fuzz 5
+
+# strong explainer, cheap examiner
+python run_autointerp.py --model moonshotai/Kimi-K3 --scorer-model deepseek-ai/DeepSeek-V4-Flash
+
+# change a scoring protocol and re-score the SAME explanations (reasoning explainers
+# are not deterministic, so re-running the explainer would confound the comparison)
+python run_autointerp.py --reuse-explanations results/v8_ds-reasoning --scorers fuzz --out outputs/my_variant
+
+# compare runs
+python compare_runs.py results/v8_ds-reasoning outputs/my_variant
+```
+
+Useful flags: `--out DIR` (default `outputs/<timestamp>_<model>`), `--workers N`
+(concurrent scorer calls; default 12, or 3 when Kimi-K3 is the examiner), `--seed`,
+`--n-explainer 24`, `--n-test 20`, `--n-fuzz 20`, `--explain-max-tokens 32768`.
+
+### 4. Read the output
+
+`outputs/<run>/` (or `results/<run>/`) contains `report.md` (table + per-feature detail),
+`feature{ID}.json` (label, explanation, scores, per-probe predictions, diagnostics,
+statistics card, the explainer prompt), `calls.jsonl` (every LLM call: prompt, reply,
+reasoning excerpt, token usage), `run_config.json`.
+
+Scores are **balanced accuracy, chance = 0.50**, over held-out probes:
+
+- **detection** — 20 firing probes stratified over activation strength + 20 random
+  non-firing probes; the probed token is wrapped in `[[ ]]`; "does the feature fire on the
+  probe token?" Rewards coverage of the whole activation range. `tpr_by_strength` shows
+  which activation regime an explanation misses.
+- **fuzzing** — 20 pairs of strong firings (≥ 30% of the feature max): one snippet with
+  the anchor correctly marked `<< >>`, one twin with a single mark on a zero-activation
+  token; "does the explanation predict a firing on the marked token?" Rewards token-level
+  precision. Exactly one mark per probe.
+
+A trustworthy explanation needs both high. Wrong explanations land at ~0.5 by
+construction; that is the pipeline working. Dense features (≥ 10% density) are capped
+low on fuzzing unless the explanation pins down where they stay silent.
+
+Reference results for the five features are in `results/README.md` and the HTML report
+`results/autointerp_report.html`.
 
 ## Architecture (autointerp_pipeline/)
 
-- `data.py` — corpus + feature loading, firing index for O(1) negative sampling
+- `data.py` — corpus and feature loading; firing index for O(1) negative sampling;
+  corpus token counts for conditional rates.
 - `stats.py` — the statistics card shown to the explainer: density, firing rate and mean
   activation by sequence position, top fired-on / preceding tokens among the strongest
-  2000 and among all firings, each with its CONDITIONAL RATE P(fire | token) computed
-  against corpus-wide token counts (`Corpus.token_counts()`, 0.3 s once). Shares say what
-  is common among firings; conditional rates say how reliably a token triggers the
-  feature (feature25337: ' cut'/' pick'/' click' → firing 100% of the time, ' up' fires
-  on 21% of its occurrences — the mechanism is the preceding token's form). Zero LLM
-  cost, 0.2 s per feature
-- `sampler.py` — top pool + stratified snippets (half rank bins, half activation-value
-  bins so heavy-tailed features get their strong regime probed); diversity quotas
-  proportional to pool share (x0.5, floor 2, overflow when exhausted) on the
-  (preceding, fired-on) bigram and on each token alone; disjoint explainer / detection /
-  fuzzing sets; `[START]` marker and position in headers; every firing is marked by
-  class — `<<strong>>` at ≥ 30% of the feature max (`strong_floor`; dense features
-  ≥ 10% density also require ≥ P75) or `<weak>` spillover; dense features get non-firing
-  contrast snippets; byte-fragment tokens merged. Fuzzing probes are strength-matched
-  PAIRS from the same bin (one correct, one wrongly marked), anchors from strong
-  firings only, exactly ONE mark per probe (the anchor; the wrong twin carries one mark on a
-  zero-activation token) so every probe is a single judgment — multi-mark probes with
-  mixed evidence made reasoning examiners ruminate for 100k tokens (`fuzz_mark_cap`)
-- `prompts.py` — all three prompt templates (explainer, detection, fuzzing)
-- `explainer.py` — one LLM call → `LABEL` + `EXPLANATION` (reasoning models spend
-  15-30k thinking tokens here; `--explain-max-tokens` defaults to 32k)
-- `scorer.py` — detection: the probed token is wrapped in `[[ ]]` with context on both
-  sides and named in the header ("does the feature fire on the probe token?"; per-token
-  protocol, well-defined for dense features, robust to examiners that would otherwise
-  judge the wrong token) and fuzzing (are the `<<>>` marks placed correctly vs
-  deliberately-wrong marks?); balanced accuracy, chance = 0.5, parse failures excluded
-  from metrics and counted
-- `llm.py` — OpenAI-compatible client: credential chain (env → ~/.config/rivault.env →
-  ~/.config/opencode/opencode.json); streamed (SSE). Retry policy by failure class:
-  budget exhausted while thinking → double max_tokens up to 128k; gateway/network
-  failure (5xx/429, timeout, dropped or empty stream) → retry with backoff up to 30
-  times, budget unchanged; the model finishing without text → ModelGaveUp, no retry.
-  A scoring batch that still fails is excluded and counted (`n_failed_batches`), never
-  voiding the feature. `--workers` defaults to 3 when Kimi-K3 is the examiner (the
-  gateway dropped 7 of 8 parallel Kimi streams at once), else 12
-- `compare_runs.py` (repo root) — side-by-side table of several output dirs
+  2000 and among all firings, each with its conditional rate P(fire | token). Zero LLM cost.
+- `sampler.py` — 24 explainer snippets (8 from the top pool under proportional
+  diversity quotas on the (preceding, fired-on) bigram and each token alone; 16 stratified
+  half by rank bins, half by activation-value bins); context 31 tokens left / 8 right;
+  `[START]` marker and position in headers; every firing marked by class (`<<strong>>`
+  ≥ 30% of max, `<weak>` otherwise); dense features additionally use a P75 floor and get
+  6 non-firing contrast snippets; disjoint explainer / detection / fuzzing sets; per-feature
+  seed `seed*100003 + feature_id`.
+- `prompts.py` — the three prompt templates (explainer, detection, fuzzing), verbatim.
+- `explainer.py` — one call → `LABEL` + `EXPLANATION`.
+- `scorer.py` — detection and fuzzing as above; batches of 5 probes per call; parse
+  failures and failed batches are excluded from the metrics and counted.
+- `llm.py` — streaming (SSE) OpenAI-compatible client with a retry policy by failure
+  class: thinking budget exhausted → retry with the budget doubled up to 128k;
+  gateway/network failure (5xx/429, timeout, dropped or empty stream) → retry with backoff
+  up to 30 times at the same budget; a model that finishes without text → `ModelGaveUp`,
+  not retried; 4xx → not retried.
 
-## Conventions
+## Models seen so far (RIKEN RiVault gateway)
 
-- API keys are never committed; the client resolves them at runtime (see llm.py).
-- Reproducibility: per-feature RNG `seed*100003 + feature_id`, temperature 0.
-- LLM endpoint is RiVault (RIKEN R-CCS gateway); model choice is a config string, local
-  vLLM later is the same interface. Known models: moonshotai/Kimi-K3 (reasoning, ~30
-  tok/s, strong; thinking cannot be disabled by any API parameter; requests over ~10 min
-  get HTTP 504 from the gateway), deepseek-ai/DeepSeek-V4-Flash (no reasoning,
-  ~0.2s/call, weak explainer), deepseek-ai/DeepSeek-V4-Flash-reasoning (reasoning at
-  ~320 tok/s — the default for validation runs; its usage reports text_tokens=0 even
-  when content is present), zai-org/GLM-5.2, Qwen/Qwen3.8-27B, and others listed by
-  GET /v1/models.
-- Scoring reads: balanced accuracy, chance = 0.5; a good explanation needs BOTH detection
-  and fuzzing high. `tpr_by_strength` in detection results diagnoses which activation
-  regime an explanation fails on.
+| model | role | notes |
+|---|---|---|
+| `deepseek-ai/DeepSeek-V4-Flash-reasoning` | explainer + examiner, default | ~320 tok/s; 5 features in ~8 min |
+| `deepseek-ai/DeepSeek-V4-Flash` | examiner only | no reasoning, ~0.2 s/call; misreads the statistics card as an explainer |
+| `moonshotai/Kimi-K3` | explainer for hard features / spot checks | ~30 tok/s, 15–30k thinking tokens per explanation, 2–3 h for 5 features; use `--workers 3` |
 
-## Claude Code model policy
+## Conventions for changes
 
-- Main thread (design, review, discussion): Fable with max thinking —
-  configured in `.claude/settings.json`.
-- Complex implementation work: delegate to the `coder` agent (Opus,
-  `.claude/agents/coder.md`).
-- Background jobs edit this repo directly (worktree isolation disabled in settings).
+- Keep prompts in `prompts.py` only; keep every sampling knob in `SamplerConfig`.
+- A scoring-protocol change is evaluated with `--reuse-explanations` against fixed
+  explanations, then compared with `compare_runs.py`.
+- Runs on the accepted protocol are copied into `results/<run>/` with their logs and
+  added to `results/README.md`; everything else stays in `outputs/` (gitignored).
+- Main-thread design and review: Fable with max thinking (`.claude/settings.json`);
+  substantial implementation work: the `coder` agent (`.claude/agents/coder.md`, Opus).
+
+## Planned Stage B
+
+Router logits are linear in the residual stream, so with an SAE decomposition
+x ≈ Σ aⱼdⱼ + b the contribution of feature j to expert e is aⱼ·(W_r[e]·dⱼ): closed-form
+feature → expert attribution, to be validated with routing statistics and feature
+ablation, then labeled with this pipeline.
