@@ -12,8 +12,8 @@ Methodology follows Cunningham et al. (ICLR 2024, [F76bwRSLeK](https://openrevie
 and the cheaper scoring protocols of Paulo et al. 2024 ([2410.13928](https://arxiv.org/abs/2410.13928), delphi),
 re-implemented against our own activation-dump format:
 
-- corpus `token_list_*.pkl`: `tokens[batch][prompt][pos] -> str`
-- feature `feature{ID}__{label}__*.pt`: `[N,4]` rows `(batch, prompt, pos, activation)` — all firings
+- corpus `feature-data/token_list_*.pkl`: `tokens[batch][prompt][pos] -> str`
+- feature `feature-data/feature{ID}__{label}__*.pt`: `[N,4]` rows `(batch, prompt, pos, activation)` — all firings
 
 Per feature (`autointerp_pipeline/`):
 
@@ -49,11 +49,11 @@ pip install -r requirements.txt          # torch + requests, no GPU needed
 export RIVAULT_BASE_URL=https://api.class2.llm.ai.r-ccs.riken.jp/v1/
 export RIVAULT_API_KEY=...               # or put these lines in ~/.config/rivault.env
 
-# full run on the five sample features (data files sit next to the script)
+# full run on the five sample features in feature-data/ (or --data-dir DIR)
 python run_autointerp.py --model deepseek-ai/DeepSeek-V4-Flash-reasoning
 
 # cheap smoke test
-python run_autointerp.py --features feature28617__to__260904.pt --n-test 5 --n-fuzz 5
+python run_autointerp.py --features feature-data/feature28617__to__260904.pt --n-test 5 --n-fuzz 5
 
 # split explainer / examiner models
 python run_autointerp.py --model moonshotai/Kimi-K3 --scorer-model deepseek-ai/DeepSeek-V4-Flash

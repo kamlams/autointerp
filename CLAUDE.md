@@ -12,9 +12,10 @@ written in **English**. Discussion with a user may be in any language; files may
 ## What is in the repository
 
 ```
-token_list_260904.pkl              corpus: tokens[batch][prompt][pos] -> str  (825 x 16 x 128 = 1.69M tokens)
-feature{ID}__{human_label}__260904.pt   [N,4] rows (batch, prompt, pos, activation): every firing of that feature
-feature_reading_demo.ipynb         original demo of reading the data
+feature-data/
+  token_list_260904.pkl            corpus: tokens[batch][prompt][pos] -> str  (825 x 16 x 128 = 1.69M tokens)
+  feature{ID}__{human_label}__260904.pt   [N,4] rows (batch, prompt, pos, activation): every firing of that feature
+  feature_reading_demo.ipynb       original demo of reading the data
 run_autointerp.py                  pipeline entry point (CLI)
 compare_runs.py                    side-by-side table of several runs
 autointerp_pipeline/               the pipeline package (see Architecture)
@@ -23,7 +24,8 @@ outputs/                           scratch runs (gitignored)
 ```
 
 The human labels in the filenames are ground truth for calibrating the pipeline. **Never
-modify the data files.**
+modify the data files.** `run_autointerp.py` reads `feature-data/` by default; point
+`--data-dir` at another directory with the same layout for other feature dumps.
 
 ## How to use
 
@@ -50,7 +52,7 @@ Never commit a key. The client reads it at runtime only.
 python run_autointerp.py --model deepseek-ai/DeepSeek-V4-Flash-reasoning
 
 # cheap smoke test: one feature, fewer probes
-python run_autointerp.py --features feature28617__to__260904.pt --n-test 5 --n-fuzz 5
+python run_autointerp.py --features feature-data/feature28617__to__260904.pt --n-test 5 --n-fuzz 5
 
 # strong explainer, cheap examiner
 python run_autointerp.py --model moonshotai/Kimi-K3 --scorer-model deepseek-ai/DeepSeek-V4-Flash
@@ -63,7 +65,8 @@ python run_autointerp.py --reuse-explanations results/v8_ds-reasoning --scorers 
 python compare_runs.py results/v8_ds-reasoning outputs/my_variant
 ```
 
-Useful flags: `--out DIR` (default `outputs/<timestamp>_<model>`), `--workers N`
+Useful flags: `--data-dir DIR` (default `feature-data/`), `--out DIR` (default
+`outputs/<timestamp>_<model>`), `--workers N`
 (concurrent scorer calls; default 12, or 3 when Kimi-K3 is the examiner), `--seed`,
 `--n-explainer 24`, `--n-test 20`, `--n-fuzz 20`, `--explain-max-tokens 32768`.
 

@@ -3,7 +3,7 @@
 
 Example:
     python run_autointerp.py --model deepseek-ai/DeepSeek-V4-Flash-reasoning
-    python run_autointerp.py --features feature28617__to__260904.pt --n-test 10
+    python run_autointerp.py --features feature-data/feature28617__to__260904.pt --n-test 10
 """
 import argparse
 import json
@@ -17,8 +17,8 @@ from autointerp_pipeline.llm import LLMClient
 from autointerp_pipeline.sampler import SamplerConfig, build_examples
 from autointerp_pipeline.scorer import detection, fuzzing
 
-# the sample data (token_list_*.pkl, feature*.pt) lives next to this script
-DEFAULT_DATA_DIR = os.path.dirname(os.path.abspath(__file__))
+# the sample data (token_list_*.pkl, feature*.pt) lives in feature-data/ next to this script
+DEFAULT_DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "feature-data")
 
 
 def process_feature(path: str, corpus, client: LLMClient, cfg: SamplerConfig,

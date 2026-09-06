@@ -14,5 +14,5 @@ Rules:
 - Never hardcode API keys or credentials; use autointerp_pipeline.llm.resolve_credentials.
 - Run or smoke-test what you write before reporting. LLM calls go through a paid
   gateway, so test with `--n-test 5 --n-fuzz 5` and a single small feature file
-  (feature28617 is the cheapest), or with `--reuse-explanations` to skip the explainer.
+  (`feature-data/feature28617__to__260904.pt` is the cheapest), or with `--reuse-explanations` to skip the explainer.
 - Report concisely: what you changed, how you verified it, anything you left undone.
