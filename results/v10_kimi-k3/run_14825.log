@@ -1,0 +1,10 @@
+loading corpus /hs/work0/home/users/lingqi.zhang/workspace/wengang/autointerp/token_list_260904.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/1] feature14825__a_ubiquitous_feature__260904.pt
+  [llm Kimi-K3 fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm Kimi-K3 fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm Kimi-K3 fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Sequence openings and religious vocabulary' det=0.60 fuzz=0.53 (1196.9s)
+
+usage: {'explainer': '20 calls, 13480 prompt tok, 669 completion tok (of which 120697 reasoning)'}
+report: outputs/v10_full_kimik3_14825/report.md

@@ -1,0 +1,70 @@
+"""Prompt templates. Model-agnostic; tested with Kimi-K3 and DeepSeek-V4-Flash via RiVault."""
+
+EXPLAINER_SYSTEM = """You are an interpretability researcher analyzing one feature (latent unit) of a sparse autoencoder trained on a language model's internal activations. A feature fires with some strength on some tokens of some texts and is silent elsewhere.
+
+You receive two kinds of evidence:
+1. A STATISTICS CARD computed over ALL of the feature's firings in the corpus: firing rate by token position, and the most common fired-on and preceding tokens among the strongest firings and among all firings. Each listed token carries two numbers: its count among those firings, and in parentheses the CONDITIONAL RATE — how often any occurrence of that token in the corpus fires (fired-on tokens) or is followed by a firing (preceding tokens). Compare conditional rates with the baseline firing probability: a token at 90% is a reliable trigger and points at the mechanism; a token at 5% is merely frequent text and points at background noise.
+2. Sampled text SNIPPETS. Tokens on which the feature fires are wrapped in << >> (strong: at least 30% of the feature's maximum activation) or < > (weak: below that, often noise-like spillover); unmarked tokens do not fire. A snippet that begins with [START] starts at the first token of its sequence. Each snippet header gives the anchor token's strength on a 0-10 scale relative to this feature's maximum, and its position in the sequence.
+
+Treat these pattern types as hypotheses and pick whichever the evidence supports best (combinations are common):
+- identity of the fired-on token, word form, or subword;
+- the immediately preceding token(s) or local syntax (a verb, an article, a bigram);
+- the FORM of the preceding or fired-on token rather than its meaning: spelling pattern, final consonant or syllable shape (e.g. short stems ending in -ck/-t/-p), capitalization, digits, subword boundary;
+- position in the sequence (e.g. the first few tokens; watch for [START]);
+- topic, register, or language of the passage;
+- combinations, e.g. a particle following a verb, or pronouns inside religious text.
+
+The statistics card is the primary evidence for the overall pattern: it summarises every firing, while the snippets are a small sample and can look noisy at low strength. Use the snippets to confirm the hypothesis and to capture context that token tables cannot show. Answer two questions: what predicts WHETHER the feature fires (versus staying silent), and what predicts HOW STRONGLY it fires. If part of the firing has no discernible pattern, say so instead of inventing one.
+
+End your reply with exactly these two lines (no markdown, nothing after them):
+LABEL: <2-6 word name for the feature>
+EXPLANATION: <one to three sentences: when it fires, what makes it fire strongly, and where it does NOT fire if that is informative>"""
+
+EXPLAINER_DENSE_NOTE = """NOTE: this feature fires on {density:.0%} of ALL tokens — it is a dense feature, not a selective one. In the snippets, only firings above the {q:.0%} activation quantile count as strong <<...>>; the many weaker firings are marked <...>; unmarked tokens do not fire. After the firing snippets you will see CONTRAST snippets in which the [[marked]] token does NOT fire. Describe what separates firing from non-firing tokens (position, token type, ...) as well as what separates strong from weak firing."""
+
+
+def format_explainer_user(ex, dense_q: float) -> str:
+    parts = [ex.card, ""]
+    if ex.stats.get("dense"):
+        parts.append(EXPLAINER_DENSE_NOTE.format(density=ex.stats["density"], q=dense_q))
+        parts.append("")
+    parts.append("SNIPPETS where the feature fires (strongest first):")
+    for i, s in enumerate(ex.explainer, 1):
+        parts.append(f"--- Snippet {i} (strength {s.norm_score}/10, anchor at position {s.pos}) ---")
+        parts.append(s.render(highlighted=True))
+    if ex.explainer_negatives:
+        parts.append("")
+        parts.append("CONTRAST snippets — the feature does NOT fire on the [[marked]] token:")
+        for i, s in enumerate(ex.explainer_negatives, 1):
+            parts.append(f'--- Contrast {i} (non-firing token "{s.anchor_token}" at position {s.pos}) ---')
+            parts.append(s.render(highlighted=False, mark_anchor=True))
+    return "\n".join(parts)
+
+
+DETECTION_SYSTEM = """You will evaluate a proposed explanation of a language-model feature against text snippets.
+
+Explanation of the feature:
+{explanation}
+
+You will see {n} snippets. In each snippet exactly one token is wrapped in [[ ]] — the probe token; the header repeats it and gives its position in the sequence. A snippet beginning with [START] starts at the first token of its sequence. The feature reads only the probe token and the text BEFORE it (the text after it is shown for readability only). For each snippet, decide whether this feature fires ON THE PROBE TOKEN. Answer 1 if, per the explanation, the feature fires on the [[probe token]]; answer 0 if it does not. Ignore other occurrences of similar tokens elsewhere in the snippet.
+
+Reply with ONLY a JSON array of {n} integers (0 or 1), e.g. [1,0,0,1,1]. No other text."""
+
+FUZZING_SYSTEM = """You will evaluate a proposed explanation of a language-model feature against text snippets with marked tokens.
+
+Explanation of the feature:
+{explanation}
+
+You will see {n} snippets, each with EXACTLY ONE token wrapped in << >> marks; a snippet beginning with [START] starts at the first token of its sequence. In some snippets the mark is on a token where this feature fires strongly; in others it is on a wrong token where the feature does not fire at all. No other token is ever marked, even if the feature also fires elsewhere in the snippet — judge only the marked token. For each snippet, answer 1 if the explanation predicts that the feature fires on the marked token, and 0 if it does not.
+
+Reply with ONLY a JSON array of {n} integers (0 or 1), e.g. [1,0,0,1,1]. No other text."""
+
+
+def format_batch_user(items: list) -> str:
+    """items: list of (header, rendered_text)."""
+    parts = []
+    for i, (header, text) in enumerate(items, 1):
+        parts.append(f"--- Snippet {i}{' (' + header + ')' if header else ''} ---")
+        parts.append(text)
+    parts.append("\nReply with ONLY the JSON array.")
+    return "\n".join(parts)

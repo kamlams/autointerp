@@ -1,0 +1,34 @@
+{
+ "model": "moonshotai/Kimi-K3",
+ "scorer_model": null,
+ "sampler": {
+  "ctx_left": 31,
+  "ctx_right": 8,
+  "n_explainer": 24,
+  "explainer_top_frac": 0.33,
+  "n_test_act": 20,
+  "n_test_neg": 20,
+  "n_fuzz": 20,
+  "n_bins": 10,
+  "top_pool": 200,
+  "bigram_cap_min": 2,
+  "bigram_share_factor": 0.5,
+  "max_per_prompt": 4,
+  "dense_threshold": 0.1,
+  "dense_highlight_q": 0.75,
+  "strong_floor": 0.3,
+  "fuzz_mark_cap": 1,
+  "n_dense_negatives": 6,
+  "seed": 0
+ },
+ "features": [
+  "/hs/work0/home/users/lingqi.zhang/workspace/wengang/autointerp/feature12298__after_a__260904.pt",
+  "/hs/work0/home/users/lingqi.zhang/workspace/wengang/autointerp/feature14825__a_ubiquitous_feature__260904.pt",
+  "/hs/work0/home/users/lingqi.zhang/workspace/wengang/autointerp/feature24792__content_word_marker__260904.pt",
+  "/hs/work0/home/users/lingqi.zhang/workspace/wengang/autointerp/feature25337__preceded_by_a_verb__260904.pt",
+  "/hs/work0/home/users/lingqi.zhang/workspace/wengang/autointerp/feature28617__to__260904.pt"
+ ],
+ "usage": {
+  "explainer": "98 calls, 64582 prompt tok, 4296 completion tok (of which 593197 reasoning)"
+ }
+}
