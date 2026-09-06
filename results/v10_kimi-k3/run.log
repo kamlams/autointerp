@@ -1,0 +1,15 @@
+loading corpus /hs/work0/home/users/lingqi.zhang/workspace/wengang/autointerp/token_list_260904.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/5] feature12298__after_a__260904.pt
+  -> label='Word following indefinite article "a/an"' det=0.90 fuzz=1.00 (3267.0s)
+[2/5] feature14825__a_ubiquitous_feature__260904.pt
+  FAILED: LLM call failed after 4 attempts: empty content, max_tokens=12288
+[2/5] feature24792__content_word_marker__260904.pt
+  -> label='Dense context-gated surprisal signal' det=0.75 fuzz=0.57 (3437.8s)
+[3/5] feature25337__preceded_by_a_verb__260904.pt
+  -> label='Particles and suffixes after stop-final stems' det=0.62 fuzz=0.68 (2078.7s)
+[4/5] feature28617__to__260904.pt
+  -> label='" to" token detector' det=0.80 fuzz=1.00 (299.8s)
+
+usage: {'explainer': '98 calls, 64582 prompt tok, 4296 completion tok (of which 593197 reasoning)'}
+report: outputs/v10_full_kimik3/report.md

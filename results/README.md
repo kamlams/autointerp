@@ -13,6 +13,7 @@ Scores are balanced accuracy (chance = 0.5): detection / fuzzing.
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | `v8_ds-reasoning` | 2026-09-05 | 95621ad | deepseek-ai/DeepSeek-V4-Flash-reasoning | 0.80 / 1.00 | 0.75 / 0.90 | 0.62 / 0.72 | 0.62 / 0.68 | 0.65 / 0.55 | 505 s | 88 | 280k |
 | `v9_ds-flash` | 2026-09-06 | bffb5ce | deepseek-ai/DeepSeek-V4-Flash (no reasoning) | 0.68 / 0.88 | 0.50 / 0.55 | 0.57 / 0.57 | 0.65 / 0.68 | 0.55 / 0.57 | 33 s | 87 | 0 |
+| `v10_kimi-k3` | 2026-09-06 | bffb5ce (+af0e66d for 14825) | moonshotai/Kimi-K3 | 0.80 / 1.00 | 0.90 / 1.00 | 0.62 / 0.68 | 0.60 / 0.53 | 0.75 / 0.57 | 10280 s | 118 | 714k |
 
 Sampler settings shared by all runs (see `run_config.json`): 24 explainer snippets
 (8 top + 16 stratified over rank/value bins), context 31/8 tokens, `<<strong>>` marks at
@@ -47,3 +48,35 @@ non-reasoning model, not noise); **25337** stays verb-centred (TPR 0.15). **2861
 **14825**, **24792** are described correctly and score close to the reasoning run. As an
 examiner the non-reasoning model is usable (fuzzing TNR 0.75–1.00), as an explainer it is
 not reliable on features whose mechanism sits on the preceding token.
+
+## Reading the v10 explanations (Kimi-K3)
+
+Best explanations of the three models, at ~20x the wall time of the reasoning DeepSeek run
+(2.9 h, 714k reasoning tokens, 3 workers). **12298** is fully characterised (a/an/another
+and word-initial subword "a" → next token; "the" never triggers; sequence-initial "a" fires
+on itself) and scores 0.90 / 1.00. **25337** is the first explanation to state the true
+mechanism — "the token following a short stem ending in a stop consonant (-t, -ck, -k,
+-p, -mp, and voiced -d/-g)" — yet scores no higher than the verb-centred v8 version
+(fuzz TPR 0.40): the examiner rejects correct probes such as compound nouns ending in
+-cks, so the remaining gap is in how strictly the explanation is applied, not in the
+mechanism. **24792** is read as a context-gated surprisal signal (silent at position 0 and
+on highly predictable tokens such as " the": 61% vs 93% baseline) and gets the best
+detection score on the dense feature (0.75). **14825** = sequence openings + religious
+vocabulary, matching the corpus statistics; its low scores come from the diffuse weak
+background that no explanation can predict (detection TPR is 1.0 at strengths ≥ 4 and ~0
+below). The first attempt lost 14825 when the gateway dropped 7 of 8 parallel Kimi
+streams; the rerun under the class-based retry policy at 3 workers hit only
+budget-doubling retries (3, all recovered) and no drops.
+
+## Three-model summary
+
+| | DeepSeek-V4-Flash-reasoning (v8) | DeepSeek-V4-Flash (v9) | Kimi-K3 (v10) |
+|---|---|---|---|
+| mean detection / fuzzing | 0.69 / 0.77 | 0.59 / 0.65 | 0.73 / 0.76 |
+| wall time, 5 features | 505 s | 33 s | 10280 s |
+| reasoning tokens | 280k | 0 | 714k |
+| explanation failures | none | 12298 misread (stats-card columns confused), 25337 verb-only | none |
+
+Non-reasoning Flash is a usable examiner but not a reliable explainer; reasoning Flash is
+the cost-effective default; Kimi-K3 gives the most complete explanations at a cost that
+only makes sense for hard features or spot checks.
