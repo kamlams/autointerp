@@ -1,0 +1,87 @@
+loading corpus outputs/feature-data/moein_L15_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/12] feature12170__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=65536
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=131072
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Sherlock Holmes topic' det=0.78 fuzz=0.53 (454.8s)
+[2/12] feature14340__260918.pt
+  -> label='proper-name list punctuation' det=0.68 fuzz=0.82 (88.6s)
+[3/12] feature16411__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='syntactic glue words' det=0.68 fuzz=0.53 (135.9s)
+[4/12] feature16996__260918.pt
+  -> label='Street market topic context' det=0.68 fuzz=0.65 (70.1s)
+[5/12] feature17125__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=49152
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=98304
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=131072
+  [fuzz] batch excluded from metrics: no text within the maximum budget of 131072 tokens
+  -> label='bibliographic citation delimiters' det=0.70 fuzz=0.60 (819.1s)
+[6/12] feature20417__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='part-whole prepositions' det=0.50 fuzz=0.60 (197.1s)
+[7/12] feature21368__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Biographical narrative context' det=0.78 fuzz=0.65 (133.4s)
+[8/12] feature21663__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=65536
+  -> label='sequence-initial function-word burst' det=0.73 fuzz=0.53 (162.9s)
+[9/12] feature22384__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=65536
+  -> label='Prepositional phrase heads' det=0.62 fuzz=0.72 (248.2s)
+[10/12] feature23224__260918.pt
+  -> label='story-opening narrative context' det=0.65 fuzz=0.60 (57.7s)
+[11/12] feature24445__260918.pt
+  -> label='Quoted speech and instructional examples' det=0.82 fuzz=0.57 (93.3s)
+[12/12] feature26205__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=65536
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=131072
+  -> label='informal narrative function words' det=0.72 fuzz=0.57 (293.9s)
+
+usage: {'explainer': '218 calls, 187651 prompt tok, 1296808 completion tok (of which 1291490 reasoning)'}
+report: outputs/interp_moein_L15_test32b_a/report.md
+loading corpus outputs/feature-data/moein_L15_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/13] feature26769__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] infrastructure failure #1 (HTTP 502: Bad Gateway); retrying in 4s
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='genealogy family names' det=0.72 fuzz=0.62 (176.3s)
+[2/13] feature29340__260918.pt
+  -> label='pre-quantifier trigger' det=0.65 fuzz=0.75 (68.6s)
+[3/13] feature29396__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Person appositive lists' det=0.70 fuzz=0.65 (104.7s)
+[4/13] feature29554__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Modal and infinitive verb phrases' det=0.57 fuzz=0.82 (181.2s)
+[5/13] feature30400__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=65536
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='social relation markers' det=0.65 fuzz=0.60 (239.1s)
+[6/13] feature30850__260918.pt
+  -> label='spatial prepositions after motion verbs' det=0.72 fuzz=0.80 (47.1s)
+[7/13] feature31356__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='narrative storytelling' det=0.70 fuzz=0.53 (207.3s)
+[8/13] feature4523__260918.pt
+  -> label='attribution and credit markers' det=0.65 fuzz=0.57 (107.6s)
+[9/13] feature4916__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='male pronoun context function words' det=0.88 fuzz=0.80 (146.7s)
+[10/13] feature7932__260918.pt
+  -> label='Give verb lemma detector' det=0.85 fuzz=1.00 (38.0s)
+[11/13] feature848__260918.pt
+  -> label='Biblical religious narrative context' det=0.82 fuzz=0.60 (66.3s)
+[12/13] feature907__260918.pt
+  -> label='violent killing/assault verbs' det=0.68 fuzz=0.68 (61.4s)
+[13/13] feature910__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='narrative storytelling context' det=0.70 fuzz=0.53 (149.7s)
+
+usage: {'explainer': '232 calls, 184098 prompt tok, 810031 completion tok (of which 803835 reasoning)'}
+report: outputs/interp_moein_L15_test32b_b/report.md

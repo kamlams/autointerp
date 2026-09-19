@@ -1,0 +1,98 @@
+loading corpus outputs/feature-data/moein_L7_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/14] feature10166__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=65536
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Predictable grammatical continuations' det=0.57 fuzz=0.60 (254.5s)
+[2/14] feature10602__260918.pt
+  -> label='narrative function-word chains' det=0.82 fuzz=0.73 (37.2s)
+[3/14] feature12489__260918.pt
+  -> label='offer/promise constructions' det=0.72 fuzz=0.77 (46.4s)
+[4/14] feature13005__260918.pt
+  -> label='welfare/rights PP linker' det=0.68 fuzz=0.81 (124.3s)
+[5/14] feature15504__260918.pt
+  -> label='narrative action verbs' det=0.72 fuzz=0.50 (120.7s)
+[6/14] feature16368__260918.pt
+  -> label='conflict and transgression prose' det=0.75 fuzz=0.62 (146.5s)
+[7/14] feature16657__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=65536
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='to-infinitive purpose contexts' det=0.57 fuzz=0.50 (274.6s)
+[8/14] feature18211__260918.pt
+  -> label='Caused-motion preposition after object' det=0.70 fuzz=0.80 (88.3s)
+[9/14] feature18314__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='technical process prepositions' det=0.62 fuzz=0.75 (104.1s)
+[10/14] feature18489__260918.pt
+  -> label='Archaic high-register style' det=0.62 fuzz=0.57 (66.5s)
+[11/14] feature19319__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Famous quotes and allusions' det=0.65 fuzz=0.80 (159.2s)
+[12/14] feature23450__260918.pt
+  -> label='transfer-recipient "to"' det=0.70 fuzz=0.78 (70.3s)
+[13/14] feature23727__260918.pt
+  -> label='conditional consequent' det=0.75 fuzz=0.75 (79.8s)
+[14/14] feature24143__260918.pt
+  -> label='travel photography context' det=0.57 fuzz=0.40 (71.0s)
+
+usage: {'explainer': '246 calls, 200220 prompt tok, 832387 completion tok (of which 825751 reasoning)'}
+report: outputs/interp_moein_L7_test32b_a/report.md
+loading corpus outputs/feature-data/moein_L7_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/14] feature24743__260918.pt
+  -> label='substance administration into body' det=0.57 fuzz=0.62 (78.9s)
+[2/14] feature25609__260918.pt
+  -> label='give verb lemma detector' det=0.88 fuzz=0.85 (69.0s)
+[3/14] feature25914__260918.pt
+  -> label='visual perception words' det=0.70 fuzz=0.75 (87.7s)
+[4/14] feature26965__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=49152
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=98304
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=131072
+  [fuzz] batch excluded from metrics: no text within the maximum budget of 131072 tokens
+  -> label='technical register function words' det=0.47 fuzz=0.45 (802.5s)
+[5/14] feature29038__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=65536
+  -> label='directed action words' det=0.82 fuzz=0.78 (214.0s)
+[6/14] feature32032__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='narrative storytelling prose' det=0.82 fuzz=0.68 (114.4s)
+[7/14] feature32209__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=65536
+  -> label='the word "to"' det=0.72 fuzz=0.90 (254.3s)
+[8/14] feature32709__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='elevated/classical/literary register' det=0.73 fuzz=0.53 (135.3s)
+[9/14] feature4192__260918.pt
+  -> label='relational chain enumeration' det=0.70 fuzz=0.65 (71.2s)
+[10/14] feature4511__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=49152
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=98304
+  -> label='preposition after resource noun' det=0.60 fuzz=0.55 (284.1s)
+[11/14] feature6581__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=65536
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=131072
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='narrative continuation markers' det=0.68 fuzz=0.70 (417.0s)
+[12/14] feature8846__260918.pt
+  -> label='early sequence position detector' det=0.60 fuzz=0.53 (120.4s)
+[13/14] feature971__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=49152
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=49152
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=98304
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=131072
+  [llm DeepSeek-V4-Flash-reasoning fuzz] infrastructure failure #1 (HTTPSConnectionPool(host='<gateway>', port=443): Read timed out.); retrying in 4s
+  -> label='Religious narrative context' det=0.93 fuzz=0.55 (810.5s)
+[14/14] feature9998__260918.pt
+  -> label='contentful prepositional phrase heads' det=0.75 fuzz=0.62 (73.2s)
+
+usage: {'explainer': '260 calls, 212368 prompt tok, 1675544 completion tok (of which 1669354 reasoning)'}
+report: outputs/interp_moein_L7_test32b_b/report.md

@@ -1,0 +1,88 @@
+loading corpus outputs/feature-data/moein_L0_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/13] feature12379__260918.pt
+  -> label='sequence-start function words' det=0.62 fuzz=0.72 (69.6s)
+[2/13] feature16389__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=65536
+  -> label='give verb construction' det=0.62 fuzz=0.55 (176.5s)
+[3/13] feature17751__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=65536
+  -> label="definite article 'the'" det=0.57 fuzz=0.75 (281.3s)
+[4/13] feature17901__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=65536
+  -> label='indefinite article noun phrase' det=0.72 fuzz=0.70 (263.1s)
+[5/13] feature18871__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] infrastructure failure #1 (HTTP 502: Bad Gateway); retrying in 4s
+  -> label='function words and sequence starts' det=0.57 fuzz=0.60 (193.1s)
+[6/13] feature2565__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='early sequence position' det=0.62 fuzz=0.43 (238.1s)
+[7/13] feature27002__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Recipe and cooking instructions' det=0.62 fuzz=0.57 (104.4s)
+[8/13] feature27007__260918.pt
+  -> label='to-phrase function words' det=0.78 fuzz=0.82 (89.3s)
+[9/13] feature28019__260918.pt
+  -> label='reported speech frame' det=0.65 fuzz=0.65 (64.3s)
+[10/13] feature29165__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=49152
+  -> label='space-in token detector' det=0.55 fuzz=0.53 (196.1s)
+[11/13] feature30268__260918.pt
+  -> label='verb-preposition collocation' det=0.75 fuzz=0.72 (126.4s)
+[12/13] feature30772__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='start-of-segment capitalization' det=0.68 fuzz=0.65 (160.8s)
+[13/13] feature3127__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='first-person narrative voice' det=0.78 fuzz=0.40 (143.6s)
+
+usage: {'explainer': '232 calls, 185459 prompt tok, 1060557 completion tok (of which 1054178 reasoning)'}
+report: outputs/interp_moein_L0_test32b_a/report.md
+loading corpus outputs/feature-data/moein_L0_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/14] feature32421__260918.pt
+  -> label='Verb-to-object transition' det=0.80 fuzz=0.82 (114.0s)
+[2/14] feature32469__260918.pt
+  -> label='Religious/spiritual discourse' det=0.78 fuzz=0.45 (39.3s)
+[3/14] feature32702__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='early-sequence article detector' det=0.68 fuzz=0.90 (91.8s)
+[4/14] feature4501__260918.pt
+  -> label='past-tense narrative verb phrases' det=0.70 fuzz=0.62 (113.5s)
+[5/14] feature4935__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='text segment onset' det=0.60 fuzz=0.68 (174.5s)
+[6/14] feature5048__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='after have/has/had/been' det=0.78 fuzz=0.77 (243.8s)
+[7/14] feature6229__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='comma clause-initial function words' det=0.65 fuzz=0.70 (188.4s)
+[8/14] feature656__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='post-indefinite-article token' det=0.85 fuzz=0.97 (114.0s)
+[9/14] feature6584__260918.pt
+  -> label='“to” token detector' det=0.95 fuzz=0.97 (25.8s)
+[10/14] feature6758__260918.pt
+  -> label='"to" token detector' det=0.93 fuzz=1.00 (26.8s)
+[11/14] feature7535__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning explain] budget exhausted while thinking; retrying with max_tokens=65536
+  [llm DeepSeek-V4-Flash-reasoning detect] infrastructure failure #1 (HTTP 502: Bad Gateway); retrying in 4s
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='syntactic boundary onset' det=0.53 fuzz=0.55 (374.4s)
+[12/14] feature8307__260918.pt
+  -> label='function word and punctuation detector' det=0.80 fuzz=0.82 (79.4s)
+[13/14] feature8333__260918.pt
+  -> label='the and human nouns' det=0.68 fuzz=0.47 (105.0s)
+[14/14] feature856__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label="dense 'the' and phrase-initial" det=0.57 fuzz=0.53 (145.2s)
+
+usage: {'explainer': '249 calls, 188085 prompt tok, 942015 completion tok (of which 935853 reasoning)'}
+report: outputs/interp_moein_L0_test32b_b/report.md

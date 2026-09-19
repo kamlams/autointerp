@@ -1,0 +1,116 @@
+loading corpus outputs/feature-data/moein_L7_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/16] feature10166__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='punctuation and function-word spans' det=0.45 fuzz=0.50 (425.7s)
+[2/16] feature10602__260918.pt
+  [llm Qwen3.8-27B explain] budget exhausted while thinking; retrying with max_tokens=65536
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='late narrative prose' det=0.72 fuzz=0.62 (596.5s)
+[3/16] feature12489__260918.pt
+  -> label='Offer and promise context' det=0.72 fuzz=0.78 (135.4s)
+[4/16] feature13005__260918.pt
+  -> label='social welfare preposition' det=0.70 fuzz=0.75 (134.8s)
+[5/16] feature13093__260918.pt
+  -> label='family member predicate' det=0.62 fuzz=0.50 (295.4s)
+[6/16] feature14657__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='ownership transfer relation' det=0.72 fuzz=0.77 (112.3s)
+[7/16] feature15329__260918.pt
+  -> label='drinking, beverages, and thirst' det=0.82 fuzz=0.85 (198.2s)
+[8/16] feature15504__260918.pt
+  -> label='agentive event phrase' det=0.73 fuzz=0.65 (203.7s)
+[9/16] feature16368__260918.pt
+  -> label='syntactic embedding context' det=0.70 fuzz=0.62 (348.0s)
+[10/16] feature16657__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='professional authority and responsibility' det=0.70 fuzz=0.57 (260.3s)
+[11/16] feature18211__260918.pt
+  -> label='preposition after a noun' det=0.80 fuzz=0.93 (196.6s)
+[12/16] feature18314__260918.pt
+  -> label='binary interaction phrase' det=0.73 fuzz=0.89 (204.4s)
+[13/16] feature18489__260918.pt
+  -> label='archaic mythic religious register' det=0.68 fuzz=0.57 (188.6s)
+[14/16] feature19319__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=49152
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='recognizable phrase detector' det=0.73 fuzz=0.72 (221.5s)
+[15/16] feature23450__260918.pt
+  -> label='recipient preposition to' det=0.72 fuzz=0.81 (136.7s)
+[16/16] feature23727__260918.pt
+  -> label='main clause after when clause' det=0.68 fuzz=0.68 (300.9s)
+
+usage: {'explainer': '17 calls, 58057 prompt tok, 238744 completion tok (of which 237101 reasoning)', 'scorer': '269 calls, 163837 prompt tok, 935388 completion tok (of which 932080 reasoning)'}
+report: outputs/qwen_L7_a/report.md
+loading corpus outputs/feature-data/moein_L7_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/16] feature24143__260918.pt
+  -> label='travel blog activity' det=0.75 fuzz=0.47 (144.9s)
+[2/16] feature24743__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='substance introduction into targets' det=0.65 fuzz=0.75 (244.4s)
+[3/16] feature25609__260918.pt
+  -> label='give-related word forms' det=0.88 fuzz=0.90 (66.9s)
+[4/16] feature25914__260918.pt
+  -> label='visual perception see/saw/sight' det=0.65 fuzz=0.78 (125.5s)
+[5/16] feature26965__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Clause and list continuation' det=0.50 fuzz=0.55 (320.5s)
+[6/16] feature29038__260918.pt
+  -> label='transitive action phrases' det=0.70 fuzz=0.70 (288.1s)
+[7/16] feature32032__260918.pt
+  -> label='narrative prose events' det=0.70 fuzz=0.73 (217.3s)
+[8/16] feature32209__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='standalone to token detector' det=0.80 fuzz=0.90 (197.3s)
+[9/16] feature32709__260918.pt
+  -> label='foreign or quoted span' det=0.57 fuzz=0.47 (351.7s)
+[10/16] feature4192__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=49152
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=98304
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='list enumeration marker' det=0.60 fuzz=0.55 (458.0s)
+[11/16] feature4511__260918.pt
+  FAILED: model returned no text (finish_reason=stop)
+[11/16] feature6581__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='clause boundary tokens' det=0.68 fuzz=0.70 (345.6s)
+[12/16] feature7959__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=49152
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=98304
+  [llm DeepSeek-V4-Flash-reasoning detect] infrastructure failure #1 (stream ended without text (finish_reason=None, produced=True)); retrying in 4s
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] infrastructure failure #1 (HTTPSConnectionPool(host='<gateway>', port=443): Read timed out.); retrying in 4s
+  -> label='basic subsistence needs' det=0.82 fuzz=0.68 (498.4s)
+[13/16] feature8846__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='sequence position after start' det=0.68 fuzz=0.60 (198.7s)
+[14/16] feature971__260918.pt
+  -> label='narrative story passage' det=0.82 fuzz=0.55 (254.6s)
+[15/16] feature9998__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='prepositional phrase detector' det=0.55 fuzz=0.55 (168.0s)
+
+usage: {'explainer': '16 calls, 56237 prompt tok, 225983 completion tok (of which 224540 reasoning)', 'scorer': '260 calls, 156225 prompt tok, 898910 completion tok (of which 895722 reasoning)'}
+report: outputs/qwen_L7_b/report.md
+loading corpus outputs/feature-data/moein_L7_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/1] feature4511__260918.pt
+  -> label='Preposition after resource nouns' det=0.62 fuzz=0.53 (137.8s)
+
+usage: {'explainer': '1 calls, 3277 prompt tok, 13125 completion tok (of which 13019 reasoning)', 'scorer': '16 calls, 9647 prompt tok, 14101 completion tok (of which 13892 reasoning)'}
+report: outputs/qwen_L7_r2/report.md

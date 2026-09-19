@@ -1,0 +1,98 @@
+loading corpus outputs/feature-data/moein_L0_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/16] feature12379__260918.pt
+  -> label='Function words near sequence start' det=0.62 fuzz=0.68 (89.7s)
+[2/16] feature16389__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Sequence-initial "give" verb phrases' det=0.60 fuzz=0.53 (202.4s)
+[3/16] feature17751__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] infrastructure failure #1 (HTTP 502: Bad Gateway); retrying in 4s
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=49152
+  -> label='" the" and high-frequency function words' det=0.62 fuzz=0.68 (372.8s)
+[4/16] feature17901__260918.pt
+  -> label='Sequence-initial "a/an" opener' det=0.65 fuzz=0.68 (208.1s)
+[5/16] feature18871__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=49152
+  -> label='Frequent tokens, strongest at sequence start' det=0.60 fuzz=0.62 (363.0s)
+[6/16] feature22641__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Token after compound-stem words' det=0.68 fuzz=0.82 (521.4s)
+[7/16] feature25327__260918.pt
+  -> label='Third-person narrative pronouns' det=0.82 fuzz=0.50 (157.0s)
+[8/16] feature25450__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='' det=0.50 fuzz=0.53 (862.4s)
+[9/16] feature2565__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Early-sequence position (dense)' det=0.60 fuzz=0.50 (319.1s)
+[10/16] feature27002__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=49152
+  -> label='Food and recipe topic' det=0.72 fuzz=0.60 (194.9s)
+[11/16] feature27007__260918.pt
+  -> label="'To' and common function words" det=0.78 fuzz=0.70 (160.7s)
+[12/16] feature28019__260918.pt
+  -> label='Reported speech openings after "said"' det=0.57 fuzz=0.62 (141.3s)
+[13/16] feature29165__260918.pt
+  -> label='Preposition "in" detector' det=0.62 fuzz=0.70 (236.6s)
+[14/16] feature30268__260918.pt
+  -> label='Particles and suffixes after verbs' det=0.88 fuzz=0.75 (332.0s)
+[15/16] feature30772__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Sequence-initial capital letters and acronyms' det=0.57 fuzz=0.55 (206.9s)
+[16/16] feature3127__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='First-person narrative voice' det=0.72 fuzz=0.38 (94.5s)
+
+usage: {'explainer': '16 calls, 51714 prompt tok, 8233 completion tok (of which 120338 reasoning)', 'scorer': '272 calls, 168147 prompt tok, 995078 completion tok (of which 991748 reasoning)'}
+report: outputs/kimi_L0_a/report.md
+loading corpus outputs/feature-data/moein_L0_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/16] feature32421__260918.pt
+  -> label='After transitive action verbs' det=0.72 fuzz=0.78 (270.9s)
+[2/16] feature32469__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Christian religious vocabulary and passages' det=0.68 fuzz=0.45 (101.3s)
+[3/16] feature32702__260918.pt
+  -> label='Early-sequence articles' det=0.68 fuzz=0.88 (207.1s)
+[4/16] feature36__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] infrastructure failure #1 (HTTP 502: Bad Gateway); retrying in 4s
+  -> label='" to" token identity detector' det=0.80 fuzz=0.95 (307.1s)
+[5/16] feature4501__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Past-tense narrative prose' det=0.70 fuzz=0.62 (285.3s)
+[6/16] feature4935__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Sentence and passage openings' det=0.57 fuzz=0.55 (234.1s)
+[7/16] feature5048__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Span after have/has/had/been' det=0.80 fuzz=0.78 (188.5s)
+[8/16] feature6229__260918.pt
+  -> label='Post-comma clause openings' det=0.65 fuzz=0.75 (277.0s)
+[9/16] feature656__260918.pt
+  -> label='Word following indefinite article "a/an"' det=0.80 fuzz=0.95 (174.6s)
+[10/16] feature6584__260918.pt
+  -> label='The token "to" (all uses)' det=0.93 fuzz=0.97 (70.8s)
+[11/16] feature6758__260918.pt
+  -> label='"to" token detector (all forms)' det=0.93 fuzz=1.00 (42.5s)
+[12/16] feature7535__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Sequence-initial first-token firing' det=0.55 fuzz=0.53 (230.7s)
+[13/16] feature8307__260918.pt
+  -> label='Lowercase function words and punctuation' det=0.78 fuzz=0.88 (311.3s)
+[14/16] feature8333__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label="'the' and sequence-opening tokens" det=0.60 fuzz=0.42 (454.8s)
+[15/16] feature856__260918.pt
+  -> label='Sequence starts and function words' det=0.65 fuzz=0.68 (250.3s)
+[16/16] feature8942__260918.pt
+  -> label='Early-sequence punctuation and function words' det=0.72 fuzz=0.73 (125.8s)
+
+usage: {'explainer': '16 calls, 49225 prompt tok, 8884 completion tok (of which 97917 reasoning)', 'scorer': '262 calls, 164950 prompt tok, 680183 completion tok (of which 676866 reasoning)'}
+report: outputs/kimi_L0_b/report.md

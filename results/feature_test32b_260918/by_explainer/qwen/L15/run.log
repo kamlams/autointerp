@@ -1,0 +1,104 @@
+loading corpus outputs/feature-data/moein_L15_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/16] feature10028__260918.pt
+  -> label='Communication verb detector' det=0.78 fuzz=0.82 (126.4s)
+[2/16] feature12170__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=49152
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=49152
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=98304
+  -> label='late sequence position' det=0.53 fuzz=0.53 (591.3s)
+[3/16] feature14340__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='personal relation connectives' det=0.65 fuzz=0.68 (240.1s)
+[4/16] feature16411__260918.pt
+  -> label='late clause function words' det=0.68 fuzz=0.62 (332.0s)
+[5/16] feature16996__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='marketplace and vendor topic' det=0.68 fuzz=0.45 (272.1s)
+[6/16] feature17031__260918.pt
+  -> label='Religious or mythological topic' det=0.90 fuzz=0.60 (112.3s)
+[7/16] feature17125__260918.pt
+  -> label='attribution and citation punctuation' det=0.68 fuzz=0.75 (131.9s)
+[8/16] feature17458__260918.pt
+  -> label='prepositional to token' det=0.75 fuzz=0.80 (126.1s)
+[9/16] feature20417__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='individual components context' det=0.48 fuzz=0.38 (186.2s)
+[10/16] feature21368__260918.pt
+  -> label='child and family narrative' det=0.75 fuzz=0.62 (100.9s)
+[11/16] feature21663__260918.pt
+  -> label='early sequence common tokens' det=0.68 fuzz=0.47 (200.6s)
+[12/16] feature22384__260918.pt
+  [llm Qwen3.8-27B explain] budget exhausted while thinking; retrying with max_tokens=65536
+  -> label='mid-sentence function-word detector' det=0.88 fuzz=0.73 (522.7s)
+[13/16] feature22413__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] infrastructure failure #1 (stream ended without text (finish_reason=None, produced=True)); retrying in 4s
+  -> label='procedural clause words' det=0.68 fuzz=0.78 (316.5s)
+[14/16] feature23224__260918.pt
+  -> label='story or fable opening' det=0.57 fuzz=0.55 (157.4s)
+[15/16] feature24445__260918.pt
+  [llm Qwen3.8-27B explain] budget exhausted while thinking; retrying with max_tokens=65536
+  -> label='metalinguistic example sentence context' det=0.65 fuzz=0.70 (474.1s)
+[16/16] feature24624__260918.pt
+  -> label='Boundary punctuation and line breaks' det=0.75 fuzz=0.70 (142.1s)
+
+usage: {'explainer': '18 calls, 63758 prompt tok, 278821 completion tok (of which 277212 reasoning)', 'scorer': '268 calls, 162664 prompt tok, 756243 completion tok (of which 752912 reasoning)'}
+report: outputs/qwen_L15_a/report.md
+loading corpus outputs/feature-data/moein_L15_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/16] feature26205__260918.pt
+  -> label='English predicate token' det=0.80 fuzz=0.70 (377.7s)
+[2/16] feature26769__260918.pt
+  -> label='genealogical family history' det=0.80 fuzz=0.42 (196.0s)
+[3/16] feature29340__260918.pt
+  -> label='syntactic phrase heads' det=0.82 fuzz=0.70 (306.0s)
+[4/16] feature29396__260918.pt
+  -> label='token before person mentions' det=0.72 fuzz=0.82 (334.6s)
+[5/16] feature29554__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=49152
+  -> label='line break proximity' det=0.57 fuzz=0.53 (607.3s)
+[6/16] feature30400__260918.pt
+  -> label='short function-word local density' det=0.65 fuzz=0.53 (246.9s)
+[7/16] feature30850__260918.pt
+  -> label='spatial preposition in verb phrase' det=0.82 fuzz=0.82 (137.3s)
+[8/16] feature31356__260918.pt
+  FAILED: model returned no text (finish_reason=stop)
+[8/16] feature4523__260918.pt
+  -> label='narrative clause-boundary tokens' det=0.65 fuzz=0.52 (281.2s)
+[9/16] feature4916__260918.pt
+  [llm Qwen3.8-27B explain] budget exhausted while thinking; retrying with max_tokens=65536
+  [llm Qwen3.8-27B explain] infrastructure failure #1 (HTTPSConnectionPool(host='<gateway>', port=443): Read timed out.); retrying in 4s
+  -> label='male pronoun-adjacent prepositions and verbs' det=0.70 fuzz=0.65 (857.0s)
+[10/16] feature7108__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='early sequence position' det=0.68 fuzz=0.53 (100.6s)
+[11/16] feature7472__260918.pt
+  -> label='Child or young person' det=0.68 fuzz=0.82 (110.6s)
+[12/16] feature7932__260918.pt
+  -> label='Give verb token detector' det=0.88 fuzz=1.00 (103.5s)
+[13/16] feature848__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Christian religious context' det=0.80 fuzz=0.53 (202.3s)
+[14/16] feature907__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='violent event context' det=0.75 fuzz=0.68 (180.1s)
+[15/16] feature910__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='narrative event clause boundary' det=0.78 fuzz=0.68 (181.3s)
+
+usage: {'explainer': '17 calls, 59649 prompt tok, 294772 completion tok (of which 293247 reasoning)', 'scorer': '247 calls, 150524 prompt tok, 811969 completion tok (of which 808846 reasoning)'}
+report: outputs/qwen_L15_b/report.md
+loading corpus outputs/feature-data/moein_L15_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/1] feature31356__260918.pt
+  -> label='narrative prose punctuation' det=0.62 fuzz=0.53 (234.6s)
+
+usage: {'explainer': '1 calls, 3508 prompt tok, 19587 completion tok (of which 19502 reasoning)', 'scorer': '16 calls, 9357 prompt tok, 39653 completion tok (of which 39445 reasoning)'}
+report: outputs/qwen_L15_r2/report.md

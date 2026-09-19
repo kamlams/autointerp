@@ -1,0 +1,101 @@
+loading corpus outputs/feature-data/moein_L15_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/16] feature10028__260918.pt
+  -> label='Communication verbs with addressee' det=0.80 fuzz=0.82 (85.4s)
+[2/16] feature12170__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Late-sequence analytical reasoning prose' det=0.53 fuzz=0.45 (479.3s)
+[3/16] feature14340__260918.pt
+  -> label='Connectives linking person names' det=0.70 fuzz=0.78 (425.2s)
+[4/16] feature16411__260918.pt
+  -> label='Late-sequence prose skeleton' det=0.68 fuzz=0.65 (193.9s)
+[5/16] feature16996__260918.pt
+  -> label='Market and street-vendor passages' det=0.68 fuzz=0.55 (119.7s)
+[6/16] feature17031__260918.pt
+  -> label='Religious/theological discourse register' det=0.88 fuzz=0.62 (88.0s)
+[7/16] feature17125__260918.pt
+  -> label='Tokens preceding person names' det=0.65 fuzz=0.72 (108.7s)
+[8/16] feature17458__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Prepositional "to" (not infinitive)' det=0.80 fuzz=0.85 (170.1s)
+[9/16] feature20417__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Breaking wholes into parts' det=0.57 fuzz=0.40 (243.4s)
+[10/16] feature21368__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] infrastructure failure #1 (HTTP 502: Bad Gateway); retrying in 4s
+  -> label='Family relationships in narrative news' det=0.70 fuzz=0.65 (182.8s)
+[11/16] feature21663__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=49152
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=98304
+  [llm DeepSeek-V4-Flash-reasoning fuzz] infrastructure failure #1 (HTTP 500: {"error":{"message":"litellm.InternalServerError: InternalServerError: Hosted_vllmException - Server disconnec); retrying in 4s
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=131072
+  -> label='Early-sequence function-word detector' det=0.77 fuzz=0.55 (659.8s)
+[12/16] feature22384__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] infrastructure failure #1 (HTTP 502: Bad Gateway); retrying in 4s
+  -> label='Casual first-person narrative prose' det=0.80 fuzz=0.60 (280.4s)
+[13/16] feature22413__260918.pt
+  -> label='Instructional verbs and prepositions' det=0.68 fuzz=0.70 (306.9s)
+[14/16] feature23224__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Story and hypothetical scenario openings' det=0.70 fuzz=0.60 (143.6s)
+[15/16] feature24445__260918.pt
+  -> label='Quoted speech and example sentences' det=0.65 fuzz=0.60 (195.2s)
+[16/16] feature24624__260918.pt
+  -> label='Discourse boundary punctuation' det=0.80 fuzz=0.65 (215.7s)
+
+usage: {'explainer': '16 calls, 51740 prompt tok, 8656 completion tok (of which 93325 reasoning)', 'scorer': '268 calls, 172672 prompt tok, 954381 completion tok (of which 951050 reasoning)'}
+report: outputs/kimi_L15_a/report.md
+loading corpus outputs/feature-data/moein_L15_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/16] feature26205__260918.pt
+  -> label='Informal conversational narrative prose' det=0.75 fuzz=0.60 (343.7s)
+[2/16] feature26769__260918.pt
+  -> label='Family history and genealogy' det=0.60 fuzz=0.55 (151.5s)
+[3/16] feature29340__260918.pt
+  -> label='Words introducing universal quantifiers' det=0.60 fuzz=0.72 (120.8s)
+[4/16] feature29396__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Naming people with roles/relationships' det=0.70 fuzz=0.70 (204.5s)
+[5/16] feature29554__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Non-native / translated English register' det=0.70 fuzz=0.52 (233.2s)
+[6/16] feature30400__260918.pt
+  -> label='Colloquial function words in personal prose' det=0.70 fuzz=0.65 (448.7s)
+[7/16] feature30850__260918.pt
+  -> label='Directed-motion verbs and prepositions' det=0.72 fuzz=0.72 (116.6s)
+[8/16] feature31356__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=49152
+  -> label='Narrative fiction prose bursts' det=0.65 fuzz=0.53 (267.6s)
+[9/16] feature4523__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=49152
+  -> label='Narrative storytelling prose' det=0.75 fuzz=0.55 (542.5s)
+[10/16] feature4916__260918.pt
+  -> label='Third-person masculine (he/his) context' det=0.75 fuzz=0.77 (306.9s)
+[11/16] feature7108__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] infrastructure failure #1 (HTTP 502: Bad Gateway); retrying in 4s
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Early-sequence position marker' det=0.68 fuzz=0.35 (181.3s)
+[12/16] feature7472__260918.pt
+  -> label='Mentions of young children' det=0.70 fuzz=0.80 (95.4s)
+[13/16] feature7932__260918.pt
+  -> label='Verb "give" and its objects' det=0.88 fuzz=1.00 (36.2s)
+[14/16] feature848__260918.pt
+  -> label='Christian / Jesus discourse topic' det=0.75 fuzz=0.60 (118.4s)
+[15/16] feature907__260918.pt
+  -> label='Verbs of violence and killing' det=0.70 fuzz=0.82 (66.9s)
+[16/16] feature910__260918.pt
+  -> label='News/story event narration register' det=0.75 fuzz=0.65 (167.3s)
+
+usage: {'explainer': '16 calls, 51488 prompt tok, 8521 completion tok (of which 84976 reasoning)', 'scorer': '267 calls, 172411 prompt tok, 835806 completion tok (of which 832459 reasoning)'}
+report: outputs/kimi_L15_b/report.md

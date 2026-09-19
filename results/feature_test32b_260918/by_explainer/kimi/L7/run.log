@@ -1,0 +1,107 @@
+loading corpus outputs/feature-data/moein_L7_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/16] feature10166__260918.pt
+  -> label='Connectives relating quantities and alternatives' det=0.53 fuzz=0.62 (621.4s)
+[2/16] feature10602__260918.pt
+  -> label='Predictable narrative prose runs' det=0.80 fuzz=0.70 (239.0s)
+[3/16] feature12489__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Offers and promises' det=0.72 fuzz=0.78 (147.2s)
+[4/16] feature13005__260918.pt
+  -> label='Prepositions introducing beneficiaries or affected parties' det=0.70 fuzz=0.78 (98.5s)
+[5/16] feature13093__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Family-member biographical descriptions' det=0.60 fuzz=0.57 (152.9s)
+[6/16] feature14657__260918.pt
+  -> label='Ownership-transfer prepositions (sold to / owned by)' det=0.62 fuzz=0.68 (86.0s)
+[7/16] feature15329__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Drinking and beverage words' det=0.80 fuzz=0.95 (67.3s)
+[8/16] feature15504__260918.pt
+  -> label='Narrative action verb phrases' det=0.60 fuzz=0.55 (183.2s)
+[9/16] feature16368__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Conflict and wrongdoing narratives' det=0.75 fuzz=0.53 (196.5s)
+[10/16] feature16657__260918.pt
+  -> label='Duty and capability descriptions' det=0.70 fuzz=0.62 (293.8s)
+[11/16] feature18211__260918.pt
+  -> label='Destination preposition after transferred object' det=0.68 fuzz=0.75 (172.3s)
+[12/16] feature18314__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Combination and interaction constructions' det=0.65 fuzz=0.69 (143.0s)
+[13/16] feature18489__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Archaic mythic-scriptural register' det=0.60 fuzz=0.55 (121.5s)
+[14/16] feature19319__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=49152
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=98304
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=131072
+  -> label='Famous quotations and catchphrases' det=0.62 fuzz=0.65 (519.0s)
+[15/16] feature23450__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Recipient preposition in transfer events' det=0.68 fuzz=0.75 (72.3s)
+[16/16] feature23727__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Main clause after fronted adverbial' det=0.80 fuzz=0.80 (197.1s)
+
+usage: {'explainer': '16 calls, 49652 prompt tok, 7955 completion tok (of which 69449 reasoning)', 'scorer': '271 calls, 176173 prompt tok, 893943 completion tok (of which 890631 reasoning)'}
+report: outputs/kimi_L7_a/report.md
+loading corpus outputs/feature-data/moein_L7_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/16] feature24143__260918.pt
+  -> label='Casual leisure-activity verb phrases' det=0.70 fuzz=0.53 (204.5s)
+[2/16] feature24743__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='substance administration into a target' det=0.65 fuzz=0.78 (151.8s)
+[3/16] feature25609__260918.pt
+  -> label='"give" word-family detector' det=0.78 fuzz=0.90 (65.8s)
+[4/16] feature25914__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='See/sight visual-perception vocabulary' det=0.62 fuzz=0.78 (120.5s)
+[5/16] feature26965__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Syntactic glue in running text' det=0.50 fuzz=0.60 (475.8s)
+[6/16] feature29038__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Harm and care action verbs' det=0.70 fuzz=0.72 (241.9s)
+[7/16] feature32032__260918.pt
+  -> label='Past-tense narrative prose register' det=0.68 fuzz=0.50 (116.8s)
+[8/16] feature32209__260918.pt
+  -> label='Prepositional "to" (target/direction)' det=0.72 fuzz=0.80 (303.6s)
+[9/16] feature32709__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Segment openings and foreign text' det=0.62 fuzz=0.65 (585.6s)
+[10/16] feature4192__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Connective tokens in chained cascades' det=0.55 fuzz=0.55 (223.3s)
+[11/16] feature4511__260918.pt
+  -> label='Preposition after a bare noun' det=0.65 fuzz=0.62 (146.8s)
+[12/16] feature6581__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Narrative prose register' det=0.72 fuzz=0.65 (197.4s)
+[13/16] feature7959__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Basic necessities and provisions' det=0.72 fuzz=0.75 (115.0s)
+[14/16] feature8846__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=49152
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=98304
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=131072
+  -> label='Early-sequence position gradient' det=0.62 fuzz=0.55 (602.5s)
+[15/16] feature971__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Christian sermon and Bible commentary' det=0.82 fuzz=0.52 (150.0s)
+[16/16] feature9998__260918.pt
+  -> label='Post-noun modifier onset' det=0.82 fuzz=0.78 (333.5s)
+
+usage: {'explainer': '16 calls, 51470 prompt tok, 8900 completion tok (of which 92748 reasoning)', 'scorer': '274 calls, 175950 prompt tok, 1063355 completion tok (of which 1060016 reasoning)'}
+report: outputs/kimi_L7_b/report.md

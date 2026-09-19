@@ -1,0 +1,112 @@
+loading corpus outputs/feature-data/moein_L0_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/16] feature12379__260918.pt
+  -> label='early sequence function words' det=0.65 fuzz=0.70 (191.2s)
+[2/16] feature16389__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] infrastructure failure #1 (HTTP 502: Bad Gateway); retrying in 4s
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='verb phrase continuation' det=0.80 fuzz=0.68 (399.7s)
+[3/16] feature17751__260918.pt
+  -> label='the token and positive words' det=0.60 fuzz=0.68 (241.3s)
+[4/16] feature17901__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='initial a/an phrase' det=0.75 fuzz=0.60 (320.8s)
+[5/16] feature18871__260918.pt
+  -> label='early sequence position feature' det=0.65 fuzz=0.55 (175.1s)
+[6/16] feature22641__260918.pt
+  FAILED: model returned no text (finish_reason=stop)
+[6/16] feature25327__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='narrative third-person pronoun' det=0.70 fuzz=0.47 (232.3s)
+[7/16] feature25450__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=49152
+  -> label='Post-noun continuation token' det=0.65 fuzz=0.65 (473.7s)
+[8/16] feature2565__260918.pt
+  [llm Qwen3.8-27B explain] budget exhausted while thinking; retrying with max_tokens=65536
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='Dense early-position activity' det=0.55 fuzz=0.38 (508.2s)
+[9/16] feature27002__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='food and recipe context' det=0.70 fuzz=0.55 (145.5s)
+[10/16] feature27007__260918.pt
+  -> label='start-biased function-word firing' det=0.75 fuzz=0.80 (152.4s)
+[11/16] feature28019__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] infrastructure failure #1 (HTTPSConnectionPool(host='<gateway>', port=443): Read timed out.); retrying in 4s
+  -> label='speech verb complement onset' det=0.60 fuzz=0.75 (305.4s)
+[12/16] feature29165__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=49152
+  -> label='in token detector' det=0.62 fuzz=0.53 (337.5s)
+[13/16] feature30268__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='post-verb continuation token' det=0.80 fuzz=0.72 (280.8s)
+[14/16] feature30772__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='sequence start and short tokens' det=0.57 fuzz=0.62 (220.5s)
+[15/16] feature3127__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='personal pronoun narrative' det=0.90 fuzz=0.47 (250.8s)
+
+usage: {'explainer': '17 calls, 61632 prompt tok, 273665 completion tok (of which 272046 reasoning)', 'scorer': '256 calls, 150614 prompt tok, 1010934 completion tok (of which 1007805 reasoning)'}
+report: outputs/qwen_L0_a/report.md
+loading corpus outputs/feature-data/moein_L0_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/16] feature32421__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='post-verb complement token' det=0.78 fuzz=0.75 (328.0s)
+[2/16] feature32469__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='religious discourse context' det=0.80 fuzz=0.47 (143.9s)
+[3/16] feature32702__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='early article token' det=0.68 fuzz=0.68 (247.8s)
+[4/16] feature36__260918.pt
+  -> label='space-prefixed to token detector' det=0.80 fuzz=0.95 (160.7s)
+[5/16] feature4501__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='start-biased high-frequency English tokens' det=0.78 fuzz=0.47 (315.4s)
+[6/16] feature4935__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='line-start position feature' det=0.70 fuzz=0.78 (285.1s)
+[7/16] feature5048__260918.pt
+  -> label='post-auxiliary token span' det=0.72 fuzz=0.73 (230.9s)
+[8/16] feature6229__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] budget exhausted while thinking; retrying with max_tokens=24576
+  [llm DeepSeek-V4-Flash-reasoning fuzz] budget exhausted while thinking; retrying with max_tokens=24576
+  -> label='common function words and punctuation' det=0.62 fuzz=0.57 (287.2s)
+[9/16] feature656__260918.pt
+  -> label='post-indefinite-article token detector' det=0.82 fuzz=0.95 (229.4s)
+[10/16] feature6584__260918.pt
+  -> label='to token detector' det=0.93 fuzz=0.95 (114.1s)
+[11/16] feature6758__260918.pt
+  -> label='to token detector' det=0.93 fuzz=0.93 (110.6s)
+[12/16] feature7535__260918.pt
+  -> label='early common token' det=0.53 fuzz=0.52 (217.4s)
+[13/16] feature8307__260918.pt
+  -> label='common function word and punctuation detector' det=0.80 fuzz=0.88 (197.0s)
+[14/16] feature8333__260918.pt
+  -> label='common token, early position' det=0.60 fuzz=0.50 (208.8s)
+[15/16] feature856__260918.pt
+  [llm DeepSeek-V4-Flash-reasoning detect] infrastructure failure #1 (HTTPSConnectionPool(host='<gateway>', port=443): Read timed out.); retrying in 4s
+  -> label='lowercase the and early tokens' det=0.57 fuzz=0.53 (360.3s)
+[16/16] feature8942__260918.pt
+  -> label='Early function words and punctuation' det=0.93 fuzz=0.90 (118.0s)
+
+usage: {'explainer': '16 calls, 54308 prompt tok, 220690 completion tok (of which 219016 reasoning)', 'scorer': '266 calls, 155812 prompt tok, 733729 completion tok (of which 730410 reasoning)'}
+report: outputs/qwen_L0_b/report.md
+loading corpus outputs/feature-data/moein_L0_test32b/token_list_260911.pkl ...
+corpus: 825x16x128 = 1689600 tokens
+[1/1] feature22641__260918.pt
+  [llm Qwen3.8-27B explain] budget exhausted while thinking; retrying with max_tokens=65536
+  -> label='Next token after trigger' det=0.70 fuzz=0.78 (493.3s)
+
+usage: {'explainer': '2 calls, 6514 prompt tok, 49707 completion tok (of which 49570 reasoning)', 'scorer': '16 calls, 10372 prompt tok, 30898 completion tok (of which 30690 reasoning)'}
+report: outputs/qwen_L0_r2/report.md
