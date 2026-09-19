@@ -9,18 +9,24 @@ and explanation, and the detection / fuzzing balanced accuracies.
 
 from __future__ import annotations
 
+import argparse
 import collections
 import glob
 import json
 import math
 import os
 import pickle
-import sys
 
 import torch
 
-feat_dir, interp_dir, out_md = sys.argv[1], sys.argv[2], sys.argv[3]
-title = sys.argv[sys.argv.index("--title") + 1] if "--title" in sys.argv else feat_dir.rstrip("/").split("/")[-1]
+parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+parser.add_argument("feature_data_dir", help="directory with token_list_*.pkl and feature*.pt")
+parser.add_argument("interp_dir", help="run directory with the feature<ID>.json files")
+parser.add_argument("out_md", help="markdown file to write")
+parser.add_argument("--title", default=None)
+args = parser.parse_args()
+feat_dir, interp_dir, out_md = args.feature_data_dir, args.interp_dir, args.out_md
+title = args.title or feat_dir.rstrip("/").split("/")[-1]
 
 # sampling.json (written by extract_features.py) is optional: density is firings / corpus tokens
 sampling = f"{feat_dir}/sampling.json"
