@@ -1,0 +1,9 @@
+torch>=2.0
+requests>=2.28
+
+# only for extract_features.py (GPU): reads the model and the SAE, builds the corpus
+# transformers>=4.40
+# datasets
+# safetensors
+# numpy
+# eai-sparsify   # chunk_and_tokenize, used once to build the cached corpus
