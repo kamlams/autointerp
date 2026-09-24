@@ -1,4 +1,5 @@
-"""Build an autointerp `feature-data` directory from a TopK SAE on OLMoE-1B-7B-0924.
+"""Build an autointerp `feature-data` directory from a TopK SAE on OLMoE-1B-7B-0924 (default) or
+another model with the same layer layout (`--model Qwen/Qwen3-30B-A3B`).
 
 Output layout (what `run_autointerp.py --data-dir` reads):
   <out-root>/<name>/token_list_<tag>.pkl      corpus, token_ls[batch][prompt][pos] -> decoded token str
@@ -10,8 +11,12 @@ Output layout (what `run_autointerp.py --data-dir` reads):
 The corpus is built once from a held-out SmolLM2-135M-10B shard (default: the last one, never used
 in any SAE training here or by the collaborator) with the collaborator's `chunk_and_tokenize`
 (sparsify branch `collaborator-mods`, max_seq_len 128), exactly like the original feature-data
-(825 batches x 16 prompts x 128 tokens = 1.69M tokens), and cached under <out-root>/corpus/ so
-every SAE is evaluated on the same tokens.
+(825 batches x 16 prompts x 128 tokens = 1.69M tokens), and cached under <out-root>/corpus_*/ so
+every SAE of one model is evaluated on the same tokens. Another model's tokenizer gives another
+corpus, cached under its own directory (suffix = the model name).
+
+The FVU of the SAE on the first batches is printed and saved in sampling.json: 0.02-0.5 means the
+SAE matches the model, layer and side; a wrong model or side gives values far above 1.
 
 Sampling: latents with at least --min-firings firings are binned by log-density on fixed edges
 (--bins) and --n-features // n_bins are drawn per bin with --seed; a bin that is short is filled
@@ -21,6 +26,7 @@ per density bin (dense features are intrinsically harder to explain).
 Run from the repo root with HF_HOME exported and the paper2 python:
   python extract_features.py --sae <sae.safetensors> --layer 3 --input h --name moein_L3
   python extract_features.py --sae <sae.safetensors> --layer 3 --input m --name residmid_L3
+  python extract_features.py --model Qwen/Qwen3-30B-A3B --sae <sae.safetensors> --layer 24 --input h --name qwen3_moein_L24
 """
 
 from __future__ import annotations
@@ -38,11 +44,13 @@ import torch
 
 from autointerp_pipeline.sae_tools import MODEL_NAME, ActivationTap, TopKSAE, load_truncated_model
 
+FVU_BATCHES = 8
 SHARD_GLOB = "hub/datasets--EleutherAI--SmolLM2-135M-10B/snapshots/*/data/train-{shard:05d}-of-00085.parquet"
 
 
 def parse() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("--model", default=MODEL_NAME, help="the model the SAE was trained on (HF id)")
     p.add_argument("--sae", required=True, help="sae.safetensors (sparsify or W_enc layout)")
     p.add_argument("--layer", type=int, required=True)
     p.add_argument("--input", choices=["h", "m"], required=True,
@@ -86,7 +94,7 @@ def build_corpus(args, corpus_dir: Path) -> np.ndarray:
     # ~50 tokens per 128-token chunk per document on average; take a generous prefix of documents
     n_docs = min(len(dataset), n_chunks // 2)
     dataset = dataset.select(range(n_docs))
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    tokenizer = AutoTokenizer.from_pretrained(args.model)
     tokenized = chunk_and_tokenize(dataset, tokenizer, max_seq_len=args.seq_len, num_proc=16, format="numpy")
     assert len(tokenized) >= n_chunks, f"{len(tokenized)} chunks from {n_docs} docs, need {n_chunks}"
     ids = np.stack([np.asarray(tokenized[i]["input_ids"]) for i in range(n_chunks)]).astype(np.int64)
@@ -100,7 +108,7 @@ def build_corpus(args, corpus_dir: Path) -> np.ndarray:
         pickle.dump(token_ls, fh)
     (corpus_dir / "corpus.json").write_text(json.dumps({
         "source": os.path.basename(shards[0]), "documents": n_docs, "n_batches": args.n_batches,
-        "prompts": args.prompts, "seq_len": args.seq_len, "tokens": int(ids.size), "tokenizer": MODEL_NAME,
+        "prompts": args.prompts, "seq_len": args.seq_len, "tokens": int(ids.size), "tokenizer": args.model,
         "chunking": "sparsify collaborator-mods chunk_and_tokenize (eos-joined stream cut into fixed chunks)"}, indent=2))
     print(f"corpus: built {ids.shape} from {n_docs} documents of {os.path.basename(shards[0])}")
     return ids
@@ -108,19 +116,27 @@ def build_corpus(args, corpus_dir: Path) -> np.ndarray:
 
 @torch.no_grad()
 def encode_corpus(args, ids: np.ndarray, sae: TopKSAE):
-    """Run the truncated model over the corpus; return TopK indices [T, k] and values [T, k] (CPU)."""
-    base = load_truncated_model(args.layer, args.device)
+    """Run the truncated model over the corpus; return TopK indices [T, k], values [T, k] (CPU) and
+    the SAE's FVU on the first FVU_BATCHES batches."""
+    base = load_truncated_model(args.layer, args.device, args.model)
     tap = ActivationTap(base.layers, args.layer, args.input)
     idx_all, val_all = [], []
+    err, s1, s2, n = 0.0, 0.0, 0.0, 0
     for b in range(ids.shape[0]):
         x_ids = torch.from_numpy(ids[b]).to(args.device)
         base(input_ids=x_ids, use_cache=False)
-        val, idx = sae.encode_topk(tap.value.reshape(-1, sae.d_x).float())
+        x = tap.value.reshape(-1, sae.d_x).float()
+        val, idx = sae.encode_topk(x)
+        if b < FVU_BATCHES:
+            x_hat = sae.b_dec + torch.einsum("tk,tkd->td", val, sae.W_dec[idx])
+            err += ((x - x_hat) ** 2).sum().item()
+            s1, s2, n = s1 + x.sum(0), s2 + (x ** 2).sum(0), n + len(x)
         idx_all.append(idx.to(torch.int32).cpu())
         val_all.append(val.cpu())
         if (b + 1) % 200 == 0:
             print(f"  encoded {b + 1}/{ids.shape[0]} batches", flush=True)
-    return torch.cat(idx_all), torch.cat(val_all)
+    fvu = err / (s2 - s1 ** 2 / n).sum().item()
+    return torch.cat(idx_all), torch.cat(val_all), fvu
 
 
 def sample_by_density(args, density, counts, edges):
@@ -155,6 +171,8 @@ def main() -> None:
     torch.set_float32_matmul_precision("high")
     out_root = Path(args.out_root)
     corpus_dir = out_root / f"corpus_shard{args.shard}_{args.n_batches}x{args.prompts}x{args.seq_len}"
+    if args.model != MODEL_NAME:  # another tokenizer, another corpus
+        corpus_dir = corpus_dir.with_name(corpus_dir.name + "_" + args.model.split("/")[-1])
     out = out_root / args.name
     out.mkdir(parents=True, exist_ok=True)
 
@@ -165,8 +183,9 @@ def main() -> None:
         target.write_bytes(pkl.read_bytes())
 
     sae = TopKSAE.load(args.sae, device=args.device)
-    print(f"SAE {args.sae}: k={sae.k}, d_z={sae.d_z}, input {args.input}{args.layer}")
-    idx, val = encode_corpus(args, ids, sae)  # [T, k]
+    print(f"SAE {args.sae}: k={sae.k}, d_z={sae.d_z}, input {args.input}{args.layer}, model {args.model}")
+    idx, val, fvu = encode_corpus(args, ids, sae)  # [T, k]
+    print(f"FVU on the first {FVU_BATCHES} batches: {fvu:.3f}")
     T = idx.shape[0]
     active = val > 0
     flat_idx = idx[active].long()
@@ -211,7 +230,8 @@ def main() -> None:
         meta[lat] = {"bin": int(bin_of[lat]), "density": float(density[lat]), "n_firings": int(counts[lat]),
                      "max_act": float(rows[:, 3].max()) if len(rows) else 0.0}
     (out / "sampling.json").write_text(json.dumps({
-        "sae": args.sae, "layer": args.layer, "input": args.input, "corpus": str(corpus_dir), "tokens": T,
+        "model": args.model, "sae": args.sae, "layer": args.layer, "input": args.input,
+        "fvu_first_batches": round(fvu, 4), "corpus": str(corpus_dir), "tokens": T,
         "live_latents": live, "n_features": len(chosen), "seed": args.seed, "edges": edges,
         "min_firings": args.min_firings, "excluded": excluded, "bins": per_bin, "features": meta}, indent=2))
     print(f"wrote {len(chosen)} feature files + sampling.json + density.npy to {out}")

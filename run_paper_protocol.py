@@ -74,6 +74,9 @@ def main():
     ap.add_argument("--workers", type=int, default=8, help="concurrent scorer calls per latent")
     ap.add_argument("--feature-workers", type=int, default=3, help="latents processed at once")
     ap.add_argument("--limit", type=int, default=0, help="first N latents only (smoke test)")
+    ap.add_argument("--explain-max-tokens", type=int, default=32768,
+                    help="explainer token budget, reasoning included. The 2026-09-20 run gave 32768 only to "
+                         "models named '*reasoning*' and 4096 to the rest, which cut off Qwen3.8-27B")
     ap.add_argument("--scorers", default="detect,fuzz",
                     help="which scorers to run; 'none' writes the explanation and stops, so a later "
                          "run can score it with --explanations")
@@ -109,8 +112,7 @@ def main():
                 expl = {"explanation": src["explanation"], "parsed": True, "raw": None, "prompt": None}
             else:
                 card = feature_stats_card(feat, corpus)[0] if cfg.stats_card else None
-                expl = paper.explain(explainer, train, cfg, card,
-                                     max_tokens=32768 if "reasoning" in explainer_model else 4096)
+                expl = paper.explain(explainer, train, cfg, card, max_tokens=args.explain_max_tokens)
             smt = 16384 if "reasoning" in args.scorer_model else 2048
             want = {x.strip() for x in args.scorers.split(",")}
             det = (paper.detection(scorer, expl["explanation"], test, negatives, args.workers, smt)
@@ -154,6 +156,7 @@ def main():
     results = [r for r in map_concurrent(one, paths, args.feature_workers) if r]
     with open(os.path.join(args.out, "run_config.json"), "w") as f:
         json.dump({"arm": args.arm, "config": vars(cfg), "explainer_model": explainer_model,
+                   "explain_max_tokens": None if reuse else args.explain_max_tokens,
                    "scorer_model": args.scorer_model, "explanations": args.explanations,
                    "data_dir": os.path.relpath(args.data_dir), "n_done": len(results), "n_features": len(paths),
                    "usage": explainer.usage.summary()}, f, indent=1)

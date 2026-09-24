@@ -72,6 +72,9 @@ python compare_runs.py outputs/my_run outputs/my_variant --labels
 
 # a new SAE: extract, explain, report
 python extract_features.py --sae <run>/layers.7.post_attention_layernorm/sae.safetensors --layer 7 --input h --name my_sae_L7 --n-features 100
+# an SAE on another model (same layer layout): its own tokenizer gives its own cached corpus;
+# the printed FVU (0.02-0.5 when model, layer and side match) guards against a mismatched SAE
+python extract_features.py --model Qwen/Qwen3-30B-A3B --sae <run>/layers.24.post_attention_layernorm/sae.safetensors --layer 24 --input h --name qwen3_moein_L24 --latents "754 1284"
 python run_autointerp.py --data-dir outputs/feature-data/my_sae_L7 --model <explainer> --scorer-model <examiner> --out outputs/my_sae_L7_run
 python summarize_features.py outputs/feature-data/my_sae_L7 outputs/my_sae_L7_run report.md
 ```
@@ -126,7 +129,8 @@ Reference results: `results/README.md`, and the per-latent tables
   failures and failed batches are excluded from the metrics and counted.
 - `sae_tools.py` — everything `extract_features.py` needs and nothing else: `TopKSAE.load`
   (sparsify's native `encoder.weight`/`encoder.bias` layout and the early `W_enc` export),
-  `load_truncated_model` (OLMoE cut above the SAE's layer), `ActivationTap` on
+  `load_truncated_model` (OLMoE by default, or any model with `model.model.layers`, e.g.
+  Qwen3-MoE, cut above the SAE's layer), `ActivationTap` on
   `layers.L.post_attention_layernorm` — side `h` = the module's output ("moein" SAEs), side
   `m` = its input, the pre-norm residual ("residmid" SAEs). The hookpoint name does not tell
   the two apart; feeding an SAE the wrong side gives FVU 10-170 instead of 0.02-0.5.

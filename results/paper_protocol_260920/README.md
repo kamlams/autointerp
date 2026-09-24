@@ -146,4 +146,6 @@ python run_paper_protocol.py --data-dir outputs/feature-data/moein_L7_test32b --
 ```
 
 `--arm P0` is the published explainer; `--arm S1` the single-mark exam; `--arm S1_NEG` its floor.
+The explainer budget is now `--explain-max-tokens` (default 32768); this run gave 4096 to
+DeepSeek-V4-Flash, Kimi-K3 and Qwen3.8-27B, so pass `--explain-max-tokens 4096` to reproduce them.
 Activation data (`outputs/feature-data/moein_L*_test32b/`) is made by `extract_features.py`.

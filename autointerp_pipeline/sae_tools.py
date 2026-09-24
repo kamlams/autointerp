@@ -83,14 +83,16 @@ class TopKSAE:
         return torch.relu(z).topk(self.k, dim=-1)
 
 
-def load_truncated_model(layer: int, device: str):
-    """Load OLMoE and drop every layer above `layer`; the lm_head is never needed."""
+def load_truncated_model(layer: int, device: str, model_name: str = MODEL_NAME):
+    """Load the model and drop every layer above `layer`; the lm_head is never needed.
+
+    Works for any causal LM whose decoder layers sit in `model.model.layers` (OLMoE, Qwen3-MoE)."""
     from transformers import AutoModelForCausalLM
 
     try:
-        model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, dtype=torch.bfloat16)
+        model = AutoModelForCausalLM.from_pretrained(model_name, dtype=torch.bfloat16)
     except TypeError:  # transformers < 5 spells it torch_dtype
-        model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, torch_dtype=torch.bfloat16)
+        model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.bfloat16)
     model.model.layers = model.model.layers[: layer + 1]
     model.config.num_hidden_layers = layer + 1
     base = model.model.to(device).eval()
