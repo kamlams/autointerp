@@ -14,12 +14,13 @@ written in **English**. Discussion with a user may be in any language; files may
 
 ```
 run_autointerp.py        pipeline entry point (CLI): activation dumps -> explanations + scores
+run_paper_protocol.py    the published protocol (Paulo et al. 2025) and its single-mark exam; see results/paper_protocol_260920/
 extract_features.py      TopK SAE checkpoint -> activation dumps in the feature-data layout (GPU)
 summarize_features.py    one readable markdown table per run (density, top tokens, label, scores)
 compare_runs.py          side-by-side detection/fuzzing table of several run directories
 autointerp_pipeline/     the pipeline package (see Architecture)
 feature-data/            example data: corpus + three latents of the latest result set
-results/                 the latest result set only (feature_test32b_260918/) + README index
+results/                 two result sets on the same 96 latents + README index (which is which)
 outputs/                 scratch: generated feature-data/ and raw run directories (gitignored)
 ```
 
@@ -158,7 +159,8 @@ same prompt twice at temperature 0: some served models are not reproducible.
 - Keep prompts in `prompts.py` only; keep every sampling knob in `SamplerConfig`.
 - A scoring-protocol change is evaluated with `--reuse-explanations` against fixed
   explanations, then compared with `compare_runs.py`.
-- Only the latest result set is tracked under `results/`; everything else stays in `outputs/`
+- `results/` holds the committed result sets (`results/README.md` says which protocol made each
+  and which one the paper uses); raw run directories and `calls.jsonl` stay in `outputs/`
   (gitignored). Numbers quoted in a results README must be reproducible by a committed script
   (see `results/feature_test32b_260918/by_explainer/compare_explainers.py`).
 - Nothing private is committed: no API key, no gateway address (it is read from

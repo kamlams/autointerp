@@ -1,6 +1,25 @@
 # Results
 
-Only the latest result set is tracked.
+Two result sets on the same 96 latents, made with two different protocols. **The paper uses
+`paper_protocol_260920/`.**
+
+| folder | protocol | explainers | examiner(s) | output |
+|---|---|---|---|---|
+| `paper_protocol_260920/` | the published protocol of Paulo et al. (ICML 2025) with the fewest changes (single-mark fuzzing exam) — `run_paper_protocol.py` | 4: DeepSeek-V4-Flash, -reasoning, Kimi-K3, Qwen3.8-27B | DeepSeek-V4-Flash-reasoning | one-sentence explanation |
+| `feature_test32b_260918/` | this repository's own pipeline (statistics card, 24 snippets, detection + fuzzing) — `run_autointerp.py` | 3: DeepSeek-V4-Flash-reasoning, Kimi-K3, Qwen3.8-27B | DeepSeek-V4-Flash-reasoning and DeepSeek-V4-Flash | short label + explanation |
+
+The two sets are not interchangeable: the explanations were written from different evidence and
+scored on different exams, so neither their text nor their numbers compare across folders.
+
+## `paper_protocol_260920/` — the published protocol, minimally modified
+
+The explainer side is the published protocol unchanged (40 random activating 32-token windows,
+delphi's prompt verbatim). The evaluation keeps the published fuzzing task and changes three
+things, each forced by a measurement on these latents: fuzzing only (detection fails on
+common-token features), one marked token per probe (the published all-marks question penalises
+dense features and leaks the class through the mark count), and half the negatives from inside
+firing windows. `README.md` lists every change with its reason; `analyze.py` reproduces every
+number from the committed files.
 
 ## `feature_test32b_260918/` — 96 latents, three explainers, two examiners
 

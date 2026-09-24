@@ -1,0 +1,7 @@
+{
+ "feature_id": 2565,
+ "arm": "V8",
+ "not_scoreable": "feature 2565: 2 non-activating windows for 100 probes (fires in 52798 of 52800 windows) -- no contrast to score against",
+ "detection": {},
+ "fuzzing": {}
+}
