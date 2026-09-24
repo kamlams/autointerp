@@ -20,7 +20,7 @@ summarize_features.py    one readable markdown table per run (density, top token
 compare_runs.py          side-by-side detection/fuzzing table of several run directories
 autointerp_pipeline/     the pipeline package (see Architecture)
 feature-data/            example data: corpus + three latents of the latest result set
-results/                 two result sets on the same 96 latents + README index (which is which)
+results/                 result sets (the paper's protocol on two latent sets, the own pipeline) + README index
 outputs/                 scratch: generated feature-data/ and raw run directories (gitignored)
 ```
 

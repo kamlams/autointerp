@@ -1,0 +1,20 @@
+{
+ "feature_id": 23481,
+ "arm": "P0",
+ "label": "The selected tokens are typically components of numeric or a",
+ "explanation": "The selected tokens are typically components of numeric or alphanumeric strings, especially digits, decimal points, and symbols in measurements, codes, or identifiers.",
+ "explanation_parsed": true,
+ "explanation_from": null,
+ "n_windows": {
+  "train": 20,
+  "test": 40,
+  "negatives": 40
+ },
+ "detection": {},
+ "fuzzing": {},
+ "elapsed_s": 58.0,
+ "detection_raw": {},
+ "fuzzing_raw": {},
+ "explainer_prompt": "\nExample 1: 55 % female; age M=27.8yrs, SD<<=5.5>>yrs; mean WHtR=.47). Amb\nActivations: (\"=\" : 2), (\"5\" : 3), (\".\" : 3), (\"5\" : 2), \nExample 2: :1px solid #575<<f>>94;}``\n\n# Shades and Tints of #575f94\n\nA shade is achieved\nActivations: (\"f\" : 1), \nExample 3:  its marginal cost, at which point you stop. The marginal cost is measured not only in<< actual>> resources (designers can redraw only so many icons per day,\nActivations: (\" actual\" : 1), \nExample 4:  gay marriage would strengthen<< families>>.\n\nWhat isn’t often talked about is how same-sex marriages will end. In a conversation with Star-Ledger editorial writer Jim N\nActivations: (\" families\" : 1), \nExample 5: {j=j_{+}+1}^{n} \\ln \\bigg ( \\sum _{k=<<0>>}^{a} {a \\\nActivations: (\"0\" : 1), \nExample 6: .00||$2,292.12||$292.12||21.78%||2<<0.>>\nActivations: (\"0\" : 1), (\".\" : 2), \nExample 7:  allowed us to detect clear time variations in the clumpy dust clouds as close as 34–50 mas (1.4–2.<<0>> R\nActivations: (\"0\" : 1), \nExample 8: -6288.2007.00183.x.\n\n13.<< Elliott>>, M, Golub B, Jackson MO (\nActivations: (\" Elliott\" : 1), \nExample 9: <<)>> - 1.0f;\n\t}\n\n} // namespace bx\n\n#endif // __BX_RNG_H__\n<|im_end|>Dress for the environment\n\nIt may\nActivations: (\")\" : 1), \nExample 10: ). There were 57 patients with DTC (5<<2>> papillary thyroid cancer cases and 5 follicular carcinoma cases). Of those, 18\nActivations: (\"2\" : 2), \nExample 11: 550 nm optical depth of 0.6 ± 0<<.2>> and an inner and outer radii of 1.3 R⋆ and \nActivations: (\".\" : 4), (\"2\" : 4), \nExample 12: son-Pilon begins by introducing the concepts underlying Bayesian inference, comparing it with other techniques and guiding you<< through>> building and training your first Bayesian model. Next, he\nActivations: (\" through\" : 2), \nExample 13: 10 ± <<2>>R⋆, respectively. Our modeling suggests the predominance of small (0.1 μm) grains at minimum light, in marked\nActivations: (\"2\" : 2), \nExample 14: 23<<5>>490. PMID 11481588. \n  4. ^ a b c d Pakendorf B\nActivations: (\"5\" : 1), \nExample 15:  (66.5<<±34>>.<<0>>; P<0.001). Receiver operating characteristic curve analysis indicated that the SHImEI had significantly\nActivations: (\"±\" : 2), (\"3\" : 3), (\"4\" : 3), (\"0\" : 1), \nExample 16:  1 Point:<< Bra>>ith Anasta (Roosters) LeagueUnlimited.com Live Commentary\nTalk about the game as it happens - Roosters v\nActivations: (\" Bra\" : 1), \nExample 17:  voxel-based evaluation, beyond the strategy predicated on MRI, CSF EEG and sample. <<0.>>001 and 0.005 (\nActivations: (\"0\" : 1), (\".\" : 2), \nExample 18: 10.1186/1471-2156-9-47. PMC <<2>>488347\nActivations: (\"2\" : 1), \nExample 19: <<7>>7%|\nHere is an explanation of the above table. I have six separate accounts – four at Lending Club and two at Prosper. All of these\nActivations: (\"7\" : 1), \nExample 20:  in patients with ALS (51.7<<±>>2<<8.3>>) than in normal controls (29.7±<<9>>.9) and disease controls\nActivations: (\"±\" : 2), (\"8\" : 3), (\".\" : 3), (\"3\" : 2), (\"9\" : 2), \n",
+ "explainer_reply": "\n\n[EXPLANATION]: The selected tokens are typically components of numeric or alphanumeric strings, especially digits, decimal points, and symbols in measurements, codes, or identifiers."
+}

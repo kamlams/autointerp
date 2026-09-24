@@ -1,0 +1,20 @@
+{
+ "feature_id": 8006,
+ "arm": "P0",
+ "label": "The highlighted tokens mark copied or repeated local text, o",
+ "explanation": "The highlighted tokens mark copied or repeated local text, often the first or distinguishing element of a reused phrase, label, identifier, or symbol.",
+ "explanation_parsed": true,
+ "explanation_from": null,
+ "n_windows": {
+  "train": 19,
+  "test": 30,
+  "negatives": 30
+ },
+ "detection": {},
+ "fuzzing": {},
+ "elapsed_s": 94.5,
+ "detection_raw": {},
+ "fuzzing_raw": {},
+ "explainer_prompt": "\nExample 1: 1 C C2a C2<<a>> C2a1 C2a<<1>> C2a C2a C2a1 C2a1 C2\nActivations: (\"a\" : 3), (\"1\" : 5), \nExample 2: mitate Immaculate Immeasurable Immense Imm<<ense>> Immortal Impact Impartiality Impedes Impediment Imperative Imperfection Impervious Implementation Implicit\nActivations: (\"ense\" : 4), \nExample 3: 0 US Dollars||<<57>>50 US Dollars/year|\n|Kazan State Medical University||6600 US Dollars||6<<6>>00 US\nActivations: (\"5\" : 3), (\"7\" : 5), (\"6\" : 3), \nExample 4: << Louis>> Cardinals Steelers Super Bowl World Series<|im_end|><h1 align=\"center\">  Hacktober Fest 2021 </h1>\n<p align = \"center\nActivations: (\" Louis\" : 3), \nExample 5: (x)=0.\n2. m=nm<< =>> n: When the degrees coincide, the leading coefficients become instrumental in delineating the horizontal asymptote. Specifically,\nActivations: (\" =\" : 6), \nExample 6: , Line Producer : Daniel Gulliver, Co-Producer : Martin Heriot, Casting : Nina Gold,<< Casting>> : Theo Park, Art Direction : Andrea Math\nActivations: (\" Casting\" : 5), \nExample 7:  harbor\nThe<< boat>> sails north\nThe fog enters\nThe<< fog>> leaves\nThe horn sounds\nThe sound is scratchy\nOn the recording\nWe have remaining\nActivations: (\" boat\" : 3), (\" fog\" : 6), \nExample 8:  = 97.33%. 6-NNC ===> RR = 1-2/75 = 97.3<<3>>%. \nActivations: (\"3\" : 4), \nExample 9: Golden Age<<”?>> A “ Golden age” is a period in a field of endeavor when great tasks were accomplished... Familiar Golden Ages … The Golden age of Radio\nActivations: (\"”?\" : 3), \nExample 10:  and swelling by causing irritation.\"\n  19. samina\n\n   << sam>>ina Well-Known Member\n\n    thanks, P. (and people wonder why\nActivations: (\" sam\" : 3), \nExample 11: << M>>ok<<ashi>>\nBDS, Dentist, 3 yrs, Pune\nDr. Vishakha  Bhalerao\nDr<<.>> Vishakha\nActivations: (\" M\" : 6), (\"ashi\" : 3), (\".\" : 4), \nExample 12: _{j,k}$$ is close to $$M<<_{>>j}$$ for large n. For convenience, for $$j \\in \\{g_{-},\nActivations: (\"_{\" : 3), \nExample 13: 2022 Projected BCF Creation: 226.63 Source: American Natural Gas Association (ANGA)\nLocal Financial Help<<Local>> Financial\nActivations: (\"Local\" : 3), \nExample 14: \nBut the sound is true\nIt is yes true\nYou cannot take it away\n<<You>> have it in your hand\n\nMax Winter is the author of Walking\nActivations: (\"You\" : 3), \nExample 15:  turns\ninto another lie\nThere is a crunch on the gravel\nThere<< is>> a sound in the wall\nThere is a cool spell after a hot spell\n\nActivations: (\" is\" : 6), \nExample 16: iemay Castle in 1767\nRothiemay Castle in 1767 (from SW)\nPlan of castle\n<<Plan>> of castle\nActivations: (\"Plan\" : 3), \nExample 17:  Anuja Lathi\nDr. An<<uja>> L<<athi>>\nMBBS, Dermatologist, 13 yrs, Pune\nDr. Manisha Garud\nActivations: (\"uja\" : 4), (\"athi\" : 4), \nExample 18:  at the UN?\n\n\n    'We were forced out by the government soldiers'\n\n   << '>>We were forced out by the government soldiers'\n\n\n    Interactive: Plundering\nActivations: (\" '\" : 4), \nExample 19:  vibe of a compounding of both Deco and modernity.\n<<J>>emma Wynne Earrings\nThe revival collection by Jenny Klatt is an influence of the\nActivations: (\"J\" : 3), \n",
+ "explainer_reply": "\n\n[EXPLANATION]: The highlighted tokens mark copied or repeated local text, often the first or distinguishing element of a reused phrase, label, identifier, or symbol."
+}

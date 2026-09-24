@@ -1,0 +1,502 @@
+{
+ "explanations/kimi-k3/L24/feature10118.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature10118.json",
+  "sha256": "88754e2693cb69780f16c8b10aa661a96eac8d5731d96f3a27eb2572929e6443"
+ },
+ "explanations/kimi-k3/L24/feature11567.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature11567.json",
+  "sha256": "9adbfe8edba15f33fa31bfc016a4d46d303b9e51d161be7a3ebb5f1617b3caa0"
+ },
+ "explanations/kimi-k3/L24/feature11934.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature11934.json",
+  "sha256": "f72d7c29f5fa88c4f2e227e965650c1bbecdc3eb1b34287b05182f9cc3f7af69"
+ },
+ "explanations/kimi-k3/L24/feature1284.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature1284.json",
+  "sha256": "e1d546651f9d90f3916f550a26e1a18f7a0c4769b18a370081ac6321f4ede1df"
+ },
+ "explanations/kimi-k3/L24/feature15048.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature15048.json",
+  "sha256": "7b71ee3f0ba9fd8f2416313aa687fb6b1ca66e228b5b960fb1d64bfcdc830231"
+ },
+ "explanations/kimi-k3/L24/feature15816.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature15816.json",
+  "sha256": "12a141e6f85e9eb9c8a153893eaf7c87d36ad23d8a1506bf968ff4bd28373299"
+ },
+ "explanations/kimi-k3/L24/feature16990.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature16990.json",
+  "sha256": "f0d4b9e88fcbcbe88996f6362b544962c15508af5a973d2786e38ba5765466ce"
+ },
+ "explanations/kimi-k3/L24/feature18569.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature18569.json",
+  "sha256": "2860e9bc4140edf257ee0a6ecb1373509b1e83406081a99eb0e7e62166498986"
+ },
+ "explanations/kimi-k3/L24/feature20369.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature20369.json",
+  "sha256": "254193ac34c151e81d43ee5a8149de9565e3008f5f5d872ed404d85372089a7f"
+ },
+ "explanations/kimi-k3/L24/feature23481.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature23481.json",
+  "sha256": "f41856da7e86f8cbcdcae0553f1b1b6e01811ed499e80af38f48200850fa2b1f"
+ },
+ "explanations/kimi-k3/L24/feature24647.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature24647.json",
+  "sha256": "8fa3f656a3d59cf8cbc98faa2c39d8c6cc5726f274b2385308b736658d9d38a1"
+ },
+ "explanations/kimi-k3/L24/feature29915.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature29915.json",
+  "sha256": "956b808d72d9da5862790e9e6f1580110b3f158caa18c4fa15d203498d309c04"
+ },
+ "explanations/kimi-k3/L24/feature3796.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature3796.json",
+  "sha256": "64db0bec6c2f9613f89eac58050591defb801c64bb50922ad6b7dc1ec14e615d"
+ },
+ "explanations/kimi-k3/L24/feature5492.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature5492.json",
+  "sha256": "2473d5592b50a5f2376ac3f88865688cbeb26997a3227a14423051a6664aff6c"
+ },
+ "explanations/kimi-k3/L24/feature6905.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature6905.json",
+  "sha256": "8575596b4c326230a04b58d54a444045b30e2633fe6d1eba06e3dc7dc4746f28"
+ },
+ "explanations/kimi-k3/L24/feature7119.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature7119.json",
+  "sha256": "be7d442c077eceea03ebea349b0ce53e216e40d810996108db8caf4f6e08a506"
+ },
+ "explanations/kimi-k3/L24/feature754.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature754.json",
+  "sha256": "f57bd7179860dc2dc27a8d1fdcf08c85f4bfcfbdb5c63e0db1f4af3f2354aa25"
+ },
+ "explanations/kimi-k3/L24/feature7801.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature7801.json",
+  "sha256": "f390a2d9a7a88eacfc313687603ee47213bd794bba379325f2d34424c338459c"
+ },
+ "explanations/kimi-k3/L24/feature8006.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature8006.json",
+  "sha256": "399b1d52781cd485cd0d99117b61b4e8e4a1aa2aad645177502a25597d10b913"
+ },
+ "explanations/kimi-k3/L24/feature9624.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/feature9624.json",
+  "sha256": "6005b2f2d1067b45a02fff8c521affb4c3bf192f0c86171bbfd34529e04a5498"
+ },
+ "explanations/kimi-k3/L24/run_config.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_kimi/L24/run_config.json",
+  "sha256": "7ba6f4b7393853fa1a901d6c1a75c49c7ac0905194641d700d3fc46378739e71"
+ },
+ "explanations/qwen3.8-27b/L24/feature10118.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature10118.json",
+  "sha256": "ba69d65c562d9a053acfe4d9ec699ea60d28e939f0e0f82e339ed07f58dd64e8"
+ },
+ "explanations/qwen3.8-27b/L24/feature11567.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature11567.json",
+  "sha256": "ae87a773f0b27a61f0a54a07cce0223356e9146650c26810d93b7a1357db354f"
+ },
+ "explanations/qwen3.8-27b/L24/feature11934.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature11934.json",
+  "sha256": "4816ce1e13bb8625a77acabad80ebbecbca4c13fb40cc72580dd91557fc5fbbd"
+ },
+ "explanations/qwen3.8-27b/L24/feature1284.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature1284.json",
+  "sha256": "7218b4cd25c6a6be240a1332d4365e89cd1d23cf879bc7a5fe0a9faed7f260cc"
+ },
+ "explanations/qwen3.8-27b/L24/feature15816.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature15816.json",
+  "sha256": "c47b94ce78d3e9ebf86dadb16e876e970fc5319b034e101477af0deeed0fc22a"
+ },
+ "explanations/qwen3.8-27b/L24/feature16990.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature16990.json",
+  "sha256": "1bb5e463305bae405d764002f36bf9d6ef96366ac28a94f1a923887932afe6b3"
+ },
+ "explanations/qwen3.8-27b/L24/feature18569.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature18569.json",
+  "sha256": "fd76840ca5d402460b5825516327f9615fc9a58a138a1be6555f87415819b81d"
+ },
+ "explanations/qwen3.8-27b/L24/feature20369.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature20369.json",
+  "sha256": "5bd98079ea930a3785fe8535232b3e6da9868928a050004a65235c8a52b0605e"
+ },
+ "explanations/qwen3.8-27b/L24/feature23481.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature23481.json",
+  "sha256": "c865998cfddb186606afcd627c65df4847c03708d04844ef956bd58a77e1b2fe"
+ },
+ "explanations/qwen3.8-27b/L24/feature24647.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature24647.json",
+  "sha256": "c26f13e55869709f081a7553513ce29b1fc766b32c84ba975c2cb3c7f75431d2"
+ },
+ "explanations/qwen3.8-27b/L24/feature29915.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature29915.json",
+  "sha256": "8886276c95a9f7c87cc2bab3ccafc6fc67e4fd2a821e313b0f4228263b7d8a4f"
+ },
+ "explanations/qwen3.8-27b/L24/feature3796.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature3796.json",
+  "sha256": "463f477939e8cfb19af92b173896adf6823d41e45353a8cdbd395dd24f1b5c3d"
+ },
+ "explanations/qwen3.8-27b/L24/feature5492.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature5492.json",
+  "sha256": "b947f504b8966c44adb6370d63ae98991ed0bae77cea50ef8e9b3c356a57aaa8"
+ },
+ "explanations/qwen3.8-27b/L24/feature6905.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature6905.json",
+  "sha256": "df95d9477d9874ada6c15bdf144f1c0b3c7ee7508f32ae9e850f24610ac33c4d"
+ },
+ "explanations/qwen3.8-27b/L24/feature7119.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature7119.json",
+  "sha256": "4282ffd416583ff4fbded73bc8251c0511839c5c853d06fc061b86d44793b6fc"
+ },
+ "explanations/qwen3.8-27b/L24/feature754.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature754.json",
+  "sha256": "df2a33eb7b8bd0dc1107b772dabb44c4260e751a63094c7a4fff85f95ec2635d"
+ },
+ "explanations/qwen3.8-27b/L24/feature7801.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature7801.json",
+  "sha256": "115d4cb16ca0acb377f4b82a335dfb1c86f4087ac089c29d4efd56a00f0310af"
+ },
+ "explanations/qwen3.8-27b/L24/feature8006.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature8006.json",
+  "sha256": "314158d59fe9ef3985f515c17dee6f055a81b2c0caa2085a763f02f69425b874"
+ },
+ "explanations/qwen3.8-27b/L24/feature9624.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/feature9624.json",
+  "sha256": "92820cd3810ada4332a8f1d2274fcc778a73adabe485cf92c58b8269a6660033"
+ },
+ "explanations/qwen3.8-27b/L24/run_config.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_qwen/L24/run_config.json",
+  "sha256": "96e2c0ac1e94d26452e2afb9c7bbcaca1ad4709803d5d5fa89beb0ea5284f88c"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature10118.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature10118.json",
+  "sha256": "812e1cfe9ee576dedcd9ea4748ab974cb973356ed670fda9e7fd950a0b15df18"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature11567.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature11567.json",
+  "sha256": "a8b36e6c162bdf5e25da71a99cf3b175f1699f6cbb2b7c5bc610cf44ef390a90"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature11934.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature11934.json",
+  "sha256": "61e9a468fe7e30ce3b9d2882b0a1f2d9a2e5e9fc5923dbd09f7916f75ed15507"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature1284.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature1284.json",
+  "sha256": "bde27337a9a68c4c9126a3d8618b5dc2830253fd5d408c58047e7621187547fc"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature15048.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature15048.json",
+  "sha256": "2e3df839b3d31c9d9f2473f77ee5fcb8a068a424d328a70dbe330658d658d75b"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature15816.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature15816.json",
+  "sha256": "4cd931339cd0b7cd24ff9b8a9f6c584238f4cb6e61eef8ee3322c5da4341ee32"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature16990.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature16990.json",
+  "sha256": "1f46a0683f386b42fdf9db70b5d59ebe109c706d7dea633e4de8dd0ddd289ec7"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature18569.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature18569.json",
+  "sha256": "195465d5d3e35a0c2df996a124bd6cc9401ab91c7af1137b819f5f4339c63bb5"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature20369.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature20369.json",
+  "sha256": "eae68af6df1c1a576272ea2ca37831260afc89d453943a05573a1d89a5725e4b"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature23481.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature23481.json",
+  "sha256": "dd7a9ed30233afc64cb093617355c96ec86c65b067a145b933c389211129cb73"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature24647.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature24647.json",
+  "sha256": "a1b1c8dd53983e413d91610c4f125bd08eced6020febf2e08b904233073214fe"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature29915.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature29915.json",
+  "sha256": "5698681fd7d96ddbd1eaf6a92200ff784608772251ac2bfa9d89f9895eda0234"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature3796.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature3796.json",
+  "sha256": "81cd3a44a9736fd1b69617e13895812e41221db538cc98e6d6e671e488eb791a"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature5492.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature5492.json",
+  "sha256": "af8c02e4043ad8220c6e4bc3ad628c41ce865ea22e23392a91bfee29d3d17870"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature6905.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature6905.json",
+  "sha256": "9f54af0a66c9775cf3307a527f12957357f95d2a7f6922244c6208653362f997"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature7119.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature7119.json",
+  "sha256": "3458b81d8278708181c3188ca7161e36b2a52487c23996faeac75e7577744ec8"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature754.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature754.json",
+  "sha256": "a3315550c1a4d35ec45d1f5d8b29f9102ec3dd9f345da0ff36e535f91063feb2"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature7801.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature7801.json",
+  "sha256": "86c698f19260c5821935071e63e9e0837f12238ebac5d21d0faccab3fceed9eb"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature8006.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature8006.json",
+  "sha256": "23315bfa868322bf7aec8c7366f0feefb4a5bc3680a400e52f91c14abd805ada"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/feature9624.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/feature9624.json",
+  "sha256": "8fc4f09a665d53736b1aafd27e9ee78f30e1b2d7cf3c0936f0be88b137f113e0"
+ },
+ "explanations/deepseek-v4-flash-reasoning/L24/run_config.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/explain_reasoning/L24/run_config.json",
+  "sha256": "ad5be6c22d27e9153d29f8693c5a8ea19407fa2c3eb585ccde7f5a275ee13c59"
+ },
+ "scores/kimi-k3/L24/feature10118.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature10118.json",
+  "sha256": "bba47ad94d91de613b7f11fcd5661c03c7e26aab87f8c8448e4ff4b7f025bff8"
+ },
+ "scores/kimi-k3/L24/feature11567.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature11567.json",
+  "sha256": "615efc21bc212598b4e92dd71b42a0f3f09385962a71c90eddb1adc7c4d10d6f"
+ },
+ "scores/kimi-k3/L24/feature11934.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature11934.json",
+  "sha256": "e37c64f7d6c15bcd4c83ab08758831c63b0d9f2be8f0bcacce3920263e18837a"
+ },
+ "scores/kimi-k3/L24/feature1284.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature1284.json",
+  "sha256": "c3c7fc11b2f3cc73da6f42cd3476c21de5a86a721b5534b9ed0f1e7cfbcd7a94"
+ },
+ "scores/kimi-k3/L24/feature15048.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature15048.json",
+  "sha256": "c83a6333bc95635fdd242d67fcc8aa5f868db893cfc177eb946ba751d7e8ebb8"
+ },
+ "scores/kimi-k3/L24/feature15816.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature15816.json",
+  "sha256": "012d0aa1d2ea2eece0f4ef8c3e1caf2d02996d03524204f27af7ba5f2b621948"
+ },
+ "scores/kimi-k3/L24/feature16990.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature16990.json",
+  "sha256": "cbff4e42afd2807b5da284b683fae51194898f3e8699bcf206a92dd14996e83b"
+ },
+ "scores/kimi-k3/L24/feature18569.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature18569.json",
+  "sha256": "6e11478164b0527c17dd1cb7cd5c5fb5414e74081a709182bad51cfb0091a0ce"
+ },
+ "scores/kimi-k3/L24/feature20369.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature20369.json",
+  "sha256": "7659b1fa83c45dddb428af57e5513eb0e8f2952a24a43b635bd838864f2b6b47"
+ },
+ "scores/kimi-k3/L24/feature23481.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature23481.json",
+  "sha256": "560277aabb26377f37af172508ef3c8b354146398bcdabb2d49099b2b306bb1a"
+ },
+ "scores/kimi-k3/L24/feature24647.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature24647.json",
+  "sha256": "b588262a17d46080651e93477b7d0077033f5496e0fd254e7ed7bfd9aca04df8"
+ },
+ "scores/kimi-k3/L24/feature29915.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature29915.json",
+  "sha256": "3224a89760d7d40027675f798f3c3094509327b3a9e4d16e6e1dd60956f6b457"
+ },
+ "scores/kimi-k3/L24/feature3796.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature3796.json",
+  "sha256": "7845ac5faea9f9e0414c80584ef821cc7b13391b86906e4d97b78db0d93c0f2b"
+ },
+ "scores/kimi-k3/L24/feature5492.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature5492.json",
+  "sha256": "9de31a296e2e337d5de40cee18dc20dbef244ff482f749bb11534fb612c304c3"
+ },
+ "scores/kimi-k3/L24/feature6905.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature6905.json",
+  "sha256": "6af2d31233e74aad05601aed49841724dba9a00d1e07aafd557fbaed98924d36"
+ },
+ "scores/kimi-k3/L24/feature7119.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature7119.json",
+  "sha256": "87288f0601bfda2e66041ba01896e01f6d2c9af896cb66de6048374a1cbc84fa"
+ },
+ "scores/kimi-k3/L24/feature754.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature754.json",
+  "sha256": "d9c675a776750f1865f50940e0997df0c6a05ca7021131c796a20a55c3d2799a"
+ },
+ "scores/kimi-k3/L24/feature7801.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature7801.json",
+  "sha256": "88c0c85792acc305ff31ea02c93ca74465295a7679b9e8d1216c3e8d714ec307"
+ },
+ "scores/kimi-k3/L24/feature8006.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature8006.json",
+  "sha256": "984be28052985c3c1e589529d6b0633c7991df0cdb28aa04447d0e440f39ce50"
+ },
+ "scores/kimi-k3/L24/feature9624.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/feature9624.json",
+  "sha256": "d9b4dec28a2b8cbeeccec6b6cdf38ab232f734197a08c61630b6172c6ff95bb7"
+ },
+ "scores/kimi-k3/L24/run_config.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_kimi/L24/run_config.json",
+  "sha256": "47131b85ed87fc61abcf95c4fb89548306f6f239d4db2d450088ba626fbac3f7"
+ },
+ "scores/qwen3.8-27b/L24/feature10118.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature10118.json",
+  "sha256": "2d1b0d50908fa92e02e967b2e67d7eba62fb9e9a5414649368678b62763099c7"
+ },
+ "scores/qwen3.8-27b/L24/feature11567.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature11567.json",
+  "sha256": "9c27a3f234651660844f02e8131525803c3bbf607dce22117ee4979c190aec69"
+ },
+ "scores/qwen3.8-27b/L24/feature11934.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature11934.json",
+  "sha256": "0eb6583a2e1e3346e4385454fc0506458143d90c2ea235110ff0a589d35830d7"
+ },
+ "scores/qwen3.8-27b/L24/feature1284.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature1284.json",
+  "sha256": "ce6300942a997e9c9e7b9bbcfa921e499512713e1d0f2548519eba447d07e9af"
+ },
+ "scores/qwen3.8-27b/L24/feature15816.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature15816.json",
+  "sha256": "8d70f0a5e398ef3194aa16d5279c5788fe597f30917bd80f6755e017e1c2ffe7"
+ },
+ "scores/qwen3.8-27b/L24/feature16990.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature16990.json",
+  "sha256": "a9076e567a6d634ded164e1a8f006b524a71690fef60cfc4b39f01352cf7f7e6"
+ },
+ "scores/qwen3.8-27b/L24/feature18569.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature18569.json",
+  "sha256": "096a077142a448eea9408eae5a1f679abe24ea24b85b2edc45a8810bb6713d1b"
+ },
+ "scores/qwen3.8-27b/L24/feature20369.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature20369.json",
+  "sha256": "82854f6b4657d380736ffdec432be3a39c0a801229e800db63f56422baac30b9"
+ },
+ "scores/qwen3.8-27b/L24/feature23481.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature23481.json",
+  "sha256": "44b42c0965359cfee0142c2615128dc27e13566274a422a0f21618c15eec55bb"
+ },
+ "scores/qwen3.8-27b/L24/feature24647.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature24647.json",
+  "sha256": "8573d06a9c819476dc4aa3b387e7f867bd10e652e300e4214298da1bde726f96"
+ },
+ "scores/qwen3.8-27b/L24/feature29915.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature29915.json",
+  "sha256": "fa6a47452e8bd9d0e19e932ca342e71b6d0b279020e4c682d8b7943cca5b4059"
+ },
+ "scores/qwen3.8-27b/L24/feature3796.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature3796.json",
+  "sha256": "ff8c200a781e84d1364f7657f6c57ba3a15f1a573014d3e01c1f2d53f9bf069a"
+ },
+ "scores/qwen3.8-27b/L24/feature5492.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature5492.json",
+  "sha256": "2a381e3cefc194b7c1636efd8fd70c7360ed301c1c09dd3ffd459f84ed8bad48"
+ },
+ "scores/qwen3.8-27b/L24/feature6905.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature6905.json",
+  "sha256": "c5ca4466f8f289fd1c4630f9201a0763359a8a9436831cbdde7839c00dae93e8"
+ },
+ "scores/qwen3.8-27b/L24/feature7119.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature7119.json",
+  "sha256": "ff141613418ebb72bbe926ec9200b563bcf1e726fde094051e839c49cf3e7a82"
+ },
+ "scores/qwen3.8-27b/L24/feature754.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature754.json",
+  "sha256": "e8e9e273a219f984bd99df254fecff2a3f6400f58540e69e3594396eda246a1c"
+ },
+ "scores/qwen3.8-27b/L24/feature7801.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature7801.json",
+  "sha256": "7e6ebe176e25b217b24cdf4620fd74589d69e568eeac7f0cc8980693f17912f4"
+ },
+ "scores/qwen3.8-27b/L24/feature8006.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature8006.json",
+  "sha256": "935b04e66d7d99000afd4ad3ea4908609ad41463943a95fb860bcaab6dae9496"
+ },
+ "scores/qwen3.8-27b/L24/feature9624.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/feature9624.json",
+  "sha256": "33c55409cd48c4e7a5f5653a5bac5d62af4f197eb29d1329c2dfc6341b436d82"
+ },
+ "scores/qwen3.8-27b/L24/run_config.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_qwen/L24/run_config.json",
+  "sha256": "29d316d1c8032deb55f88e30fdce9b8231e4df09374595e9a63b1898c097e2f8"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature10118.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature10118.json",
+  "sha256": "e6cdb9e46b629069415b859f9fdb32f66270643be73e0b0981c57467e9b6d5c1"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature11567.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature11567.json",
+  "sha256": "e2c7048766d76f5fcaec1d3c6fe9c8abd8e7359ec2f4609f83fa0338c048fa81"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature11934.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature11934.json",
+  "sha256": "d4728cf05aafaeed8b78877363fec59b4ceedfa05c326c97ce7f4c604bc88750"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature1284.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature1284.json",
+  "sha256": "26b4115ca7212155459f9a94cceed9615ed9eef925c4a675d1c4f16be95c2ec7"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature15048.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature15048.json",
+  "sha256": "a65e023cdb47693e64a8579d116e131d968ee966bf58f82571a228b1fb8b5a24"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature15816.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature15816.json",
+  "sha256": "a766177c3b96b8e356115687ed22ff48b56a4b763959e9e8369d12775e19fe24"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature16990.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature16990.json",
+  "sha256": "d2a307eb168e177fd30b0f209cc4428adeefc611426d1fe407b8a54ea5d91ae9"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature18569.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature18569.json",
+  "sha256": "a6ff42b9a2d326964a13da90b0f0240100bfde68fc8d19656d02598f878103a4"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature20369.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature20369.json",
+  "sha256": "814641448185cc9a7e7b60401ebbe03db925a4ecb7030613498fc556010e45bc"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature23481.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature23481.json",
+  "sha256": "63da215a734f027669aaaba58f73ce31f9f6959e2cea1dabaa2c657fe245e807"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature24647.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature24647.json",
+  "sha256": "570c07ba4dc86c2dc2ff4651dae20e08dfce3cb93e7108825a161ca022bf2489"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature29915.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature29915.json",
+  "sha256": "8c3d7fcbce6c3cdaa0fa979c55c7e362d3e8a08968b1bd3fddc0e2e23a5f6586"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature3796.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature3796.json",
+  "sha256": "259a347405e0c0a89c941a68f2a53cf4f9fb670922c223d28c49dc5c0aa51305"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature5492.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature5492.json",
+  "sha256": "2d28ed7dc0540ed64b9a7a1ddc4b6339ae977fb76dba2f75462a6ff373b05aaf"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature6905.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature6905.json",
+  "sha256": "a4955eaeb8fe9a00f22ba384c8b254b3d061a5ccf7fa38a79f0bbfcdf49f3b75"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature7119.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature7119.json",
+  "sha256": "5dd0c146c159983680ff68873a8145137b0051e787a341696a105f5ec225fbf3"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature754.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature754.json",
+  "sha256": "3187a4749e56ccfa0ee12c825409c592b36809f42943abb00232e521ccca09e5"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature7801.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature7801.json",
+  "sha256": "a749d2a08e8126f4484de64ea89e74baf42bd6248e0523bfe918b5846b4f61f9"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature8006.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature8006.json",
+  "sha256": "6fc9da5ee8ac749251d6b360813f5eeef46d8fda303dcc96a437b0aabae88252"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/feature9624.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/feature9624.json",
+  "sha256": "9c3a08f351ff7cb2f4c22b5cf882381010f09e7e39190c9ac6a0c4b96d4b8d5c"
+ },
+ "scores/deepseek-v4-flash-reasoning/L24/run_config.json": {
+  "from": "outputs/paper260924_qwen3-30b-a3b/score_reasoning/L24/run_config.json",
+  "sha256": "ea1e2c41ab04997d3d330df13453c7066fc54c7a55c0adc8117fd88d312a558f"
+ },
+ "sampling/L24.json": {
+  "from": "outputs/feature-data/qwen3_moein_L24_260924/sampling.json (sae path redacted)",
+  "sha256": "b0e799a6082b74d8063b7ba3478cd980e1900fbc41334ce831ac5a8388dc83d7"
+ }
+}

@@ -1,11 +1,12 @@
 # Results
 
-Two result sets on the same 96 latents, made with two different protocols. **The paper uses
-`paper_protocol_260920/`.**
+Two result sets on the same 96 latents, made with two different protocols, and one set on new
+latents made with the paper's protocol. **The paper uses `paper_protocol_260920/`.**
 
 | folder | protocol | explainers | examiner(s) | output |
 |---|---|---|---|---|
 | `paper_protocol_260920/` | the published protocol of Paulo et al. (ICML 2025) with the fewest changes (single-mark fuzzing exam) — `run_paper_protocol.py` | 4: DeepSeek-V4-Flash, -reasoning, Kimi-K3, Qwen3.8-27B | DeepSeek-V4-Flash-reasoning | one-sentence explanation |
+| `paper_protocol_260924/` | the protocol of `paper_protocol_260920/` on the 2026-09-24 latents: OLMoE L1/L15 (84, expert-linked) and Qwen3-30B-A3B L24 (20); one folder per base model | 3: Kimi-K3, Qwen3.8-27B, DeepSeek-V4-Flash-reasoning | DeepSeek-V4-Flash-reasoning | one-sentence explanation |
 | `feature_test32b_260918/` | this repository's own pipeline (statistics card, 24 snippets, detection + fuzzing) — `run_autointerp.py` | 3: DeepSeek-V4-Flash-reasoning, Kimi-K3, Qwen3.8-27B | DeepSeek-V4-Flash-reasoning and DeepSeek-V4-Flash | short label + explanation |
 
 The two sets are not interchangeable: the explanations were written from different evidence and
@@ -20,6 +21,13 @@ common-token features), one marked token per probe (the published all-marks ques
 dense features and leaks the class through the mark count), and half the negatives from inside
 firing windows. `README.md` lists every change with its reason; `analyze.py` reproduces every
 number from the committed files.
+
+## `paper_protocol_260924/` — expert-linked latents of OLMoE and Qwen3-30B-A3B
+
+The latents the collaborator tied to one expert (OLMoE layer 1 expert 9 and layer 15 expert 39;
+Qwen3-30B-A3B layer 24 expert 9), split by the sign of their effect on it, explained and scored
+exactly as in `paper_protocol_260920/`, with a 32768-token budget for every explainer. 311 of the 312
+latent/explainer explanations exist; `README.md` has the tables and `analyze.py` reproduces them.
 
 ## `feature_test32b_260918/` — 96 latents, three explainers, two examiners
 
