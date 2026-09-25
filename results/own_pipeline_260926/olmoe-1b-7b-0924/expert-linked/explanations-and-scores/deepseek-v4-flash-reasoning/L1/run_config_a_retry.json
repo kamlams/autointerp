@@ -1,0 +1,33 @@
+{
+ "model": "deepseek-ai/DeepSeek-V4-Flash-reasoning",
+ "scorer_model": "deepseek-ai/DeepSeek-V4-Flash-reasoning",
+ "explain_max_tokens": 32768,
+ "max_explanation_words": 30,
+ "reuse_explanations": null,
+ "sampler": {
+  "ctx_left": 31,
+  "ctx_right": 8,
+  "n_explainer": 24,
+  "explainer_top_frac": 0.33,
+  "n_test_act": 20,
+  "n_test_neg": 20,
+  "n_fuzz": 20,
+  "n_bins": 10,
+  "top_pool": 200,
+  "bigram_cap_min": 2,
+  "bigram_share_factor": 0.5,
+  "max_per_prompt": 4,
+  "dense_threshold": 0.1,
+  "dense_highlight_q": 0.75,
+  "strong_floor": 0.3,
+  "fuzz_mark_cap": 1,
+  "n_dense_negatives": 6,
+  "seed": 0
+ },
+ "features": [
+  "outputs/feature-data/moein_L1_260924/feature12303__260924.pt"
+ ],
+ "usage": {
+  "explainer": "17 calls, 12057 prompt tok, 8972 completion tok (of which 8566 reasoning)"
+ }
+}

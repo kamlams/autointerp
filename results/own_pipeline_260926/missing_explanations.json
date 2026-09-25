@@ -1,0 +1,153 @@
+[
+ {
+  "base": "olmoe-1b-7b-0924",
+  "set": "active-on-to",
+  "layer": "L7",
+  "feature": 32709,
+  "explainer": "qwen3.8-27b",
+  "calls": [
+   {
+    "source": "outputs/own260926/to96/qwen/L7_b/calls.jsonl",
+    "line": 141,
+    "tag": "explain",
+    "usage": {
+     "completion_tokens": 5323,
+     "prompt_tokens": 3519,
+     "total_tokens": 8842,
+     "completion_tokens_details": {
+      "reasoning_tokens": 5322
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "created_cache_tokens": 3136
+     }
+    },
+    "reply_chars": 0,
+    "reasoning_tail": ", as even to threaten the monarch himself with the terrible penalty of excommunication. Snippet 15 Chinese garbled. Snippet 16: In the beginning, each person decided to get a few. Snippet 17 Russian. Snippet 18: unitedly about these duties (which otherwise were impossible to them) some way peculiar."
+   },
+   {
+    "source": "outputs/own260926/to96/qwen/L7_b_retry/calls.jsonl",
+    "line": 1,
+    "tag": "explain",
+    "usage": {
+     "completion_tokens": 32514,
+     "prompt_tokens": 3519,
+     "total_tokens": 36033,
+     "completion_tokens_details": {
+      "reasoning_tokens": 32505
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 3136,
+      "created_cache_tokens": 0
+     }
+    },
+    "reply_chars": 0,
+    "reasoning_tail": "\u0101ra<< as>> the person\" Anchor at pos62 strength 10. Marked: be (strong? << be>>), comma strong, further strong, comma strong, that strong, accounts strong, of weak? Actually << of>> strong? It says << of>>? In text: \"Can it<< be>><<,>><< further>><<,>><< that>><< accounts>><< of>> M\u0101ra<< as>> the pe"
+   }
+  ]
+ },
+ {
+  "base": "olmoe-1b-7b-0924",
+  "set": "expert-linked",
+  "layer": "L15",
+  "feature": 21329,
+  "explainer": "qwen3.8-27b",
+  "calls": [
+   {
+    "source": "outputs/own260926/olmoe-expert/qwen/L15_a/calls.jsonl",
+    "line": 439,
+    "tag": "explain",
+    "usage": {
+     "completion_tokens": 32768,
+     "prompt_tokens": 3664,
+     "total_tokens": 36432,
+     "completion_tokens_details": {
+      "reasoning_tokens": 32768
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "created_cache_tokens": 3136
+     }
+    },
+    "reply_chars": 0,
+    "reasoning_tail": "<<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>,"
+   },
+   {
+    "source": "outputs/own260926/olmoe-expert/qwen/L15_a/calls.jsonl",
+    "line": 440,
+    "tag": "explain",
+    "usage": {
+     "completion_tokens": 65536,
+     "prompt_tokens": 3664,
+     "total_tokens": 69200,
+     "completion_tokens_details": {
+      "reasoning_tokens": 65536
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 3136,
+      "created_cache_tokens": 0
+     }
+    },
+    "reply_chars": 0,
+    "reasoning_tail": "<<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>,"
+   },
+   {
+    "source": "outputs/own260926/olmoe-expert/qwen/L15_a/calls.jsonl",
+    "line": 441,
+    "tag": "explain",
+    "usage": {
+     "completion_tokens": 131072,
+     "prompt_tokens": 3664,
+     "total_tokens": 134736,
+     "completion_tokens_details": {
+      "reasoning_tokens": 131072
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 3136,
+      "created_cache_tokens": 0
+     }
+    },
+    "reply_chars": 0,
+    "reasoning_tail": "<<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>,"
+   },
+   {
+    "source": "outputs/own260926/olmoe-expert/qwen/L15_a_retry/calls.jsonl",
+    "line": 1,
+    "tag": "explain",
+    "usage": {
+     "completion_tokens": 32768,
+     "prompt_tokens": 3664,
+     "total_tokens": 36432,
+     "completion_tokens_details": {
+      "reasoning_tokens": 32768
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 3136,
+      "created_cache_tokens": 0
+     }
+    },
+    "reply_chars": 0,
+    "reasoning_tail": "<<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>,"
+   },
+   {
+    "source": "outputs/own260926/olmoe-expert/qwen/L15_a_retry/calls.jsonl",
+    "line": 2,
+    "tag": "explain",
+    "usage": {
+     "completion_tokens": 65536,
+     "prompt_tokens": 3664,
+     "total_tokens": 69200,
+     "completion_tokens_details": {
+      "reasoning_tokens": 65536
+     },
+     "prompt_tokens_details": {
+      "cached_tokens": 3136,
+      "created_cache_tokens": 0
+     }
+    },
+    "reply_chars": 0,
+    "reasoning_tail": "<<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>, <<w>>, <<w>>, <<,>>, <<%>>,"
+   }
+  ]
+ }
+]

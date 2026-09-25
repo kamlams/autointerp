@@ -1,0 +1,653 @@
+{
+ "explanation_source": "explainer",
+ "feature_id": 9153,
+ "human_label": null,
+ "file": "feature9153__260924.pt",
+ "stats": {
+  "density": 0.00022312973484848485,
+  "n_firings": 377,
+  "max_act": 21.096460342407227,
+  "act_quantiles": {
+   "0.25": 2.144679307937622,
+   "0.5": 2.5754153728485107,
+   "0.75": 3.8518903255462646,
+   "0.9": 7.498497009277344,
+   "0.99": 18.911174774169922
+  },
+  "highlight_threshold": 6.328938102722168,
+  "dense": false,
+  "card_data": {
+   "density": 0.00022312973484848485,
+   "position_profile": [
+    {
+     "lo": 0,
+     "hi": 0,
+     "rate": 0.0,
+     "mean_act": 0.0
+    },
+    {
+     "lo": 1,
+     "hi": 3,
+     "rate": 0.00012626262626262626,
+     "mean_act": 5.798733234405518
+    },
+    {
+     "lo": 4,
+     "hi": 15,
+     "rate": 0.0002462121212121212,
+     "mean_act": 4.205951690673828
+    },
+    {
+     "lo": 16,
+     "hi": 63,
+     "rate": 0.00023832070707070706,
+     "mean_act": 3.484370470046997
+    },
+    {
+     "lo": 64,
+     "hi": 127,
+     "rate": 0.00021543560606060607,
+     "mean_act": 4.495922088623047
+    }
+   ],
+   "strong_fired_on": [
+    [
+     "-",
+     32
+    ],
+    [
+     " vice",
+     31
+    ],
+    [
+     " deputy",
+     11
+    ],
+    [
+     " for",
+     11
+    ],
+    [
+     " Deputy",
+     9
+    ],
+    [
+     " the",
+     9
+    ],
+    [
+     ".",
+     8
+    ],
+    [
+     " Dick",
+     8
+    ]
+   ],
+   "strong_preceding": [
+    [
+     " the",
+     19
+    ],
+    [
+     ",",
+     16
+    ],
+    [
+     "-",
+     16
+    ],
+    [
+     " and",
+     13
+    ],
+    [
+     " a",
+     10
+    ],
+    [
+     " of",
+     10
+    ],
+    [
+     " vice",
+     9
+    ],
+    [
+     " former",
+     7
+    ]
+   ],
+   "all_fired_on": [
+    [
+     "-",
+     32
+    ],
+    [
+     " vice",
+     31
+    ],
+    [
+     " for",
+     11
+    ],
+    [
+     " deputy",
+     11
+    ],
+    [
+     " Deputy",
+     9
+    ],
+    [
+     " the",
+     9
+    ],
+    [
+     ".",
+     8
+    ],
+    [
+     " Dick",
+     8
+    ]
+   ],
+   "all_preceding": [
+    [
+     " the",
+     19
+    ],
+    [
+     ",",
+     16
+    ],
+    [
+     "-",
+     16
+    ],
+    [
+     " and",
+     13
+    ],
+    [
+     " of",
+     10
+    ],
+    [
+     " a",
+     10
+    ],
+    [
+     " vice",
+     9
+    ],
+    [
+     " former",
+     7
+    ]
+   ],
+   "cond_rate_fired_on": {
+    "-": 0.0025913029395092722,
+    " vice": 1.0,
+    " deputy": 0.8461538461538461,
+    " for": 0.0011235955056179776,
+    " Deputy": 1.0,
+    " the": 0.00016742628592689051,
+    ".": 0.00013256885294799986,
+    " Dick": 1.0
+   },
+   "cond_rate_preceding": {
+    " the": 0.0003561186812362941,
+    ",": 0.00028230644364457617,
+    "-": 0.0013040997636319179,
+    " and": 0.00045337239310873963,
+    " a": 0.0004425170369059209,
+    " of": 0.000332236951393734,
+    " vice": 0.2903225806451613,
+    " former": 0.05343511450381679
+   },
+   "strong_top1_share": 0.08488063660477453
+  }
+ },
+ "label": "Vice or deputy title",
+ "explanation": "Fires on official vice/deputy title tokens; strongest when vice forms vice president or hyphenated Vice President, weak on moral vice, versus, vicar, and generic political spillover.",
+ "explanation_words": 26,
+ "over_limit": false,
+ "detection": {
+  "balanced_acc": 0.65,
+  "tpr": 0.3,
+  "tnr": 1.0,
+  "n_pos": 20,
+  "n_neg": 20,
+  "n_parse_errors": 0,
+  "n_failed_batches": 0,
+  "positions": [
+   1,
+   78,
+   81,
+   36,
+   125,
+   15,
+   75,
+   76,
+   15,
+   123,
+   48,
+   106,
+   24,
+   16,
+   117,
+   108,
+   82,
+   3,
+   39,
+   105,
+   5,
+   109,
+   63,
+   23,
+   12,
+   33,
+   30,
+   90,
+   35,
+   75,
+   97,
+   111,
+   23,
+   92,
+   50,
+   19,
+   104,
+   61,
+   9,
+   74
+  ],
+  "strengths": [
+   1,
+   0,
+   3,
+   0,
+   0,
+   9,
+   0,
+   0,
+   1,
+   0,
+   2,
+   1,
+   1,
+   4,
+   6,
+   0,
+   0,
+   0,
+   0,
+   1,
+   2,
+   0,
+   1,
+   0,
+   5,
+   1,
+   0,
+   1,
+   0,
+   2,
+   1,
+   0,
+   3,
+   0,
+   0,
+   0,
+   9,
+   1,
+   0,
+   0
+  ],
+  "tpr_by_strength": {
+   "1": 0.1,
+   "2": 0.3333333333333333,
+   "3": 1.0,
+   "4": 0.0,
+   "5": 0.0,
+   "6": 0.0,
+   "9": 1.0
+  }
+ },
+ "fuzzing": {
+  "balanced_acc": 0.6666666666666666,
+  "tpr": 0.3333333333333333,
+  "tnr": 1.0,
+  "n_pos": 9,
+  "n_neg": 9,
+  "n_parse_errors": 0,
+  "n_failed_batches": 0,
+  "positions": [
+   14,
+   90,
+   112,
+   68,
+   13,
+   4,
+   75,
+   76,
+   92,
+   53,
+   59,
+   41,
+   12,
+   62,
+   75,
+   76,
+   114,
+   48
+  ],
+  "strengths": [
+   3,
+   4,
+   4,
+   4,
+   3,
+   3,
+   3,
+   3,
+   7,
+   3,
+   4,
+   3,
+   6,
+   4,
+   3,
+   4,
+   4,
+   3
+  ]
+ },
+ "elapsed_s": 205.2,
+ "examples_shown": [
+  " Stamp. He also wrote to every living American president to raise awareness of his campaign, and so far has received letters of support from President Barack Obama,<< Vice>><< President>>< Joe>< Biden>, his own congressman",
+  " 58 votes in the Senate), and again two years later, when those tax cuts were expanded and accelerated through reconciliation by a vote of 51–50 (with<< Vice>>< President><< Dick>> Cheney breaking the tie).",
+  "[START]X's<< vice>>< president> of mission assurance.\n\"[W",
+  "ells could easily match that added value and drive the cost-disadvantaged \"indies\" out.   Also according to that report, Dave Baker,<< vice>>< president> of law and public policy for Earth",
+  "Communication Within the Curriculum) undergraduate advisors assist students with presentations and effective communication.\n- Weingarten Learning Resources Center, a department of the<< Vice>>< Prov>ost for University Life Division, guides",
+  " food is growing much faster than the growth in people deeply committed to a meat-, egg- and dairy-free life. Patrice Bula, a<< vice>><<->>president at Nestlé, says he thinks"
+ ],
+ "stats_card": "FEATURE STATISTICS (over all 377 firings in a 1,689,600-token corpus of 13,200 sequences x 128 tokens)\n- fires on 0.0% of all tokens (baseline: a random token fires with probability 0.0%); max activation 21.10\n- firing rate by token position: pos 0: 0.0% | pos 1-3: 0.0% | pos 4-15: 0.0% | pos 16-63: 0.0% | pos 64-127: 0.0%\n- mean activation by token position: 0.00 | 5.80 | 4.21 | 3.48 | 4.50\n- for each token below, the parenthesis gives how often ANY occurrence of that token in the corpus fires (fired-on token) or is followed by a firing (preceding token): a high rate means the token reliably triggers the feature, a low rate means it is merely frequent\n- strongest 377 firings — fired-on token: \"-\" 32 (fires on 0% of its 12.3k occurrences), \" vice\" 31 (fires on 100% of its 31 occurrences), \" deputy\" 11 (fires on 85% of its 13 occurrences), \" for\" 11 (fires on 0% of its 9,790 occurrences), \" Deputy\" 9 (fires on 100% of its 9 occurrences), \" the\" 9 (fires on 0% of its 53.8k occurrences), \".\" 8 (fires on 0% of its 60.3k occurrences), \" Dick\" 8 (fires on 100% of its 8 occurrences)\n    (the single most common fired-on token covers 8% of them)\n- strongest 377 firings — preceding token: \" the\" 19 (followed by a firing 0% of its 53.4k occurrences), \",\" 16 (followed by a firing 0% of its 56.7k occurrences), \"-\" 16 (followed by a firing 0% of its 12.3k occurrences), \" and\" 13 (followed by a firing 0% of its 28.7k occurrences), \" a\" 10 (followed by a firing 0% of its 22.6k occurrences), \" of\" 10 (followed by a firing 0% of its 30.1k occurrences), \" vice\" 9 (followed by a firing 29% of its 31 occurrences), \" former\" 7 (followed by a firing 5% of its 131 occurrences)\n- all firings — fired-on token: \"-\" 32 (fires on 0% of its 12.3k occurrences), \" vice\" 31 (fires on 100% of its 31 occurrences), \" for\" 11 (fires on 0% of its 9,790 occurrences), \" deputy\" 11 (fires on 85% of its 13 occurrences), \" Deputy\" 9 (fires on 100% of its 9 occurrences), \" the\" 9 (fires on 0% of its 53.8k occurrences), \".\" 8 (fires on 0% of its 60.3k occurrences), \" Dick\" 8 (fires on 100% of its 8 occurrences)\n- all firings — preceding token: \" the\" 19 (followed by a firing 0% of its 53.4k occurrences), \",\" 16 (followed by a firing 0% of its 56.7k occurrences), \"-\" 16 (followed by a firing 0% of its 12.3k occurrences), \" and\" 13 (followed by a firing 0% of its 28.7k occurrences), \" of\" 10 (followed by a firing 0% of its 30.1k occurrences), \" a\" 10 (followed by a firing 0% of its 22.6k occurrences), \" vice\" 9 (followed by a firing 29% of its 31 occurrences), \" former\" 7 (followed by a firing 5% of its 131 occurrences)\n  (\"[START]\" as preceding token = the fired-on token is the first of its sequence)",
+ "detection_raw": {
+  "balanced_acc": 0.65,
+  "tpr": 0.3,
+  "tnr": 1.0,
+  "n_pos": 20,
+  "n_neg": 20,
+  "n_parse_errors": 0,
+  "n_failed_batches": 0,
+  "preds": [
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0
+  ],
+  "labels": [
+   1,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   1,
+   1,
+   1,
+   1,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   0
+  ],
+  "positions": [
+   1,
+   78,
+   81,
+   36,
+   125,
+   15,
+   75,
+   76,
+   15,
+   123,
+   48,
+   106,
+   24,
+   16,
+   117,
+   108,
+   82,
+   3,
+   39,
+   105,
+   5,
+   109,
+   63,
+   23,
+   12,
+   33,
+   30,
+   90,
+   35,
+   75,
+   97,
+   111,
+   23,
+   92,
+   50,
+   19,
+   104,
+   61,
+   9,
+   74
+  ],
+  "strengths": [
+   1,
+   0,
+   3,
+   0,
+   0,
+   9,
+   0,
+   0,
+   1,
+   0,
+   2,
+   1,
+   1,
+   4,
+   6,
+   0,
+   0,
+   0,
+   0,
+   1,
+   2,
+   0,
+   1,
+   0,
+   5,
+   1,
+   0,
+   1,
+   0,
+   2,
+   1,
+   0,
+   3,
+   0,
+   0,
+   0,
+   9,
+   1,
+   0,
+   0
+  ],
+  "tpr_by_strength": {
+   "1": 0.1,
+   "2": 0.3333333333333333,
+   "3": 1.0,
+   "4": 0.0,
+   "5": 0.0,
+   "6": 0.0,
+   "9": 1.0
+  }
+ },
+ "fuzzing_raw": {
+  "balanced_acc": 0.6666666666666666,
+  "tpr": 0.3333333333333333,
+  "tnr": 1.0,
+  "n_pos": 9,
+  "n_neg": 9,
+  "n_parse_errors": 0,
+  "n_failed_batches": 0,
+  "preds": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0
+  ],
+  "labels": [
+   0,
+   1,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   1,
+   0,
+   0,
+   0,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "positions": [
+   14,
+   90,
+   112,
+   68,
+   13,
+   4,
+   75,
+   76,
+   92,
+   53,
+   59,
+   41,
+   12,
+   62,
+   75,
+   76,
+   114,
+   48
+  ],
+  "strengths": [
+   3,
+   4,
+   4,
+   4,
+   3,
+   3,
+   3,
+   3,
+   7,
+   3,
+   4,
+   3,
+   6,
+   4,
+   3,
+   4,
+   4,
+   3
+  ]
+ },
+ "explainer_prompt": "FEATURE STATISTICS (over all 377 firings in a 1,689,600-token corpus of 13,200 sequences x 128 tokens)\n- fires on 0.0% of all tokens (baseline: a random token fires with probability 0.0%); max activation 21.10\n- firing rate by token position: pos 0: 0.0% | pos 1-3: 0.0% | pos 4-15: 0.0% | pos 16-63: 0.0% | pos 64-127: 0.0%\n- mean activation by token position: 0.00 | 5.80 | 4.21 | 3.48 | 4.50\n- for each token below, the parenthesis gives how often ANY occurrence of that token in the corpus fires (fired-on token) or is followed by a firing (preceding token): a high rate means the token reliably triggers the feature, a low rate means it is merely frequent\n- strongest 377 firings — fired-on token: \"-\" 32 (fires on 0% of its 12.3k occurrences), \" vice\" 31 (fires on 100% of its 31 occurrences), \" deputy\" 11 (fires on 85% of its 13 occurrences), \" for\" 11 (fires on 0% of its 9,790 occurrences), \" Deputy\" 9 (fires on 100% of its 9 occurrences), \" the\" 9 (fires on 0% of its 53.8k occurrences), \".\" 8 (fires on 0% of its 60.3k occurrences), \" Dick\" 8 (fires on 100% of its 8 occurrences)\n    (the single most common fired-on token covers 8% of them)\n- strongest 377 firings — preceding token: \" the\" 19 (followed by a firing 0% of its 53.4k occurrences), \",\" 16 (followed by a firing 0% of its 56.7k occurrences), \"-\" 16 (followed by a firing 0% of its 12.3k occurrences), \" and\" 13 (followed by a firing 0% of its 28.7k occurrences), \" a\" 10 (followed by a firing 0% of its 22.6k occurrences), \" of\" 10 (followed by a firing 0% of its 30.1k occurrences), \" vice\" 9 (followed by a firing 29% of its 31 occurrences), \" former\" 7 (followed by a firing 5% of its 131 occurrences)\n- all firings — fired-on token: \"-\" 32 (fires on 0% of its 12.3k occurrences), \" vice\" 31 (fires on 100% of its 31 occurrences), \" for\" 11 (fires on 0% of its 9,790 occurrences), \" deputy\" 11 (fires on 85% of its 13 occurrences), \" Deputy\" 9 (fires on 100% of its 9 occurrences), \" the\" 9 (fires on 0% of its 53.8k occurrences), \".\" 8 (fires on 0% of its 60.3k occurrences), \" Dick\" 8 (fires on 100% of its 8 occurrences)\n- all firings — preceding token: \" the\" 19 (followed by a firing 0% of its 53.4k occurrences), \",\" 16 (followed by a firing 0% of its 56.7k occurrences), \"-\" 16 (followed by a firing 0% of its 12.3k occurrences), \" and\" 13 (followed by a firing 0% of its 28.7k occurrences), \" of\" 10 (followed by a firing 0% of its 30.1k occurrences), \" a\" 10 (followed by a firing 0% of its 22.6k occurrences), \" vice\" 9 (followed by a firing 29% of its 31 occurrences), \" former\" 7 (followed by a firing 5% of its 131 occurrences)\n  (\"[START]\" as preceding token = the fired-on token is the first of its sequence)\n\nSNIPPETS where the feature fires (strongest first):\n--- Snippet 1 (strength 10/10, anchor at position 113) ---\n Stamp. He also wrote to every living American president to raise awareness of his campaign, and so far has received letters of support from President Barack Obama,<< Vice>><< President>>< Joe>< Biden>, his own congressman\n--- Snippet 2 (strength 10/10, anchor at position 73) ---\n 58 votes in the Senate), and again two years later, when those tax cuts were expanded and accelerated through reconciliation by a vote of 51–50 (with<< Vice>>< President><< Dick>> Cheney breaking the tie).\n--- Snippet 3 (strength 9/10, anchor at position 2) ---\n[START]X's<< vice>>< president> of mission assurance.\n\"[W\n--- Snippet 4 (strength 9/10, anchor at position 47) ---\nells could easily match that added value and drive the cost-disadvantaged \"indies\" out.   Also according to that report, Dave Baker,<< vice>>< president> of law and public policy for Earth\n--- Snippet 5 (strength 9/10, anchor at position 78) ---\nCommunication Within the Curriculum) undergraduate advisors assist students with presentations and effective communication.\n- Weingarten Learning Resources Center, a department of the<< Vice>>< Prov>ost for University Life Division, guides\n--- Snippet 6 (strength 9/10, anchor at position 98) ---\n food is growing much faster than the growth in people deeply committed to a meat-, egg- and dairy-free life. Patrice Bula, a<< vice>><<->>president at Nestlé, says he thinks\n--- Snippet 7 (strength 8/10, anchor at position 91) ---\n leeway drafting laws in areas like human rights.\n\n    The congress also \"elects\" the country's highest leaders, including the state president and<< vice>><<->><president>, the chairman of the government\n--- Snippet 8 (strength 8/10, anchor at position 110) ---\nup of which has been determined in advance, will rule China for the next 10 years.\n\n    Who will China's new leaders be?\n\n    V<<ice>><<->><President> Xi Jinping is expected to\n--- Snippet 9 (strength 7/10, anchor at position 111) ---\n of which has been determined in advance, will rule China for the next 10 years.\n\n    Who will China's new leaders be?\n\n    V<<ice>><<->><President> Xi Jinping is expected to replace\n--- Snippet 10 (strength 7/10, anchor at position 72) ---\n to MSNBC he did this 5 times tonight. I am sure his campaign people will keep that from happening next time.\nNext week we have the<< Vice>><<->><Pres><idential> Debate on Oct, 2\n--- Snippet 11 (strength 5/10, anchor at position 88) ---\n the blond hair, widely spaced eyes and twitchy lips, would in essence become the extension of Herzog; his dark side, the embodiment of his<< vice>> and his irrational desire to perhaps subcon\n--- Snippet 12 (strength 4/10, anchor at position 58) ---\n the leading causes of human death around the world. association between cancer and Advertisement prevalence, recommending that switching pathogenesis toward AD protects sufferers against<< vice>> and<< tumor>>< versa>. Within this mini review, we\n--- Snippet 13 (strength 3/10, anchor at position 105) ---\nacks fought well, at least ten died, and they were important to the morale of the ethnic Russian defenders. They were finally withdrawn following a visit by<< Vice>><< President>> Rutskoi--a visit which they\n--- Snippet 14 (strength 3/10, anchor at position 32) ---\nina Dialogue, India’s flagship annual geopolitical conference. The summit will be attended by senior statespeople from around the world, including the Russian<< deputy>>< foreign> minister and former US nuclear negotiator\n--- Snippet 15 (strength 2/10, anchor at position 84) ---\nached.\n\nEach order had, at its head, a superior chief,< called>< the> V<icar><->general; the chief functionary of each province was< called>< the>< Provincial>, and that of each con\n--- Snippet 16 (strength 2/10, anchor at position 79) ---\nly design. In 1846 he quit seafaring. He was in mediocre health, and though from a cadet he had attained the rank of< lieutenant> it was doubtful if he would ever rise\n--- Snippet 17 (strength 1/10, anchor at position 2) ---\n[START] as brig<adier> general. He was ordered to \"visit\n--- Snippet 18 (strength 1/10, anchor at position 104) ---\n game's key matchup:\nThe Lions will win if … they hold Jordan Howard to less than 100 yards rushing. With rookie Mitchell Trubisky< at> quarterback, the Bears want to run the\n--- Snippet 19 (strength 1/10, anchor at position 75) ---\n a snap judgment from you.\n\nBECK: Yes.\n\nZAHN: Barack Obama announced he's formed an exploratory committee to run< for> president. A lot of people in America\n--- Snippet 20 (strength 1/10, anchor at position 27) ---\n[START]bera, it is how you interpret what I said that makes me sound like a d-bag.\n\n    I was comparing the< secretary>’s nearly flawless typing to a\n--- Snippet 21 (strength 1/10, anchor at position 59) ---\n is a sign of an all-out power struggle.\n\n    Members of the standing committee also share out the posts of party< general><-><secret>ary<,> premier<,> chairman of the National People's Congress,\n--- Snippet 22 (strength 1/10, anchor at position 39) ---\n, which is composed of electors selected in each state. The national legislative branch, which is the U.S. Congress, has no role in selecting< the> president.\n\nAmendment Process\n\n--- Snippet 23 (strength 1/10, anchor at position 104) ---\n human civilization. This is a remarkable platform on which to run< for> president. The only precedent I can find for it is Franklin Roosevelt’s decision to run< for> a third term in 1940 because what he\n--- Snippet 24 (strength 1/10, anchor at position 83) ---\n Scotland £9.99 + £3 postage    \nVolume 4 Ireland £9.99 + £3 postage    \nVolumes 1< -> 4 £54.96 + £5"
+}

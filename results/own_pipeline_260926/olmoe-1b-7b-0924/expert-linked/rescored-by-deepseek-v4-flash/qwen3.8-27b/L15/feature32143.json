@@ -1,0 +1,661 @@
+{
+ "explanation_source": "outputs/own260926/olmoe-expert/qwen/L15_b",
+ "feature_id": 32143,
+ "human_label": null,
+ "file": "feature32143__260924.pt",
+ "stats": {
+  "density": 0.0010688920454545454,
+  "n_firings": 1806,
+  "max_act": 17.605180740356445,
+  "act_quantiles": {
+   "0.25": 1.763993263244629,
+   "0.5": 2.2619848251342773,
+   "0.75": 3.1588971614837646,
+   "0.9": 6.844579219818115,
+   "0.99": 14.517705917358398
+  },
+  "highlight_threshold": 5.281554222106934,
+  "dense": false,
+  "card_data": {
+   "density": 0.0010688920454545454,
+   "position_profile": [
+    {
+     "lo": 0,
+     "hi": 0,
+     "rate": 0.013257575757575758,
+     "mean_act": 2.279564142227173
+    },
+    {
+     "lo": 1,
+     "hi": 3,
+     "rate": 0.00045454545454545455,
+     "mean_act": 2.2496111392974854
+    },
+    {
+     "lo": 4,
+     "hi": 15,
+     "rate": 0.0004924242424242425,
+     "mean_act": 3.096269369125366
+    },
+    {
+     "lo": 16,
+     "hi": 63,
+     "rate": 0.0009438131313131313,
+     "mean_act": 3.5734267234802246
+    },
+    {
+     "lo": 64,
+     "hi": 127,
+     "rate": 0.0011091382575757576,
+     "mean_act": 3.4631357192993164
+    }
+   ],
+   "strong_fired_on": [
+    [
+     "’",
+     550
+    ],
+    [
+     ".",
+     258
+    ],
+    [
+     ":",
+     205
+    ],
+    [
+     "{",
+     172
+    ],
+    [
+     "\n",
+     68
+    ],
+    [
+     " ",
+     61
+    ],
+    [
+     "UTC",
+     52
+    ],
+    [
+     "  ",
+     32
+    ]
+   ],
+   "strong_preceding": [
+    [
+     "[START]",
+     175
+    ],
+    [
+     " U",
+     121
+    ],
+    [
+     ".",
+     93
+    ],
+    [
+     "begin",
+     92
+    ],
+    [
+     "end",
+     80
+    ],
+    [
+     " I",
+     80
+    ],
+    [
+     " (",
+     53
+    ],
+    [
+     " it",
+     38
+    ]
+   ],
+   "all_fired_on": [
+    [
+     "’",
+     550
+    ],
+    [
+     ".",
+     258
+    ],
+    [
+     ":",
+     205
+    ],
+    [
+     "{",
+     172
+    ],
+    [
+     "\n",
+     68
+    ],
+    [
+     " ",
+     61
+    ],
+    [
+     "UTC",
+     52
+    ],
+    [
+     "  ",
+     32
+    ]
+   ],
+   "all_preceding": [
+    [
+     "[START]",
+     175
+    ],
+    [
+     " U",
+     121
+    ],
+    [
+     ".",
+     93
+    ],
+    [
+     "begin",
+     92
+    ],
+    [
+     " I",
+     80
+    ],
+    [
+     "end",
+     80
+    ],
+    [
+     " (",
+     53
+    ],
+    [
+     " it",
+     38
+    ]
+   ],
+   "cond_rate_fired_on": {
+    "’": 0.0779699461298554,
+    ".": 0.004275345507572996,
+    ":": 0.027646662171274445,
+    "{": 0.06018194541637509,
+    "\n": 0.0012667188256771358,
+    " ": 0.058095238095238096,
+    "UTC": 0.896551724137931,
+    "  ": 0.013634426927993182
+   },
+   "cond_rate_preceding": {
+    "[START]": 0.013257575757575758,
+    " U": 0.2995049504950495,
+    ".": 0.0015533137359700696,
+    "begin": 0.23529411764705882,
+    "end": 0.13793103448275862,
+    " I": 0.012814352074323241,
+    " (": 0.007458485786659161,
+    " it": 0.005025790239386325
+   },
+   "strong_top1_share": 0.30454042081949056
+  }
+ },
+ "label": "structured delimiter token",
+ "explanation": "Fires on delimiter tokens in compact multi-token strings (U.S., e.g., I'm, timestamps, LaTeX braces, UTC); strongest in predictable formal patterns, weak on generic punctuation, silent on most words.",
+ "explanation_words": 28,
+ "over_limit": false,
+ "detection": {
+  "balanced_acc": 0.675,
+  "tpr": 0.65,
+  "tnr": 0.7,
+  "n_pos": 20,
+  "n_neg": 20,
+  "n_parse_errors": 5,
+  "n_failed_batches": 0,
+  "positions": [
+   17,
+   78,
+   40,
+   44,
+   73,
+   123,
+   71,
+   33,
+   83,
+   40,
+   39,
+   64,
+   76,
+   46,
+   90,
+   102,
+   15,
+   104,
+   0,
+   71,
+   0,
+   46,
+   125,
+   59,
+   75,
+   0,
+   1,
+   92,
+   58,
+   68,
+   78,
+   62,
+   90,
+   41,
+   8,
+   38,
+   117,
+   109,
+   108,
+   72
+  ],
+  "strengths": [
+   1,
+   0,
+   3,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   2,
+   1,
+   1,
+   4,
+   1,
+   0,
+   0,
+   0,
+   0,
+   4,
+   3,
+   0,
+   1,
+   0,
+   7,
+   1,
+   0,
+   1,
+   0,
+   1,
+   1,
+   0,
+   2,
+   0,
+   0,
+   0,
+   3,
+   1,
+   0,
+   0
+  ],
+  "tpr_by_strength": {
+   "1": 0.8181818181818182,
+   "2": 1.0,
+   "3": 0.0,
+   "4": 0.5,
+   "7": 1.0
+  }
+ },
+ "fuzzing": {
+  "balanced_acc": 0.6,
+  "tpr": 0.7,
+  "tnr": 0.5,
+  "n_pos": 10,
+  "n_neg": 10,
+  "n_parse_errors": 5,
+  "n_failed_batches": 0,
+  "positions": [
+   79,
+   37,
+   96,
+   93,
+   81,
+   106,
+   40,
+   120,
+   40,
+   60,
+   97,
+   50,
+   38,
+   44,
+   96,
+   53,
+   80,
+   115,
+   19,
+   110
+  ],
+  "strengths": [
+   4,
+   4,
+   4,
+   4,
+   4,
+   3,
+   3,
+   3,
+   4,
+   3,
+   3,
+   3,
+   3,
+   4,
+   4,
+   3,
+   3,
+   4,
+   4,
+   4
+  ]
+ },
+ "elapsed_s": 18.9,
+ "examples_shown": [
+  " against for nothing that I know.\n\nARENA: Kelli Arena, CNN, Denver.\n\n\nZAHN: So, is the U<<.>>S. government being intolerant or simply",
+  " hidden secrets, bringing them right out into the open.\n\nTonight: the long wait. They are living the American dream. They qualify for U<<.>>S. citizenship. Is the government holding",
+  " k,\\ell = 0,1,\\ldots \\end{aligned}\n\nwhere $$D_{-\\nu }$$ is the parabolic cylinder function (see e<<.>>g",
+  "hrer, Anita TI - An Exploratory Study of Vacation Stress JO - Tourism Analysis PY - 2012-11-01T00<<:>>00<<:>>00/// VL - 17 IS",
+  ", Anita TI - An Exploratory Study of Vacation Stress JO - Tourism Analysis PY - 2012-11-01T00<<:>>00<<:>>00/// VL - 17 IS - 4",
+  "ky v. Kramer, 455 U.S. 745, 753 (1982); see also Troxel v. Granville, 530 U<<.>>"
+ ],
+ "stats_card": "FEATURE STATISTICS (over all 1,806 firings in a 1,689,600-token corpus of 13,200 sequences x 128 tokens)\n- fires on 0.1% of all tokens (baseline: a random token fires with probability 0.1%); max activation 17.61\n- firing rate by token position: pos 0: 1.3% | pos 1-3: 0.0% | pos 4-15: 0.0% | pos 16-63: 0.1% | pos 64-127: 0.1%\n- mean activation by token position: 2.28 | 2.25 | 3.10 | 3.57 | 3.46\n- for each token below, the parenthesis gives how often ANY occurrence of that token in the corpus fires (fired-on token) or is followed by a firing (preceding token): a high rate means the token reliably triggers the feature, a low rate means it is merely frequent\n- strongest 1,806 firings — fired-on token: \"’\" 550 (fires on 8% of its 7,054 occurrences), \".\" 258 (fires on 0% of its 60.3k occurrences), \":\" 205 (fires on 3% of its 7,415 occurrences), \"{\" 172 (fires on 6% of its 2,858 occurrences), \"\\n\" 68 (fires on 0% of its 53.7k occurrences), \" \" 61 (fires on 6% of its 1,050 occurrences), \"UTC\" 52 (fires on 90% of its 58 occurrences), \"  \" 32 (fires on 1% of its 2,347 occurrences)\n    (the single most common fired-on token covers 30% of them)\n- strongest 1,806 firings — preceding token: \"[START]\" 175 (followed by a firing 1% of its 13.2k occurrences), \" U\" 121 (followed by a firing 30% of its 404 occurrences), \".\" 93 (followed by a firing 0% of its 59.9k occurrences), \"begin\" 92 (followed by a firing 24% of its 391 occurrences), \"end\" 80 (followed by a firing 14% of its 580 occurrences), \" I\" 80 (followed by a firing 1% of its 6,243 occurrences), \" (\" 53 (followed by a firing 1% of its 7,106 occurrences), \" it\" 38 (followed by a firing 1% of its 7,561 occurrences)\n- all firings — fired-on token: \"’\" 550 (fires on 8% of its 7,054 occurrences), \".\" 258 (fires on 0% of its 60.3k occurrences), \":\" 205 (fires on 3% of its 7,415 occurrences), \"{\" 172 (fires on 6% of its 2,858 occurrences), \"\\n\" 68 (fires on 0% of its 53.7k occurrences), \" \" 61 (fires on 6% of its 1,050 occurrences), \"UTC\" 52 (fires on 90% of its 58 occurrences), \"  \" 32 (fires on 1% of its 2,347 occurrences)\n- all firings — preceding token: \"[START]\" 175 (followed by a firing 1% of its 13.2k occurrences), \" U\" 121 (followed by a firing 30% of its 404 occurrences), \".\" 93 (followed by a firing 0% of its 59.9k occurrences), \"begin\" 92 (followed by a firing 24% of its 391 occurrences), \" I\" 80 (followed by a firing 1% of its 6,243 occurrences), \"end\" 80 (followed by a firing 14% of its 580 occurrences), \" (\" 53 (followed by a firing 1% of its 7,106 occurrences), \" it\" 38 (followed by a firing 1% of its 7,561 occurrences)\n  (\"[START]\" as preceding token = the fired-on token is the first of its sequence)",
+ "detection_raw": {
+  "balanced_acc": 0.675,
+  "tpr": 0.65,
+  "tnr": 0.7,
+  "n_pos": 20,
+  "n_neg": 20,
+  "n_parse_errors": 5,
+  "n_failed_batches": 0,
+  "preds": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   0,
+   0,
+   0,
+   1,
+   0,
+   1,
+   1,
+   1,
+   1,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   1,
+   1,
+   0,
+   1,
+   1,
+   0
+  ],
+  "labels": [
+   1,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   1,
+   1,
+   1,
+   1,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   0
+  ],
+  "positions": [
+   17,
+   78,
+   40,
+   44,
+   73,
+   123,
+   71,
+   33,
+   83,
+   40,
+   39,
+   64,
+   76,
+   46,
+   90,
+   102,
+   15,
+   104,
+   0,
+   71,
+   0,
+   46,
+   125,
+   59,
+   75,
+   0,
+   1,
+   92,
+   58,
+   68,
+   78,
+   62,
+   90,
+   41,
+   8,
+   38,
+   117,
+   109,
+   108,
+   72
+  ],
+  "strengths": [
+   1,
+   0,
+   3,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   2,
+   1,
+   1,
+   4,
+   1,
+   0,
+   0,
+   0,
+   0,
+   4,
+   3,
+   0,
+   1,
+   0,
+   7,
+   1,
+   0,
+   1,
+   0,
+   1,
+   1,
+   0,
+   2,
+   0,
+   0,
+   0,
+   3,
+   1,
+   0,
+   0
+  ],
+  "tpr_by_strength": {
+   "1": 0.8181818181818182,
+   "2": 1.0,
+   "3": 0.0,
+   "4": 0.5,
+   "7": 1.0
+  }
+ },
+ "fuzzing_raw": {
+  "balanced_acc": 0.6,
+  "tpr": 0.7,
+  "tnr": 0.5,
+  "n_pos": 10,
+  "n_neg": 10,
+  "n_parse_errors": 5,
+  "n_failed_batches": 0,
+  "preds": [
+   0,
+   1,
+   1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   1,
+   null,
+   null,
+   null,
+   null,
+   null,
+   1,
+   1,
+   1,
+   0,
+   1
+  ],
+  "labels": [
+   0,
+   1,
+   0,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   1,
+   1,
+   0,
+   1
+  ],
+  "positions": [
+   79,
+   37,
+   96,
+   93,
+   81,
+   106,
+   40,
+   120,
+   40,
+   60,
+   97,
+   50,
+   38,
+   44,
+   96,
+   53,
+   80,
+   115,
+   19,
+   110
+  ],
+  "strengths": [
+   4,
+   4,
+   4,
+   4,
+   4,
+   3,
+   3,
+   3,
+   4,
+   3,
+   3,
+   3,
+   3,
+   4,
+   4,
+   3,
+   3,
+   4,
+   4,
+   4
+  ]
+ },
+ "explainer_prompt": "FEATURE STATISTICS (over all 1,806 firings in a 1,689,600-token corpus of 13,200 sequences x 128 tokens)\n- fires on 0.1% of all tokens (baseline: a random token fires with probability 0.1%); max activation 17.61\n- firing rate by token position: pos 0: 1.3% | pos 1-3: 0.0% | pos 4-15: 0.0% | pos 16-63: 0.1% | pos 64-127: 0.1%\n- mean activation by token position: 2.28 | 2.25 | 3.10 | 3.57 | 3.46\n- for each token below, the parenthesis gives how often ANY occurrence of that token in the corpus fires (fired-on token) or is followed by a firing (preceding token): a high rate means the token reliably triggers the feature, a low rate means it is merely frequent\n- strongest 1,806 firings — fired-on token: \"’\" 550 (fires on 8% of its 7,054 occurrences), \".\" 258 (fires on 0% of its 60.3k occurrences), \":\" 205 (fires on 3% of its 7,415 occurrences), \"{\" 172 (fires on 6% of its 2,858 occurrences), \"\\n\" 68 (fires on 0% of its 53.7k occurrences), \" \" 61 (fires on 6% of its 1,050 occurrences), \"UTC\" 52 (fires on 90% of its 58 occurrences), \"  \" 32 (fires on 1% of its 2,347 occurrences)\n    (the single most common fired-on token covers 30% of them)\n- strongest 1,806 firings — preceding token: \"[START]\" 175 (followed by a firing 1% of its 13.2k occurrences), \" U\" 121 (followed by a firing 30% of its 404 occurrences), \".\" 93 (followed by a firing 0% of its 59.9k occurrences), \"begin\" 92 (followed by a firing 24% of its 391 occurrences), \"end\" 80 (followed by a firing 14% of its 580 occurrences), \" I\" 80 (followed by a firing 1% of its 6,243 occurrences), \" (\" 53 (followed by a firing 1% of its 7,106 occurrences), \" it\" 38 (followed by a firing 1% of its 7,561 occurrences)\n- all firings — fired-on token: \"’\" 550 (fires on 8% of its 7,054 occurrences), \".\" 258 (fires on 0% of its 60.3k occurrences), \":\" 205 (fires on 3% of its 7,415 occurrences), \"{\" 172 (fires on 6% of its 2,858 occurrences), \"\\n\" 68 (fires on 0% of its 53.7k occurrences), \" \" 61 (fires on 6% of its 1,050 occurrences), \"UTC\" 52 (fires on 90% of its 58 occurrences), \"  \" 32 (fires on 1% of its 2,347 occurrences)\n- all firings — preceding token: \"[START]\" 175 (followed by a firing 1% of its 13.2k occurrences), \" U\" 121 (followed by a firing 30% of its 404 occurrences), \".\" 93 (followed by a firing 0% of its 59.9k occurrences), \"begin\" 92 (followed by a firing 24% of its 391 occurrences), \" I\" 80 (followed by a firing 1% of its 6,243 occurrences), \"end\" 80 (followed by a firing 14% of its 580 occurrences), \" (\" 53 (followed by a firing 1% of its 7,106 occurrences), \" it\" 38 (followed by a firing 1% of its 7,561 occurrences)\n  (\"[START]\" as preceding token = the fired-on token is the first of its sequence)\n\nSNIPPETS where the feature fires (strongest first):\n--- Snippet 1 (strength 10/10, anchor at position 94) ---\n against for nothing that I know.\n\nARENA: Kelli Arena, CNN, Denver.\n\n\nZAHN: So, is the U<<.>>S. government being intolerant or simply\n--- Snippet 2 (strength 9/10, anchor at position 53) ---\n hidden secrets, bringing them right out into the open.\n\nTonight: the long wait. They are living the American dream. They qualify for U<<.>>S. citizenship. Is the government holding\n--- Snippet 3 (strength 9/10, anchor at position 126) ---\n k,\\ell = 0,1,\\ldots \\end{aligned}\n\nwhere $$D_{-\\nu }$$ is the parabolic cylinder function (see e<<.>>g\n--- Snippet 4 (strength 9/10, anchor at position 88) ---\nhrer, Anita TI - An Exploratory Study of Vacation Stress JO - Tourism Analysis PY - 2012-11-01T00<<:>>00<<:>>00/// VL - 17 IS\n--- Snippet 5 (strength 8/10, anchor at position 90) ---\n, Anita TI - An Exploratory Study of Vacation Stress JO - Tourism Analysis PY - 2012-11-01T00<<:>>00<<:>>00/// VL - 17 IS - 4\n--- Snippet 6 (strength 5/10, anchor at position 127) ---\nky v. Kramer, 455 U.S. 745, 753 (1982); see also Troxel v. Granville, 530 U<<.>>\n--- Snippet 7 (strength 4/10, anchor at position 123) ---\n (includes o-rings), for Chevrolet Trucks, and GMC Trucks automobiles. It fits for 11 General Motors vehicles which were sold in the U<<.>>S. in 1993\n--- Snippet 8 (strength 4/10, anchor at position 85) ---\nashi doing he awakened the Mangekyo in both eyes.--YasakaMagatama (talk) 17:51, March 25, 2015 (<<UTC>>)\n\n\nIs physical contact required to\n--- Snippet 9 (strength 4/10, anchor at position 68) ---\n if a=1, \\\\ -2 &{}if a=2, \\\\ 0 &{}otherwise . \\end{array}\\right. } \\end<<{>>aligned}\n(4.67)\n--- Snippet 10 (strength 3/10, anchor at position 53) ---\n\\\\ s\\end{array}}\\right) \\left( {\\begin<{>array}{c} s-k \\\\ a+1-2s \\end<<{>>array}}\\right) \\bigg ] \\\n--- Snippet 11 (strength 3/10, anchor at position 49) ---\n like we did with Body Flicker.--TheUltimate3 Eye of Rikudō (talk) 23:31, January 29, 2015 (<UTC>)\n\nMy problem is that giving\n--- Snippet 12 (strength 3/10, anchor at position 92) ---\n police force. What is your opinion on the subject?\n\nWarren Nunn responds\n\nTry this article, Sorry, atheists, but you<’>re wrong: The death of ‘Love\n--- Snippet 13 (strength 2/10, anchor at position 19) ---\n[START]akra. • Seelentau �� 18:59, January 30, 2015 (<UTC>)\nIt uses the jutsu\n--- Snippet 14 (strength 2/10, anchor at position 19) ---\n[START]a-2)\\sum _{s=0}^{a-4} \\left( {\\begin<{>array}{c}a-3\\\\\n--- Snippet 15 (strength 2/10, anchor at position 0) ---\n[START]< J>aintia Hills, 1/19 =\n--- Snippet 16 (strength 1/10, anchor at position 48) ---\n nuggets to reveal about the economies of the ancient world.\n\nThe societies Mauss surveys have an economy, but not ones we might expect.< > Some minor differences exist between the societies\n--- Snippet 17 (strength 1/10, anchor at position 10) ---\n[START].\nCheck out my Facebook page: https://<www>.facebook.<com>/BodyandMind\n--- Snippet 18 (strength 1/10, anchor at position 126) ---\n back and bend right knee to lower to right until thigh is nearly parallel to floor, keeping spine neutral. Push through right hip to return to start. That<’>s\n--- Snippet 19 (strength 1/10, anchor at position 116) ---\n thinking, where K represents some small number, 1, 2 or 3. Also those that just pick a random number are 0-step thinkers. What I<’>m trying to demonstrate here is that people\n--- Snippet 20 (strength 1/10, anchor at position 123) ---\n to prevent a night of bad sleep from spiraling into several nights staring at the clock, wondering when sleep will come. You can also improve the sleep you<’>re already getting,\n--- Snippet 21 (strength 1/10, anchor at position 0) ---\n[START]<enth> value of those with dates 1878 to\n--- Snippet 22 (strength 1/10, anchor at position 84) ---\n several jobs, juggling the stress of financial difficulty, lack of access to health care, unsafe neighborhoods and unstable transportation with the imperative to be good parents.< > As a result of this, combined\n--- Snippet 23 (strength 1/10, anchor at position 38) ---\n度和���氏度����for-Python\n\n��次���� 2018-05-29 17:03<:>17\n#python实现��\n--- Snippet 24 (strength 1/10, anchor at position 21) ---\n[START] detect; especially after being covered in glazing. – Ambo100 Nov 22 '11 at 16<:>31\n\nI grabbed an image off"
+}

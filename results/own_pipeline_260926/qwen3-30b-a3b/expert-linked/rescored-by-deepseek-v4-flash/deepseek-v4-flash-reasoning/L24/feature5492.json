@@ -1,0 +1,578 @@
+{
+ "explanation_source": "outputs/own260926/qwen3-expert/reasoning/L24_b",
+ "feature_id": 5492,
+ "human_label": null,
+ "file": "feature5492__260926.pt",
+ "stats": {
+  "density": 6.865530303030303e-05,
+  "n_firings": 116,
+  "max_act": 6.4159040451049805,
+  "act_quantiles": {
+   "0.25": 0.9396295547485352,
+   "0.5": 1.1196658611297607,
+   "0.75": 1.437593936920166,
+   "0.9": 2.9632046222686768,
+   "0.99": 6.37166166305542
+  },
+  "highlight_threshold": 1.924771213531494,
+  "dense": false,
+  "card_data": {
+   "density": 6.865530303030303e-05,
+   "position_profile": [
+    {
+     "lo": 0,
+     "hi": 0,
+     "rate": 0.0,
+     "mean_act": 0.0
+    },
+    {
+     "lo": 1,
+     "hi": 3,
+     "rate": 0.0,
+     "mean_act": 0.0
+    },
+    {
+     "lo": 4,
+     "hi": 15,
+     "rate": 4.419191919191919e-05,
+     "mean_act": 0.9519329071044922
+    },
+    {
+     "lo": 16,
+     "hi": 63,
+     "rate": 6.944444444444444e-05,
+     "mean_act": 1.572303056716919
+    },
+    {
+     "lo": 64,
+     "hi": 127,
+     "rate": 7.694128787878787e-05,
+     "mean_act": 1.7588865756988525
+    }
+   ],
+   "strong_fired_on": [
+    [
+     "\n\n\n",
+     46
+    ],
+    [
+     " =",
+     11
+    ],
+    [
+     " Change",
+     7
+    ],
+    [
+     "\tthis",
+     5
+    ],
+    [
+     "\t",
+     5
+    ],
+    [
+     "Rec",
+     3
+    ],
+    [
+     " v",
+     3
+    ],
+    [
+     " msg",
+     2
+    ]
+   ],
+   "strong_preceding": [
+    [
+     " photo",
+     27
+    ],
+    [
+     " picture",
+     14
+    ],
+    [
+     " ",
+     8
+    ],
+    [
+     "\t",
+     5
+    ],
+    [
+     " Logo",
+     5
+    ],
+    [
+     "\tthis",
+     4
+    ],
+    [
+     " {\r\n",
+     4
+    ],
+    [
+     " =",
+     3
+    ]
+   ],
+   "all_fired_on": [
+    [
+     "\n\n\n",
+     46
+    ],
+    [
+     " =",
+     11
+    ],
+    [
+     " Change",
+     7
+    ],
+    [
+     "\t",
+     5
+    ],
+    [
+     "\tthis",
+     5
+    ],
+    [
+     " v",
+     3
+    ],
+    [
+     "Rec",
+     3
+    ],
+    [
+     "ensation",
+     2
+    ]
+   ],
+   "all_preceding": [
+    [
+     " photo",
+     27
+    ],
+    [
+     " picture",
+     14
+    ],
+    [
+     " ",
+     8
+    ],
+    [
+     " Logo",
+     5
+    ],
+    [
+     "\t",
+     5
+    ],
+    [
+     " {\r\n",
+     4
+    ],
+    [
+     "\tthis",
+     4
+    ],
+    [
+     " =",
+     3
+    ]
+   ],
+   "cond_rate_fired_on": {
+    "\n\n\n": 0.06845238095238096,
+    " =": 0.005123428039124359,
+    " Change": 0.25925925925925924,
+    "\tthis": 0.8333333333333334,
+    "\t": 0.002055921052631579,
+    "Rec": 0.15789473684210525,
+    " v": 0.012244897959183673,
+    " msg": 0.13333333333333333,
+    "ensation": 0.1
+   },
+   "cond_rate_preceding": {
+    " photo": 0.27835051546391754,
+    " picture": 0.09523809523809523,
+    " ": 0.002081165452653486,
+    "\t": 0.0020729684908789387,
+    " Logo": 0.38461538461538464,
+    "\tthis": 0.6666666666666666,
+    " {\r\n": 0.08163265306122448,
+    " =": 0.0014144271570014145
+   },
+   "strong_top1_share": 0.39655172413793105
+  }
+ },
+ "label": "Java setter assignment",
+ "explanation": "Fires on Java setter 'this.field = field;' and field tokens like 'Rec'; strongest there. Weakly on newlines after 'photo'/'picture'/'Logo' in WordPress share sections. Not general whitespace.",
+ "explanation_words": 26,
+ "over_limit": false,
+ "detection": {
+  "balanced_acc": 0.575,
+  "tpr": 0.3,
+  "tnr": 0.85,
+  "n_pos": 20,
+  "n_neg": 20,
+  "n_parse_errors": 5,
+  "n_failed_batches": 0,
+  "positions": [
+   85,
+   37,
+   76,
+   40,
+   33,
+   83,
+   60,
+   74,
+   30,
+   48,
+   65,
+   80,
+   73,
+   79,
+   66,
+   55,
+   14,
+   23,
+   77,
+   44,
+   78,
+   115,
+   55,
+   119,
+   77,
+   127,
+   84,
+   70,
+   13,
+   45,
+   108,
+   115,
+   7,
+   109,
+   16,
+   45,
+   123,
+   28,
+   76,
+   98
+  ],
+  "strengths": [
+   1,
+   0,
+   3,
+   0,
+   0,
+   2,
+   0,
+   0,
+   1,
+   0,
+   2,
+   2,
+   1,
+   4,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   3,
+   0,
+   2,
+   0,
+   8,
+   2,
+   0,
+   2,
+   0,
+   2,
+   2,
+   0,
+   2,
+   0,
+   0,
+   0,
+   3,
+   1,
+   0,
+   0
+  ],
+  "tpr_by_strength": {
+   "1": 0.16666666666666666,
+   "2": 0.2857142857142857,
+   "3": 0.6666666666666666,
+   "4": 0.0,
+   "8": 1.0
+  }
+ },
+ "fuzzing": {
+  "balanced_acc": 0.5,
+  "tpr": 0.0,
+  "tnr": 1.0,
+  "n_pos": 3,
+  "n_neg": 3,
+  "n_parse_errors": 0,
+  "n_failed_batches": 0,
+  "positions": [
+   22,
+   21,
+   49,
+   25,
+   23,
+   80
+  ],
+  "strengths": [
+   9,
+   4,
+   9,
+   4,
+   4,
+   4
+  ]
+ },
+ "elapsed_s": 49.3,
+ "examples_shown": [
+  " picRec;\n\n\tpublic PicRec getPicRec() {\n\t\treturn picRec;\n\t}\n\n\tpublic void setPic<<Rec>><(P>icRec pic<Rec>) {\n<\t><<\tthis>>.pic<<Rec>><< =>> picRec;\n\t}\n\n",
+  ";\n\n\tpublic PicRec getPicRec() {\n\t\treturn picRec;\n\t}\n\n\tpublic void setPic<<Rec>><(P>icRec pic<Rec>) {\n<\t><<\tthis>>.pic<<Rec>><< =>> picRec;\n\t}\n\n\t@Override",
+  ";\r\n\tString id;\r\n\tString result;\r\n\tString msg;\r\n\tpublic String getResponse() {\r\n\t\treturn response;\r\n\t}\r\n\tpublic void setResponse(String< response>) {\r\n<<\t>><<\tthis>><<.response>><< =>> response",
+  " id;\r\n\tString result;\r\n\tString msg;\r\n\tpublic String getResponse() {\r\n\t\treturn response;\r\n\t}\r\n\tpublic void setResponse(String< response>) {\r\n<<\t>><<\tthis>><<.response>><< =>> response",
+  "\tpublic PicRec getPicRec() {\n\t\treturn picRec;\n\t}\n\n\tpublic void setPic<<Rec>><(P>icRec pic<Rec>) {\n<\t><<\tthis>>.pic<<Rec>><< =>> picRec;\n\t}\n\n\t@Override\n",
+  "[START];\r\n\t}\r\n\tpublic String getId() {\r\n\t\treturn id;\r\n\t}\r\n\tpublic void setId(String id) {\r\n<<\t>><<\tthis>><<.id>><< =>><< id>>;<\t\r\n>\t}\r\n\tpublic String getResult"
+ ],
+ "stats_card": "FEATURE STATISTICS (over all 116 firings in a 1,689,600-token corpus of 13,200 sequences x 128 tokens)\n- fires on 0.0% of all tokens (baseline: a random token fires with probability 0.0%); max activation 6.42\n- firing rate by token position: pos 0: 0.0% | pos 1-3: 0.0% | pos 4-15: 0.0% | pos 16-63: 0.0% | pos 64-127: 0.0%\n- mean activation by token position: 0.00 | 0.00 | 0.95 | 1.57 | 1.76\n- for each token below, the parenthesis gives how often ANY occurrence of that token in the corpus fires (fired-on token) or is followed by a firing (preceding token): a high rate means the token reliably triggers the feature, a low rate means it is merely frequent\n- strongest 116 firings — fired-on token: \"\\n\\n\\n\" 46 (fires on 7% of its 672 occurrences), \" =\" 11 (fires on 1% of its 2,147 occurrences), \" Change\" 7 (fires on 26% of its 27 occurrences), \"\tthis\" 5 (fires on 83% of its 6 occurrences), \"\t\" 5 (fires on 0% of its 2,432 occurrences), \"Rec\" 3 (fires on 16% of its 19 occurrences), \" v\" 3 (fires on 1% of its 245 occurrences), \" msg\" 2 (fires on 13% of its 15 occurrences)\n    (the single most common fired-on token covers 40% of them)\n- strongest 116 firings — preceding token: \" photo\" 27 (followed by a firing 28% of its 97 occurrences), \" picture\" 14 (followed by a firing 10% of its 147 occurrences), \" \" 8 (followed by a firing 0% of its 3,844 occurrences), \"\t\" 5 (followed by a firing 0% of its 2,412 occurrences), \" Logo\" 5 (followed by a firing 38% of its 13 occurrences), \"\tthis\" 4 (followed by a firing 67% of its 6 occurrences), \" {\r\\n\" 4 (followed by a firing 8% of its 49 occurrences), \" =\" 3 (followed by a firing 0% of its 2,121 occurrences)\n- all firings — fired-on token: \"\\n\\n\\n\" 46 (fires on 7% of its 672 occurrences), \" =\" 11 (fires on 1% of its 2,147 occurrences), \" Change\" 7 (fires on 26% of its 27 occurrences), \"\t\" 5 (fires on 0% of its 2,432 occurrences), \"\tthis\" 5 (fires on 83% of its 6 occurrences), \" v\" 3 (fires on 1% of its 245 occurrences), \"Rec\" 3 (fires on 16% of its 19 occurrences), \"ensation\" 2 (fires on 10% of its 20 occurrences)\n- all firings — preceding token: \" photo\" 27 (followed by a firing 28% of its 97 occurrences), \" picture\" 14 (followed by a firing 10% of its 147 occurrences), \" \" 8 (followed by a firing 0% of its 3,844 occurrences), \" Logo\" 5 (followed by a firing 38% of its 13 occurrences), \"\t\" 5 (followed by a firing 0% of its 2,412 occurrences), \" {\r\\n\" 4 (followed by a firing 8% of its 49 occurrences), \"\tthis\" 4 (followed by a firing 67% of its 6 occurrences), \" =\" 3 (followed by a firing 0% of its 2,121 occurrences)\n  (\"[START]\" as preceding token = the fired-on token is the first of its sequence)",
+ "detection_raw": {
+  "balanced_acc": 0.575,
+  "tpr": 0.3,
+  "tnr": 0.85,
+  "n_pos": 20,
+  "n_neg": 20,
+  "n_parse_errors": 5,
+  "n_failed_batches": 0,
+  "preds": [
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   null,
+   null,
+   null,
+   null,
+   null,
+   0,
+   1,
+   0,
+   0,
+   0
+  ],
+  "labels": [
+   1,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   1,
+   1,
+   1,
+   1,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   0
+  ],
+  "positions": [
+   85,
+   37,
+   76,
+   40,
+   33,
+   83,
+   60,
+   74,
+   30,
+   48,
+   65,
+   80,
+   73,
+   79,
+   66,
+   55,
+   14,
+   23,
+   77,
+   44,
+   78,
+   115,
+   55,
+   119,
+   77,
+   127,
+   84,
+   70,
+   13,
+   45,
+   108,
+   115,
+   7,
+   109,
+   16,
+   45,
+   123,
+   28,
+   76,
+   98
+  ],
+  "strengths": [
+   1,
+   0,
+   3,
+   0,
+   0,
+   2,
+   0,
+   0,
+   1,
+   0,
+   2,
+   2,
+   1,
+   4,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   3,
+   0,
+   2,
+   0,
+   8,
+   2,
+   0,
+   2,
+   0,
+   2,
+   2,
+   0,
+   2,
+   0,
+   0,
+   0,
+   3,
+   1,
+   0,
+   0
+  ],
+  "tpr_by_strength": {
+   "1": 0.16666666666666666,
+   "2": 0.2857142857142857,
+   "3": 0.6666666666666666,
+   "4": 0.0,
+   "8": 1.0
+  }
+ },
+ "fuzzing_raw": {
+  "balanced_acc": 0.5,
+  "tpr": 0.0,
+  "tnr": 1.0,
+  "n_pos": 3,
+  "n_neg": 3,
+  "n_parse_errors": 0,
+  "n_failed_batches": 0,
+  "preds": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "labels": [
+   1,
+   0,
+   0,
+   1,
+   0,
+   1
+  ],
+  "positions": [
+   22,
+   21,
+   49,
+   25,
+   23,
+   80
+  ],
+  "strengths": [
+   9,
+   4,
+   9,
+   4,
+   4,
+   4
+  ]
+ },
+ "explainer_prompt": "FEATURE STATISTICS (over all 116 firings in a 1,689,600-token corpus of 13,200 sequences x 128 tokens)\n- fires on 0.0% of all tokens (baseline: a random token fires with probability 0.0%); max activation 6.42\n- firing rate by token position: pos 0: 0.0% | pos 1-3: 0.0% | pos 4-15: 0.0% | pos 16-63: 0.0% | pos 64-127: 0.0%\n- mean activation by token position: 0.00 | 0.00 | 0.95 | 1.57 | 1.76\n- for each token below, the parenthesis gives how often ANY occurrence of that token in the corpus fires (fired-on token) or is followed by a firing (preceding token): a high rate means the token reliably triggers the feature, a low rate means it is merely frequent\n- strongest 116 firings — fired-on token: \"\\n\\n\\n\" 46 (fires on 7% of its 672 occurrences), \" =\" 11 (fires on 1% of its 2,147 occurrences), \" Change\" 7 (fires on 26% of its 27 occurrences), \"\tthis\" 5 (fires on 83% of its 6 occurrences), \"\t\" 5 (fires on 0% of its 2,432 occurrences), \"Rec\" 3 (fires on 16% of its 19 occurrences), \" v\" 3 (fires on 1% of its 245 occurrences), \" msg\" 2 (fires on 13% of its 15 occurrences)\n    (the single most common fired-on token covers 40% of them)\n- strongest 116 firings — preceding token: \" photo\" 27 (followed by a firing 28% of its 97 occurrences), \" picture\" 14 (followed by a firing 10% of its 147 occurrences), \" \" 8 (followed by a firing 0% of its 3,844 occurrences), \"\t\" 5 (followed by a firing 0% of its 2,412 occurrences), \" Logo\" 5 (followed by a firing 38% of its 13 occurrences), \"\tthis\" 4 (followed by a firing 67% of its 6 occurrences), \" {\r\\n\" 4 (followed by a firing 8% of its 49 occurrences), \" =\" 3 (followed by a firing 0% of its 2,121 occurrences)\n- all firings — fired-on token: \"\\n\\n\\n\" 46 (fires on 7% of its 672 occurrences), \" =\" 11 (fires on 1% of its 2,147 occurrences), \" Change\" 7 (fires on 26% of its 27 occurrences), \"\t\" 5 (fires on 0% of its 2,432 occurrences), \"\tthis\" 5 (fires on 83% of its 6 occurrences), \" v\" 3 (fires on 1% of its 245 occurrences), \"Rec\" 3 (fires on 16% of its 19 occurrences), \"ensation\" 2 (fires on 10% of its 20 occurrences)\n- all firings — preceding token: \" photo\" 27 (followed by a firing 28% of its 97 occurrences), \" picture\" 14 (followed by a firing 10% of its 147 occurrences), \" \" 8 (followed by a firing 0% of its 3,844 occurrences), \" Logo\" 5 (followed by a firing 38% of its 13 occurrences), \"\t\" 5 (followed by a firing 0% of its 2,412 occurrences), \" {\r\\n\" 4 (followed by a firing 8% of its 49 occurrences), \"\tthis\" 4 (followed by a firing 67% of its 6 occurrences), \" =\" 3 (followed by a firing 0% of its 2,121 occurrences)\n  (\"[START]\" as preceding token = the fired-on token is the first of its sequence)\n\nSNIPPETS where the feature fires (strongest first):\n--- Snippet 1 (strength 10/10, anchor at position 69) ---\n picRec;\n\n\tpublic PicRec getPicRec() {\n\t\treturn picRec;\n\t}\n\n\tpublic void setPic<<Rec>><(P>icRec pic<Rec>) {\n<\t><<\tthis>>.pic<<Rec>><< =>> picRec;\n\t}\n\n\n--- Snippet 2 (strength 10/10, anchor at position 71) ---\n;\n\n\tpublic PicRec getPicRec() {\n\t\treturn picRec;\n\t}\n\n\tpublic void setPic<<Rec>><(P>icRec pic<Rec>) {\n<\t><<\tthis>>.pic<<Rec>><< =>> picRec;\n\t}\n\n\t@Override\n--- Snippet 3 (strength 10/10, anchor at position 124) ---\n;\r\n\tString id;\r\n\tString result;\r\n\tString msg;\r\n\tpublic String getResponse() {\r\n\t\treturn response;\r\n\t}\r\n\tpublic void setResponse(String< response>) {\r\n<<\t>><<\tthis>><<.response>><< =>> response\n--- Snippet 4 (strength 10/10, anchor at position 126) ---\n id;\r\n\tString result;\r\n\tString msg;\r\n\tpublic String getResponse() {\r\n\t\treturn response;\r\n\t}\r\n\tpublic void setResponse(String< response>) {\r\n<<\t>><<\tthis>><<.response>><< =>> response\n--- Snippet 5 (strength 9/10, anchor at position 72) ---\n\tpublic PicRec getPicRec() {\n\t\treturn picRec;\n\t}\n\n\tpublic void setPic<<Rec>><(P>icRec pic<Rec>) {\n<\t><<\tthis>>.pic<<Rec>><< =>> picRec;\n\t}\n\n\t@Override\n\n--- Snippet 6 (strength 9/10, anchor at position 24) ---\n[START];\r\n\t}\r\n\tpublic String getId() {\r\n\t\treturn id;\r\n\t}\r\n\tpublic void setId(String id) {\r\n<<\t>><<\tthis>><<.id>><< =>><< id>>;<\t\r\n>\t}\r\n\tpublic String getResult\n--- Snippet 7 (strength 8/10, anchor at position 78) ---\n {\r\n<<\t>><<\tthis>><.result><< =>><< result>>;\r\n\t}\r\n\tpublic String getMsg() {\r\n\t\treturn msg;\r\n\t}\r\n\tpublic void set<Msg>(String< msg>) {\r\n<<\t>><<\tthis>><<.msg>><< =>><< msg>>;\r\n\t}\r\n\t\r\n\t\r\n\t\r\n\t\r\n}\r\n\n--- Snippet 8 (strength 8/10, anchor at position 125) ---\n\tString id;\r\n\tString result;\r\n\tString msg;\r\n\tpublic String getResponse() {\r\n\t\treturn response;\r\n\t}\r\n\tpublic void setResponse(String< response>) {\r\n<<\t>><<\tthis>><<.response>><< =>> response\n--- Snippet 9 (strength 5/10, anchor at position 51) ---\n {\r\n<<\t>><<\tthis>><<.id>><< =>><< id>>;<\t\r\n>\t}\r\n\tpublic String getResult() {\r\n\t\treturn result;\r\n\t}\r\n\tpublic void setResult(String result) {\r\n<<\t>><<\tthis>><.result><< =>><< result>>;\r\n\t}\r\n\tpublic String getMsg\n--- Snippet 10 (strength 4/10, anchor at position 52) ---\n<<\t>><<\tthis>><<.id>><< =>><< id>>;<\t\r\n>\t}\r\n\tpublic String getResult() {\r\n\t\treturn result;\r\n\t}\r\n\tpublic void setResult(String result) {\r\n<<\t>><<\tthis>><.result><< =>><< result>>;\r\n\t}\r\n\tpublic String getMsg()\n--- Snippet 11 (strength 3/10, anchor at position 60) ---\nUploadPic extends BaseResponse {\n\tprivate PicRec picRec;\n\n\tpublic PicRec getPicRec() {\n\t\treturn picRec;\n\t}\n\n\tpublic void setPic<<Rec>><(P>icRec pic<Rec>) {\n<\t>\n--- Snippet 12 (strength 3/10, anchor at position 48) ---\n(String id) {\r\n<<\t>><<\tthis>><<.id>><< =>><< id>>;<\t\r\n>\t}\r\n\tpublic String getResult() {\r\n\t\treturn result;\r\n\t}\r\n\tpublic void setResult(String result) {\r\n<<\t>><<\tthis>><.result><< =>><< result>>;\r\n\t}\r\n\tpublic\n--- Snippet 13 (strength 3/10, anchor at position 47) ---\nf GetRotationAngle()  {return rotationAngle;}\n    float GetRotationAmount() {return rotationAmount;}\n    void SetRotationAmount(float value){<rotation><Amount>< => value;}\n\n    //Identifiers\n\n--- Snippet 14 (strength 2/10, anchor at position 10) ---\n[START]: The informant is Salvadoran and Mexican-American< and> grew up with folk beliefs such as that\n--- Snippet 15 (strength 2/10, anchor at position 74) ---\n seen on skin of apples and pears are lenticels.\n\n\nRead Also:\n\n  • Lenticle\n\n    [len-ti-kuh l]< />ˈlɛn tɪ kə\n--- Snippet 16 (strength 2/10, anchor at position 58) ---\n therefore ought to be baptized.\n\nLeave a Reply\n\n\nYou are commenting using your account. Log Out / < Change> )\n\nGoogle photo<\n\n\n>Twitter picture<\n\n\n>Facebook photo<\n\n\n>Connecting to %s<|im_end|>\n--- Snippet 17 (strength 2/10, anchor at position 112) ---\n {\n                myPlayer.x -= speed;\n            };\n            if(controller.right_pressed && myPlayer.x <= ctx.canvas.width - myPlayer.r) {\n                my<Player>.x += speed;\n            };\n        };\n\n\n--- Snippet 18 (strength 2/10, anchor at position 116) ---\nWe'd love to hear what you think! Please comment below.\n\n\nYou are commenting using your account. Log Out / < Change> )\n\nGoogle photo<\n\n\n>Twitter picture<\n\n\n>Facebook photo<\n\n\n>Connecting to\n--- Snippet 19 (strength 2/10, anchor at position 121) ---\n not, are upset over real issues, things like Palestine, Iraq, and all that, whether you agree or not.\n\n\nZAHN: All right.\n\n\n<Z>AHN: Team, we\n--- Snippet 20 (strength 2/10, anchor at position 94) ---\ncount, stop - start)\n\nLeave a Reply\n\n\nYou are commenting using your account. Log Out / < Change> )\n\nGoogle photo<\n\n\n>Twitter picture<\n\n\n>Facebook photo<\n\n\n>Connecting to %s<|im_end|>\n--- Snippet 21 (strength 2/10, anchor at position 95) ---\n  Believe You are creating Your reality because You are, whether You are aware of it or not.\n\n\nLeave a Reply\n\n\nWordPress.com Logo<\n\n\n>Google+ photo<\n\n\n>Twitter picture<\n\n\n>Facebook photo<\n\n\n>Connecting to\n--- Snippet 22 (strength 1/10, anchor at position 54) ---\n millions of lives.\n\n\nThank you for your comments.\n\n\nYou are commenting using your account. Log Out / < Change> )\n\nTwitter picture<\n\n\n>Facebook photo<\n\n\n>Connecting to %s\n\n%d bloggers like\n--- Snippet 23 (strength 1/10, anchor at position 110) ---\n.writeObject(vPersonne);\n            volOut.writeObject(vVol);\n            gestionVolOut.writeObject(vGestionVol);\n        } catch (IOException e) {\n           < e>.printStackTrace();\n        } finally {\n            par\n--- Snippet 24 (strength 1/10, anchor at position 115) ---\n pages, and register your opposition to this perverted tripe?\n\nLeave a Reply\n\n\nYou are commenting using your account. Log Out / < Change> )\n\nGoogle+ photo<\n\n\n>Twitter picture"
+}

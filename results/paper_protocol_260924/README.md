@@ -92,6 +92,10 @@ TPR 0.263).
   | Qwen3 L24/5492 | 52 | 17 | 30 / 15 / 15 |
 
   Four of the ten Qwen3 suppressive latents are among them; their scores rest on 30 to 90 probes.
+- **Qwen3 latent 8006 is a typo.** On 2026-09-26 the collaborator corrected the promotive list
+  from 8006 to **8066**. The results here were made before the correction, so the promotive group
+  contains 8006 (a latent not on the corrected list) and not 8066. `../own_pipeline_260926/` uses
+  the corrected list.
 - **Qwen3 SAE fit.** FVU 0.498 is at the upper end of the range seen for a matching SAE (0.02-0.5;
   a wrong model or side gives values far above 1). The base model was confirmed by the collaborator
   as Qwen3-30B-A3B (not -Base); the fit was not investigated further.

@@ -1,0 +1,673 @@
+{
+ "explanation_source": "outputs/own260926/olmoe-expert/reasoning/L15_a",
+ "feature_id": 18295,
+ "human_label": null,
+ "file": "feature18295__260924.pt",
+ "stats": {
+  "density": 0.0004131155303030303,
+  "n_firings": 698,
+  "max_act": 13.93718147277832,
+  "act_quantiles": {
+   "0.25": 2.11010479927063,
+   "0.5": 2.378282308578491,
+   "0.75": 2.8949103355407715,
+   "0.9": 3.5474395751953125,
+   "0.99": 7.728862285614014
+  },
+  "highlight_threshold": 4.181154441833496,
+  "dense": false,
+  "card_data": {
+   "density": 0.0004131155303030303,
+   "position_profile": [
+    {
+     "lo": 0,
+     "hi": 0,
+     "rate": 0.0,
+     "mean_act": 0.0
+    },
+    {
+     "lo": 1,
+     "hi": 3,
+     "rate": 0.00030303030303030303,
+     "mean_act": 2.5302164554595947
+    },
+    {
+     "lo": 4,
+     "hi": 15,
+     "rate": 0.0004292929292929293,
+     "mean_act": 2.462956666946411
+    },
+    {
+     "lo": 16,
+     "hi": 63,
+     "rate": 0.000413510101010101,
+     "mean_act": 2.684828996658325
+    },
+    {
+     "lo": 64,
+     "hi": 127,
+     "rate": 0.00042140151515151515,
+     "mean_act": 2.727320671081543
+    }
+   ],
+   "strong_fired_on": [
+    [
+     " the",
+     39
+    ],
+    [
+     ".",
+     26
+    ],
+    [
+     ",",
+     22
+    ],
+    [
+     "\n",
+     22
+    ],
+    [
+     " and",
+     18
+    ],
+    [
+     " of",
+     18
+    ],
+    [
+     " in",
+     13
+    ],
+    [
+     " with",
+     10
+    ]
+   ],
+   "strong_preceding": [
+    [
+     ",",
+     27
+    ],
+    [
+     ".",
+     24
+    ],
+    [
+     "\n",
+     24
+    ],
+    [
+     " the",
+     20
+    ],
+    [
+     " a",
+     13
+    ],
+    [
+     " of",
+     12
+    ],
+    [
+     " and",
+     10
+    ],
+    [
+     " to",
+     10
+    ]
+   ],
+   "all_fired_on": [
+    [
+     " the",
+     39
+    ],
+    [
+     ".",
+     26
+    ],
+    [
+     ",",
+     22
+    ],
+    [
+     "\n",
+     22
+    ],
+    [
+     " and",
+     18
+    ],
+    [
+     " of",
+     18
+    ],
+    [
+     " in",
+     13
+    ],
+    [
+     " with",
+     10
+    ]
+   ],
+   "all_preceding": [
+    [
+     ",",
+     27
+    ],
+    [
+     ".",
+     24
+    ],
+    [
+     "\n",
+     24
+    ],
+    [
+     " the",
+     20
+    ],
+    [
+     " a",
+     13
+    ],
+    [
+     " of",
+     12
+    ],
+    [
+     " and",
+     10
+    ],
+    [
+     " to",
+     10
+    ]
+   ],
+   "cond_rate_fired_on": {
+    " the": 0.0007255139056831923,
+    ".": 0.00043084877208099956,
+    ",": 0.0003851001260327685,
+    "\n": 0.00040982079654260274,
+    " and": 0.0006221914967162116,
+    " of": 0.0005932370970931383,
+    " in": 0.0007193050406684003,
+    " with": 0.0013738150844896278
+   },
+   "cond_rate_preceding": {
+    ",": 0.0004763921236502223,
+    ".": 0.00040085515766969537,
+    "\n": 0.0004505688431644952,
+    " the": 0.00037486176972241486,
+    " a": 0.0005752721479776971,
+    " of": 0.0003986843416724808,
+    " and": 0.0003487479946990305,
+    " to": 0.0003514691410094194
+   },
+   "strong_top1_share": 0.055873925501432664
+  }
+ },
+ "label": "South Asian food context",
+ "explanation": "Fires in passages about South Asian food and culture; strongest with explicit Indian dishes (curry, takeaways, eating with hands). Weakly on other Asian cuisines; silent elsewhere.",
+ "explanation_words": 26,
+ "over_limit": false,
+ "detection": {
+  "balanced_acc": 0.55,
+  "tpr": 0.1,
+  "tnr": 1.0,
+  "n_pos": 20,
+  "n_neg": 20,
+  "n_parse_errors": 0,
+  "n_failed_batches": 0,
+  "positions": [
+   5,
+   108,
+   34,
+   29,
+   85,
+   18,
+   23,
+   44,
+   10,
+   33,
+   59,
+   107,
+   8,
+   81,
+   55,
+   41,
+   33,
+   71,
+   81,
+   30,
+   26,
+   97,
+   109,
+   82,
+   36,
+   115,
+   27,
+   115,
+   118,
+   35,
+   91,
+   59,
+   27,
+   88,
+   4,
+   22,
+   28,
+   92,
+   27,
+   10
+  ],
+  "strengths": [
+   1,
+   0,
+   3,
+   0,
+   0,
+   2,
+   0,
+   0,
+   1,
+   0,
+   2,
+   2,
+   1,
+   4,
+   5,
+   0,
+   0,
+   0,
+   0,
+   4,
+   2,
+   0,
+   2,
+   0,
+   3,
+   2,
+   0,
+   2,
+   0,
+   4,
+   3,
+   0,
+   5,
+   0,
+   0,
+   0,
+   2,
+   2,
+   0,
+   0
+  ],
+  "tpr_by_strength": {
+   "1": 0.0,
+   "2": 0.1111111111111111,
+   "3": 0.0,
+   "4": 0.3333333333333333,
+   "5": 0.0
+  }
+ },
+ "fuzzing": {
+  "balanced_acc": 0.6818181818181818,
+  "tpr": 0.45454545454545453,
+  "tnr": 0.9090909090909091,
+  "n_pos": 11,
+  "n_neg": 11,
+  "n_parse_errors": 0,
+  "n_failed_batches": 0,
+  "positions": [
+   42,
+   56,
+   71,
+   8,
+   42,
+   28,
+   6,
+   29,
+   72,
+   42,
+   36,
+   44,
+   81,
+   91,
+   64,
+   2,
+   59,
+   35,
+   123,
+   40,
+   73,
+   78
+  ],
+  "strengths": [
+   3,
+   4,
+   3,
+   5,
+   5,
+   4,
+   3,
+   3,
+   3,
+   4,
+   3,
+   5,
+   5,
+   4,
+   3,
+   3,
+   4,
+   3,
+   3,
+   3,
+   3,
+   4
+  ]
+ },
+ "elapsed_s": 8.2,
+ "examples_shown": [
+  "ing restaurant dishes.\n\nBefore the remodel, Marty would eat and retreat to his study. Now, he likes to experiment on the weekend, making<< Indian>><< curry>>< and> pasta dishes.\n\nIn",
+  ": Do they do that in< India><,><< eat>>< with>< the> hands?\n\nHANCOCKS: One contestant suggested Indians are thin<< because>> they under<<cook>><< their>> food< and> so, are always sick.",
+  " I like to stay here with Friends. 1. Madgaon< Local> Markets are here just 100 Metre for shopping 2. Bomb<ay>< Cafe><< Best>>< &>< Che><<apest>> near Hotel< 50> Metre 3<.> Near",
+  " in Great budget I like to stay here with Friends. 1. Madgaon< Local> Markets are here just 100 Metre for shopping 2. Bomb<ay>< Cafe><< Best>>< &>< Che><<apest>> near Hotel< 50> Metre",
+  " “toxic.”\nThe research looked at the number of cafes, tearooms, coffee shops, fast food takeaways, fish and chip shops<,><< Indian>>< take><aways><,>< and> take< away>< food> shops",
+  " sauce or herbs to make them palatable. So I use them, in the same way, I would the real thing i.e. a< chicken>< curry><< with>><< fake>><< chicken>> pieces< or>< a> stir"
+ ],
+ "stats_card": "FEATURE STATISTICS (over all 698 firings in a 1,689,600-token corpus of 13,200 sequences x 128 tokens)\n- fires on 0.0% of all tokens (baseline: a random token fires with probability 0.0%); max activation 13.94\n- firing rate by token position: pos 0: 0.0% | pos 1-3: 0.0% | pos 4-15: 0.0% | pos 16-63: 0.0% | pos 64-127: 0.0%\n- mean activation by token position: 0.00 | 2.53 | 2.46 | 2.68 | 2.73\n- for each token below, the parenthesis gives how often ANY occurrence of that token in the corpus fires (fired-on token) or is followed by a firing (preceding token): a high rate means the token reliably triggers the feature, a low rate means it is merely frequent\n- strongest 698 firings — fired-on token: \" the\" 39 (fires on 0% of its 53.8k occurrences), \".\" 26 (fires on 0% of its 60.3k occurrences), \",\" 22 (fires on 0% of its 57.1k occurrences), \"\\n\" 22 (fires on 0% of its 53.7k occurrences), \" and\" 18 (fires on 0% of its 28.9k occurrences), \" of\" 18 (fires on 0% of its 30.3k occurrences), \" in\" 13 (fires on 0% of its 18.1k occurrences), \" with\" 10 (fires on 0% of its 7,279 occurrences)\n    (the single most common fired-on token covers 6% of them)\n- strongest 698 firings — preceding token: \",\" 27 (followed by a firing 0% of its 56.7k occurrences), \".\" 24 (followed by a firing 0% of its 59.9k occurrences), \"\\n\" 24 (followed by a firing 0% of its 53.3k occurrences), \" the\" 20 (followed by a firing 0% of its 53.4k occurrences), \" a\" 13 (followed by a firing 0% of its 22.6k occurrences), \" of\" 12 (followed by a firing 0% of its 30.1k occurrences), \" and\" 10 (followed by a firing 0% of its 28.7k occurrences), \" to\" 10 (followed by a firing 0% of its 28.5k occurrences)\n- all firings — fired-on token: \" the\" 39 (fires on 0% of its 53.8k occurrences), \".\" 26 (fires on 0% of its 60.3k occurrences), \",\" 22 (fires on 0% of its 57.1k occurrences), \"\\n\" 22 (fires on 0% of its 53.7k occurrences), \" and\" 18 (fires on 0% of its 28.9k occurrences), \" of\" 18 (fires on 0% of its 30.3k occurrences), \" in\" 13 (fires on 0% of its 18.1k occurrences), \" with\" 10 (fires on 0% of its 7,279 occurrences)\n- all firings — preceding token: \",\" 27 (followed by a firing 0% of its 56.7k occurrences), \".\" 24 (followed by a firing 0% of its 59.9k occurrences), \"\\n\" 24 (followed by a firing 0% of its 53.3k occurrences), \" the\" 20 (followed by a firing 0% of its 53.4k occurrences), \" a\" 13 (followed by a firing 0% of its 22.6k occurrences), \" of\" 12 (followed by a firing 0% of its 30.1k occurrences), \" and\" 10 (followed by a firing 0% of its 28.7k occurrences), \" to\" 10 (followed by a firing 0% of its 28.5k occurrences)\n  (\"[START]\" as preceding token = the fired-on token is the first of its sequence)",
+ "detection_raw": {
+  "balanced_acc": 0.55,
+  "tpr": 0.1,
+  "tnr": 1.0,
+  "n_pos": 20,
+  "n_neg": 20,
+  "n_parse_errors": 0,
+  "n_failed_batches": 0,
+  "preds": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "labels": [
+   1,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   1,
+   1,
+   1,
+   1,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   0
+  ],
+  "positions": [
+   5,
+   108,
+   34,
+   29,
+   85,
+   18,
+   23,
+   44,
+   10,
+   33,
+   59,
+   107,
+   8,
+   81,
+   55,
+   41,
+   33,
+   71,
+   81,
+   30,
+   26,
+   97,
+   109,
+   82,
+   36,
+   115,
+   27,
+   115,
+   118,
+   35,
+   91,
+   59,
+   27,
+   88,
+   4,
+   22,
+   28,
+   92,
+   27,
+   10
+  ],
+  "strengths": [
+   1,
+   0,
+   3,
+   0,
+   0,
+   2,
+   0,
+   0,
+   1,
+   0,
+   2,
+   2,
+   1,
+   4,
+   5,
+   0,
+   0,
+   0,
+   0,
+   4,
+   2,
+   0,
+   2,
+   0,
+   3,
+   2,
+   0,
+   2,
+   0,
+   4,
+   3,
+   0,
+   5,
+   0,
+   0,
+   0,
+   2,
+   2,
+   0,
+   0
+  ],
+  "tpr_by_strength": {
+   "1": 0.0,
+   "2": 0.1111111111111111,
+   "3": 0.0,
+   "4": 0.3333333333333333,
+   "5": 0.0
+  }
+ },
+ "fuzzing_raw": {
+  "balanced_acc": 0.6818181818181818,
+  "tpr": 0.45454545454545453,
+  "tnr": 0.9090909090909091,
+  "n_pos": 11,
+  "n_neg": 11,
+  "n_parse_errors": 0,
+  "n_failed_batches": 0,
+  "preds": [
+   0,
+   1,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0
+  ],
+  "labels": [
+   0,
+   1,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   1,
+   0,
+   1,
+   1,
+   1,
+   0,
+   0,
+   1,
+   1,
+   1,
+   0,
+   1
+  ],
+  "positions": [
+   42,
+   56,
+   71,
+   8,
+   42,
+   28,
+   6,
+   29,
+   72,
+   42,
+   36,
+   44,
+   81,
+   91,
+   64,
+   2,
+   59,
+   35,
+   123,
+   40,
+   73,
+   78
+  ],
+  "strengths": [
+   3,
+   4,
+   3,
+   5,
+   5,
+   4,
+   3,
+   3,
+   3,
+   4,
+   3,
+   5,
+   5,
+   4,
+   3,
+   3,
+   4,
+   3,
+   3,
+   3,
+   3,
+   4
+  ]
+ },
+ "explainer_prompt": "FEATURE STATISTICS (over all 698 firings in a 1,689,600-token corpus of 13,200 sequences x 128 tokens)\n- fires on 0.0% of all tokens (baseline: a random token fires with probability 0.0%); max activation 13.94\n- firing rate by token position: pos 0: 0.0% | pos 1-3: 0.0% | pos 4-15: 0.0% | pos 16-63: 0.0% | pos 64-127: 0.0%\n- mean activation by token position: 0.00 | 2.53 | 2.46 | 2.68 | 2.73\n- for each token below, the parenthesis gives how often ANY occurrence of that token in the corpus fires (fired-on token) or is followed by a firing (preceding token): a high rate means the token reliably triggers the feature, a low rate means it is merely frequent\n- strongest 698 firings — fired-on token: \" the\" 39 (fires on 0% of its 53.8k occurrences), \".\" 26 (fires on 0% of its 60.3k occurrences), \",\" 22 (fires on 0% of its 57.1k occurrences), \"\\n\" 22 (fires on 0% of its 53.7k occurrences), \" and\" 18 (fires on 0% of its 28.9k occurrences), \" of\" 18 (fires on 0% of its 30.3k occurrences), \" in\" 13 (fires on 0% of its 18.1k occurrences), \" with\" 10 (fires on 0% of its 7,279 occurrences)\n    (the single most common fired-on token covers 6% of them)\n- strongest 698 firings — preceding token: \",\" 27 (followed by a firing 0% of its 56.7k occurrences), \".\" 24 (followed by a firing 0% of its 59.9k occurrences), \"\\n\" 24 (followed by a firing 0% of its 53.3k occurrences), \" the\" 20 (followed by a firing 0% of its 53.4k occurrences), \" a\" 13 (followed by a firing 0% of its 22.6k occurrences), \" of\" 12 (followed by a firing 0% of its 30.1k occurrences), \" and\" 10 (followed by a firing 0% of its 28.7k occurrences), \" to\" 10 (followed by a firing 0% of its 28.5k occurrences)\n- all firings — fired-on token: \" the\" 39 (fires on 0% of its 53.8k occurrences), \".\" 26 (fires on 0% of its 60.3k occurrences), \",\" 22 (fires on 0% of its 57.1k occurrences), \"\\n\" 22 (fires on 0% of its 53.7k occurrences), \" and\" 18 (fires on 0% of its 28.9k occurrences), \" of\" 18 (fires on 0% of its 30.3k occurrences), \" in\" 13 (fires on 0% of its 18.1k occurrences), \" with\" 10 (fires on 0% of its 7,279 occurrences)\n- all firings — preceding token: \",\" 27 (followed by a firing 0% of its 56.7k occurrences), \".\" 24 (followed by a firing 0% of its 59.9k occurrences), \"\\n\" 24 (followed by a firing 0% of its 53.3k occurrences), \" the\" 20 (followed by a firing 0% of its 53.4k occurrences), \" a\" 13 (followed by a firing 0% of its 22.6k occurrences), \" of\" 12 (followed by a firing 0% of its 30.1k occurrences), \" and\" 10 (followed by a firing 0% of its 28.7k occurrences), \" to\" 10 (followed by a firing 0% of its 28.5k occurrences)\n  (\"[START]\" as preceding token = the fired-on token is the first of its sequence)\n\nSNIPPETS where the feature fires (strongest first):\n--- Snippet 1 (strength 10/10, anchor at position 80) ---\ning restaurant dishes.\n\nBefore the remodel, Marty would eat and retreat to his study. Now, he likes to experiment on the weekend, making<< Indian>><< curry>>< and> pasta dishes.\n\nIn\n--- Snippet 2 (strength 8/10, anchor at position 82) ---\n: Do they do that in< India><,><< eat>>< with>< the> hands?\n\nHANCOCKS: One contestant suggested Indians are thin<< because>> they under<<cook>><< their>> food< and> so, are always sick.\n--- Snippet 3 (strength 7/10, anchor at position 113) ---\n I like to stay here with Friends. 1. Madgaon< Local> Markets are here just 100 Metre for shopping 2. Bomb<ay>< Cafe><< Best>>< &>< Che><<apest>> near Hotel< 50> Metre 3<.> Near\n--- Snippet 4 (strength 7/10, anchor at position 110) ---\n in Great budget I like to stay here with Friends. 1. Madgaon< Local> Markets are here just 100 Metre for shopping 2. Bomb<ay>< Cafe><< Best>>< &>< Che><<apest>> near Hotel< 50> Metre\n--- Snippet 5 (strength 7/10, anchor at position 86) ---\n “toxic.”\nThe research looked at the number of cafes, tearooms, coffee shops, fast food takeaways, fish and chip shops<,><< Indian>>< take><aways><,>< and> take< away>< food> shops\n--- Snippet 6 (strength 6/10, anchor at position 121) ---\n sauce or herbs to make them palatable. So I use them, in the same way, I would the real thing i.e. a< chicken>< curry><< with>><< fake>><< chicken>> pieces< or>< a> stir\n--- Snippet 7 (strength 6/10, anchor at position 122) ---\n or herbs to make them palatable. So I use them, in the same way, I would the real thing i.e. a< chicken>< curry><< with>><< fake>><< chicken>> pieces< or>< a> stir\n--- Snippet 8 (strength 6/10, anchor at position 95) ---\n of Shakopee to feed hungry betters all night long. Get a taste from favorites like Bacon Me Crazy, Crepe and Cake, Hot<< Indian>>< Foods>,< T>iki Tim’s and\n--- Snippet 9 (strength 4/10, anchor at position 35) ---\n in fibre and spinach that has nutrients like vitamin E, vitamin B6 and magnesium, which reduce menstrual cramps. Also< have> parsley, not just for season<<ing>> but due to the presence of apiol\n--- Snippet 10 (strength 4/10, anchor at position 38) ---\n young couple, the dacoits took away gold ornaments weighing over 80 grams and cash.So daring were the criminals that they even took out< food>< kept><< in>>< the> house and<< ate>> it in the dining\n--- Snippet 11 (strength 4/10, anchor at position 64) ---\n.< Bring><< the>> heat< to> medium heat and pour<< the>>< egg> mixture making sure that it is spread evenly. Cover pan and cook for about 2 minutes. Fl<ip><< the>>< egg> and cover< the> pan. Cook for\n--- Snippet 12 (strength 3/10, anchor at position 123) ---\n Publishing, Thailand. ISBN : 974-7162-94-6\nSisamon Kongpan is the author of more than twenty cookbooks<< on>>< Thai> cuisine and contributes\n--- Snippet 13 (strength 2/10, anchor at position 59) ---\n barbecue-<p>ork-filled bun (baozi).[1<]> The buns are filled with barbecue-flavored cha siu pork.[1<]> They are served< as><< a>>< type>< of> dim\n--- Snippet 14 (strength 2/10, anchor at position 73) ---\n The buns are filled with barbecue-flavored cha siu pork.[1<]> They are served< as><< a>>< type>< of> dim< sum> during yum cha< and>< are> sometimes sold in Chinese bakeries\n--- Snippet 15 (strength 2/10, anchor at position 92) ---\no\nLiteral meaning \"barbecue pork bun\"\nBaked cha siu bao. The dough for< this> type< is> different from the steamed version<\n><\n>Cha siu bao (simpl\n--- Snippet 16 (strength 2/10, anchor at position 37) ---\n egg. Add a dash of salt. Mix all the rest of the ingredients.\nIn a non-stick pan, heat< the> oil.< Bring><< the>> heat< to> medium heat and pour<< the>>< egg> mixture making\n--- Snippet 17 (strength 2/10, anchor at position 2) ---\n[START] the cha<ad><ar>.\n3,Ord<inary>< or>\n--- Snippet 18 (strength 2/10, anchor at position 41) ---\n made of velvet and best quality cloth is being offered. It covers the mazaar paak entirely and it is suppose to as like as 'Sherw<ani>' on this only the upper portion,\n--- Snippet 19 (strength 2/10, anchor at position 60) ---\n the difference. (I’ve even tricked some omnivores sorry if any of you are reading this) I have however tried some meat substitutes< that> are simply too close to the real thing\n--- Snippet 20 (strength 2/10, anchor at position 32) ---\n browned and glazed.\n\nCantonese cuisine[edit]\n<\n>Although visually similar< to> other types of steamed baozi<,>< the>< dough> of steamed cha siu b\n--- Snippet 21 (strength 1/10, anchor at position 58) ---\nSo jump back to lot1… me & cw go coffee shop m<akan> supper..~ actually she m<akan>< only> la.. I wanna m<akan>< bead>< cur><d> but close le.. =.=\"\n--- Snippet 22 (strength 1/10, anchor at position 43) ---\n salt. Mix all the rest of the ingredients.\nIn a non-stick pan, heat< the> oil.< Bring><< the>> heat< to> medium heat and pour<< the>>< egg> mixture making sure that it is spread evenly\n--- Snippet 23 (strength 1/10, anchor at position 9) ---\n[START] spat with his father in 2005, Ajmal< Kas>ab left home. Thereafter, he engaged\n--- Snippet 24 (strength 1/10, anchor at position 18) ---\n[START] to Rehana’s suspect status as an outsider—she is a native speaker< of> Urdu,< not> Bengali, with"
+}

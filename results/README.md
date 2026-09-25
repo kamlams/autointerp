@@ -1,12 +1,14 @@
 # Results
 
-Two result sets on the same 96 latents, made with two different protocols, and one set on new
-latents made with the paper's protocol. **The paper uses `paper_protocol_260920/`.**
+Result sets made with two protocols: the published protocol (`paper_protocol_*`) and this
+repository's own pipeline (`feature_test32b_260918/`, `own_pipeline_260926/`). **The paper uses
+`paper_protocol_260920/`.**
 
 | folder | protocol | explainers | examiner(s) | output |
 |---|---|---|---|---|
 | `paper_protocol_260920/` | the published protocol of Paulo et al. (ICML 2025) with the fewest changes (single-mark fuzzing exam) — `run_paper_protocol.py` | 4: DeepSeek-V4-Flash, -reasoning, Kimi-K3, Qwen3.8-27B | DeepSeek-V4-Flash-reasoning | one-sentence explanation |
 | `paper_protocol_260924/` | the protocol of `paper_protocol_260920/` on the 2026-09-24 latents: OLMoE L1/L15 (84, expert-linked) and Qwen3-30B-A3B L24 (20); one folder per base model | 3: Kimi-K3, Qwen3.8-27B, DeepSeek-V4-Flash-reasoning | DeepSeek-V4-Flash-reasoning | one-sentence explanation |
+| `own_pipeline_260926/` | this repository's own pipeline with a 30-word EXPLANATION, on the latents of both `paper_protocol_*` sets (200: OLMoE " to" 96, OLMoE expert-linked 84, Qwen3-30B-A3B expert-linked 20 with 8066 for 8006); one folder per base model | 3: Kimi-K3, Qwen3.8-27B, DeepSeek-V4-Flash-reasoning | DeepSeek-V4-Flash-reasoning, re-scored by DeepSeek-V4-Flash | label + explanation (at most 30 words) |
 | `feature_test32b_260918/` | this repository's own pipeline (statistics card, 24 snippets, detection + fuzzing) — `run_autointerp.py` | 3: DeepSeek-V4-Flash-reasoning, Kimi-K3, Qwen3.8-27B | DeepSeek-V4-Flash-reasoning and DeepSeek-V4-Flash | short label + explanation |
 
 The two sets are not interchangeable: the explanations were written from different evidence and
@@ -28,6 +30,14 @@ The latents the collaborator tied to one expert (OLMoE layer 1 expert 9 and laye
 Qwen3-30B-A3B layer 24 expert 9), split by the sign of their effect on it, explained and scored
 exactly as in `paper_protocol_260920/`, with a 32768-token budget for every explainer. 311 of the 312
 latent/explainer explanations exist; `README.md` has the tables and `analyze.py` reproduces them.
+
+## `own_pipeline_260926/` — the own pipeline with a 30-word explanation
+
+The latents of `paper_protocol_260920/` and `paper_protocol_260924/` explained and scored with
+`run_autointerp.py --max-explanation-words 30`: an answer over 30 words gets one follow-up asking
+the explainer to shorten it. 598 of 600 explanations exist; Kimi-K3 needed the follow-up for 66
+of 200 latents, the other two explainers never. `README.md` has the tables, `analyze.py`
+reproduces them.
 
 ## `feature_test32b_260918/` — 96 latents, three explainers, two examiners
 

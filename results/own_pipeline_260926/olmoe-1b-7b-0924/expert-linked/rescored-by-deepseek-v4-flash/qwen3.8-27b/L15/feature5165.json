@@ -1,0 +1,602 @@
+{
+ "explanation_source": "outputs/own260926/olmoe-expert/qwen/L15_b",
+ "feature_id": 5165,
+ "human_label": null,
+ "file": "feature5165__260924.pt",
+ "stats": {
+  "density": 0.0001142282196969697,
+  "n_firings": 193,
+  "max_act": 10.402427673339844,
+  "act_quantiles": {
+   "0.25": 2.090243339538574,
+   "0.5": 2.32267689704895,
+   "0.75": 2.676307201385498,
+   "0.9": 3.6348533630371094,
+   "0.99": 9.314781188964844
+  },
+  "highlight_threshold": 3.120728302001953,
+  "dense": false,
+  "card_data": {
+   "density": 0.0001142282196969697,
+   "position_profile": [
+    {
+     "lo": 0,
+     "hi": 0,
+     "rate": 0.0,
+     "mean_act": 0.0
+    },
+    {
+     "lo": 1,
+     "hi": 3,
+     "rate": 0.00012626262626262626,
+     "mean_act": 4.2697649002075195
+    },
+    {
+     "lo": 4,
+     "hi": 15,
+     "rate": 0.0001893939393939394,
+     "mean_act": 3.6716558933258057
+    },
+    {
+     "lo": 16,
+     "hi": 63,
+     "rate": 0.00012152777777777777,
+     "mean_act": 2.407698631286621
+    },
+    {
+     "lo": 64,
+     "hi": 127,
+     "rate": 9.588068181818181e-05,
+     "mean_act": 2.445030927658081
+    }
+   ],
+   "strong_fired_on": [
+    [
+     ",",
+     7
+    ],
+    [
+     " is",
+     6
+    ],
+    [
+     "       ",
+     5
+    ],
+    [
+     " and",
+     5
+    ],
+    [
+     " the",
+     5
+    ],
+    [
+     "\n",
+     4
+    ],
+    [
+     "ed",
+     4
+    ],
+    [
+     " but",
+     4
+    ]
+   ],
+   "strong_preceding": [
+    [
+     ",",
+     9
+    ],
+    [
+     "\n",
+     6
+    ],
+    [
+     "sa",
+     6
+    ],
+    [
+     "       ",
+     5
+    ],
+    [
+     " to",
+     5
+    ],
+    [
+     "raft",
+     3
+    ],
+    [
+     "##",
+     3
+    ],
+    [
+     ".",
+     3
+    ]
+   ],
+   "all_fired_on": [
+    [
+     ",",
+     7
+    ],
+    [
+     " is",
+     6
+    ],
+    [
+     " and",
+     5
+    ],
+    [
+     " the",
+     5
+    ],
+    [
+     "       ",
+     5
+    ],
+    [
+     "ed",
+     4
+    ],
+    [
+     "\n",
+     4
+    ],
+    [
+     " but",
+     4
+    ]
+   ],
+   "all_preceding": [
+    [
+     ",",
+     9
+    ],
+    [
+     "\n",
+     6
+    ],
+    [
+     "sa",
+     6
+    ],
+    [
+     " to",
+     5
+    ],
+    [
+     "       ",
+     5
+    ],
+    [
+     ".",
+     3
+    ],
+    [
+     "raft",
+     3
+    ],
+    [
+     " 16",
+     3
+    ]
+   ],
+   "cond_rate_fired_on": {
+    ",": 0.0001225318582831536,
+    " is": 0.0004094724629768648,
+    "       ": 0.07462686567164178,
+    " and": 0.00017283097131005876,
+    " the": 9.301460329271696e-05,
+    "\n": 7.451287209865504e-05,
+    "ed": 0.0041279669762641896,
+    " but": 0.0013665869490946361
+   },
+   "cond_rate_preceding": {
+    ",": 0.0001587973745500741,
+    "\n": 0.0001126422107911238,
+    "sa": 0.35294117647058826,
+    "       ": 0.07575757575757576,
+    " to": 0.0001757345705047097,
+    "raft": 0.16666666666666666,
+    "##": 0.01910828025477707,
+    ".": 5.010689470871192e-05,
+    " 16": 0.013574660633484163
+   },
+   "strong_top1_share": 0.03626943005181347
+  }
+ },
+ "label": "Rnd-start sequence span",
+ "explanation": "Fires on tokens in sequences beginning with Rnd; strongest near the start, especially digits/spaces, weak scattered elsewhere.",
+ "explanation_words": 17,
+ "over_limit": false,
+ "detection": {
+  "balanced_acc": 0.575,
+  "tpr": 0.15,
+  "tnr": 1.0,
+  "n_pos": 20,
+  "n_neg": 20,
+  "n_parse_errors": 0,
+  "n_failed_batches": 0,
+  "positions": [
+   86,
+   41,
+   16,
+   20,
+   59,
+   8,
+   58,
+   90,
+   73,
+   12,
+   23,
+   72,
+   82,
+   110,
+   2,
+   37,
+   116,
+   15,
+   90,
+   12,
+   9,
+   53,
+   89,
+   9,
+   37,
+   27,
+   70,
+   79,
+   123,
+   121,
+   118,
+   49,
+   10,
+   104,
+   123,
+   30,
+   45,
+   15,
+   78,
+   66
+  ],
+  "strengths": [
+   2,
+   0,
+   3,
+   0,
+   0,
+   6,
+   0,
+   0,
+   2,
+   0,
+   3,
+   2,
+   2,
+   4,
+   5,
+   0,
+   0,
+   0,
+   0,
+   3,
+   3,
+   0,
+   2,
+   0,
+   4,
+   2,
+   0,
+   2,
+   0,
+   3,
+   3,
+   0,
+   4,
+   0,
+   0,
+   0,
+   2,
+   2,
+   0,
+   0
+  ],
+  "tpr_by_strength": {
+   "2": 0.0,
+   "3": 0.0,
+   "4": 0.3333333333333333,
+   "5": 1.0,
+   "6": 1.0
+  }
+ },
+ "fuzzing": {
+  "balanced_acc": 0.4,
+  "tpr": 0.0,
+  "tnr": 0.8,
+  "n_pos": 5,
+  "n_neg": 5,
+  "n_parse_errors": 0,
+  "n_failed_batches": 0,
+  "positions": [
+   8,
+   120,
+   13,
+   12,
+   114,
+   40,
+   26,
+   15,
+   36,
+   116
+  ],
+  "strengths": [
+   3,
+   3,
+   3,
+   3,
+   3,
+   4,
+   3,
+   4,
+   3,
+   3
+  ]
+ },
+ "elapsed_s": 3.9,
+ "examples_shown": [
+  "[START]\nR<<nd>><< 2>><<       >><<4>><<       >><<2>><<       >><6><<       >><5>",
+  "[START]\nR<<nd>><< 2>><<       >><<4>><<       >><<2>><<       >><6><<       >><5><<       >><3>",
+  "[START]\nR<<nd>><< 2>><<       >><<4>><<       >><<2>><<       >><6><<       >><5><<       >>",
+  "[START]\nR<<nd>><< 2>><<       >><<4>><<       >><<2>><<       >><6><<       >><5><<       >><3><<\n>>",
+  "[START]\nR<<nd>><< 2>><<       >><<4>><<       >><<2>><<       >><6><<       >><5><<       >><3><<\n>><<The>><< surplus>>< votes> from C to the second",
+  "[START]\nR<<nd>><< 2>><<       >><<4>><<       >><<2>><<       >><6><<       >><5><<       >><3><<\n>><<The>><< surplus>>< votes> from C to the second choices."
+ ],
+ "stats_card": "FEATURE STATISTICS (over all 193 firings in a 1,689,600-token corpus of 13,200 sequences x 128 tokens)\n- fires on 0.0% of all tokens (baseline: a random token fires with probability 0.0%); max activation 10.40\n- firing rate by token position: pos 0: 0.0% | pos 1-3: 0.0% | pos 4-15: 0.0% | pos 16-63: 0.0% | pos 64-127: 0.0%\n- mean activation by token position: 0.00 | 4.27 | 3.67 | 2.41 | 2.45\n- for each token below, the parenthesis gives how often ANY occurrence of that token in the corpus fires (fired-on token) or is followed by a firing (preceding token): a high rate means the token reliably triggers the feature, a low rate means it is merely frequent\n- strongest 193 firings — fired-on token: \",\" 7 (fires on 0% of its 57.1k occurrences), \" is\" 6 (fires on 0% of its 14.7k occurrences), \"       \" 5 (fires on 7% of its 67 occurrences), \" and\" 5 (fires on 0% of its 28.9k occurrences), \" the\" 5 (fires on 0% of its 53.8k occurrences), \"\\n\" 4 (fires on 0% of its 53.7k occurrences), \"ed\" 4 (fires on 0% of its 969 occurrences), \" but\" 4 (fires on 0% of its 2,927 occurrences)\n    (the single most common fired-on token covers 4% of them)\n- strongest 193 firings — preceding token: \",\" 9 (followed by a firing 0% of its 56.7k occurrences), \"\\n\" 6 (followed by a firing 0% of its 53.3k occurrences), \"sa\" 6 (followed by a firing 35% of its 17 occurrences), \"       \" 5 (followed by a firing 8% of its 66 occurrences), \" to\" 5 (followed by a firing 0% of its 28.5k occurrences), \"raft\" 3 (followed by a firing 17% of its 18 occurrences), \"##\" 3 (followed by a firing 2% of its 157 occurrences), \".\" 3 (followed by a firing 0% of its 59.9k occurrences)\n- all firings — fired-on token: \",\" 7 (fires on 0% of its 57.1k occurrences), \" is\" 6 (fires on 0% of its 14.7k occurrences), \" and\" 5 (fires on 0% of its 28.9k occurrences), \" the\" 5 (fires on 0% of its 53.8k occurrences), \"       \" 5 (fires on 7% of its 67 occurrences), \"ed\" 4 (fires on 0% of its 969 occurrences), \"\\n\" 4 (fires on 0% of its 53.7k occurrences), \" but\" 4 (fires on 0% of its 2,927 occurrences)\n- all firings — preceding token: \",\" 9 (followed by a firing 0% of its 56.7k occurrences), \"\\n\" 6 (followed by a firing 0% of its 53.3k occurrences), \"sa\" 6 (followed by a firing 35% of its 17 occurrences), \" to\" 5 (followed by a firing 0% of its 28.5k occurrences), \"       \" 5 (followed by a firing 8% of its 66 occurrences), \".\" 3 (followed by a firing 0% of its 59.9k occurrences), \"raft\" 3 (followed by a firing 17% of its 18 occurrences), \" 16\" 3 (followed by a firing 1% of its 221 occurrences)\n  (\"[START]\" as preceding token = the fired-on token is the first of its sequence)",
+ "detection_raw": {
+  "balanced_acc": 0.575,
+  "tpr": 0.15,
+  "tnr": 1.0,
+  "n_pos": 20,
+  "n_neg": 20,
+  "n_parse_errors": 0,
+  "n_failed_batches": 0,
+  "preds": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "labels": [
+   1,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   1,
+   1,
+   1,
+   1,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   0
+  ],
+  "positions": [
+   86,
+   41,
+   16,
+   20,
+   59,
+   8,
+   58,
+   90,
+   73,
+   12,
+   23,
+   72,
+   82,
+   110,
+   2,
+   37,
+   116,
+   15,
+   90,
+   12,
+   9,
+   53,
+   89,
+   9,
+   37,
+   27,
+   70,
+   79,
+   123,
+   121,
+   118,
+   49,
+   10,
+   104,
+   123,
+   30,
+   45,
+   15,
+   78,
+   66
+  ],
+  "strengths": [
+   2,
+   0,
+   3,
+   0,
+   0,
+   6,
+   0,
+   0,
+   2,
+   0,
+   3,
+   2,
+   2,
+   4,
+   5,
+   0,
+   0,
+   0,
+   0,
+   3,
+   3,
+   0,
+   2,
+   0,
+   4,
+   2,
+   0,
+   2,
+   0,
+   3,
+   3,
+   0,
+   4,
+   0,
+   0,
+   0,
+   2,
+   2,
+   0,
+   0
+  ],
+  "tpr_by_strength": {
+   "2": 0.0,
+   "3": 0.0,
+   "4": 0.3333333333333333,
+   "5": 1.0,
+   "6": 1.0
+  }
+ },
+ "fuzzing_raw": {
+  "balanced_acc": 0.4,
+  "tpr": 0.0,
+  "tnr": 0.8,
+  "n_pos": 5,
+  "n_neg": 5,
+  "n_parse_errors": 0,
+  "n_failed_batches": 0,
+  "preds": [
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "labels": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "positions": [
+   8,
+   120,
+   13,
+   12,
+   114,
+   40,
+   26,
+   15,
+   36,
+   116
+  ],
+  "strengths": [
+   3,
+   3,
+   3,
+   3,
+   3,
+   4,
+   3,
+   4,
+   3,
+   3
+  ]
+ },
+ "explainer_prompt": "FEATURE STATISTICS (over all 193 firings in a 1,689,600-token corpus of 13,200 sequences x 128 tokens)\n- fires on 0.0% of all tokens (baseline: a random token fires with probability 0.0%); max activation 10.40\n- firing rate by token position: pos 0: 0.0% | pos 1-3: 0.0% | pos 4-15: 0.0% | pos 16-63: 0.0% | pos 64-127: 0.0%\n- mean activation by token position: 0.00 | 4.27 | 3.67 | 2.41 | 2.45\n- for each token below, the parenthesis gives how often ANY occurrence of that token in the corpus fires (fired-on token) or is followed by a firing (preceding token): a high rate means the token reliably triggers the feature, a low rate means it is merely frequent\n- strongest 193 firings — fired-on token: \",\" 7 (fires on 0% of its 57.1k occurrences), \" is\" 6 (fires on 0% of its 14.7k occurrences), \"       \" 5 (fires on 7% of its 67 occurrences), \" and\" 5 (fires on 0% of its 28.9k occurrences), \" the\" 5 (fires on 0% of its 53.8k occurrences), \"\\n\" 4 (fires on 0% of its 53.7k occurrences), \"ed\" 4 (fires on 0% of its 969 occurrences), \" but\" 4 (fires on 0% of its 2,927 occurrences)\n    (the single most common fired-on token covers 4% of them)\n- strongest 193 firings — preceding token: \",\" 9 (followed by a firing 0% of its 56.7k occurrences), \"\\n\" 6 (followed by a firing 0% of its 53.3k occurrences), \"sa\" 6 (followed by a firing 35% of its 17 occurrences), \"       \" 5 (followed by a firing 8% of its 66 occurrences), \" to\" 5 (followed by a firing 0% of its 28.5k occurrences), \"raft\" 3 (followed by a firing 17% of its 18 occurrences), \"##\" 3 (followed by a firing 2% of its 157 occurrences), \".\" 3 (followed by a firing 0% of its 59.9k occurrences)\n- all firings — fired-on token: \",\" 7 (fires on 0% of its 57.1k occurrences), \" is\" 6 (fires on 0% of its 14.7k occurrences), \" and\" 5 (fires on 0% of its 28.9k occurrences), \" the\" 5 (fires on 0% of its 53.8k occurrences), \"       \" 5 (fires on 7% of its 67 occurrences), \"ed\" 4 (fires on 0% of its 969 occurrences), \"\\n\" 4 (fires on 0% of its 53.7k occurrences), \" but\" 4 (fires on 0% of its 2,927 occurrences)\n- all firings — preceding token: \",\" 9 (followed by a firing 0% of its 56.7k occurrences), \"\\n\" 6 (followed by a firing 0% of its 53.3k occurrences), \"sa\" 6 (followed by a firing 35% of its 17 occurrences), \" to\" 5 (followed by a firing 0% of its 28.5k occurrences), \"       \" 5 (followed by a firing 8% of its 66 occurrences), \".\" 3 (followed by a firing 0% of its 59.9k occurrences), \"raft\" 3 (followed by a firing 17% of its 18 occurrences), \" 16\" 3 (followed by a firing 1% of its 221 occurrences)\n  (\"[START]\" as preceding token = the fired-on token is the first of its sequence)\n\nSNIPPETS where the feature fires (strongest first):\n--- Snippet 1 (strength 10/10, anchor at position 3) ---\n[START]\nR<<nd>><< 2>><<       >><<4>><<       >><<2>><<       >><6><<       >><5>\n--- Snippet 2 (strength 10/10, anchor at position 5) ---\n[START]\nR<<nd>><< 2>><<       >><<4>><<       >><<2>><<       >><6><<       >><5><<       >><3>\n--- Snippet 3 (strength 9/10, anchor at position 4) ---\n[START]\nR<<nd>><< 2>><<       >><<4>><<       >><<2>><<       >><6><<       >><5><<       >>\n--- Snippet 4 (strength 8/10, anchor at position 6) ---\n[START]\nR<<nd>><< 2>><<       >><<4>><<       >><<2>><<       >><6><<       >><5><<       >><3><<\n>>\n--- Snippet 5 (strength 6/10, anchor at position 14) ---\n[START]\nR<<nd>><< 2>><<       >><<4>><<       >><<2>><<       >><6><<       >><5><<       >><3><<\n>><<The>><< surplus>>< votes> from C to the second\n--- Snippet 6 (strength 5/10, anchor at position 16) ---\n[START]\nR<<nd>><< 2>><<       >><<4>><<       >><<2>><<       >><6><<       >><5><<       >><3><<\n>><<The>><< surplus>>< votes> from C to the second choices.\n--- Snippet 7 (strength 4/10, anchor at position 112) ---\n<|endoftext|>This was my start on Monday afternoon.\nI finished it Wednesday morning.\nTurkey on an Egg kit, by Bent Creek\n<stit><<ched>>< on><< 28>>< ct> flax linen<<,>><\n><using><< ST>>\n--- Snippet 8 (strength 4/10, anchor at position 83) ---\nThe \"Gilaaf\" on which the 'Madina Sharif', 'Gumbad-E-Khizra' is designed by< full><< thread>><<->>work.\nWEIGHT : 20 K\n--- Snippet 9 (strength 4/10, anchor at position 37) ---\n short period and the museums were so eager to buy the items.<|endoftext|>I don't know why I've not got on with it, as the pie<<ced>><< centre>>< is><< all>><< joined>>< together><<,>>< backed> and quilt\n--- Snippet 10 (strength 4/10, anchor at position 82) ---\n\nThe \"Gilaaf\" on which the 'Madina Sharif', 'Gumbad-E-Khizra' is designed by< full><< thread>><<->>work.\nWEIGHT : 20\n--- Snippet 11 (strength 3/10, anchor at position 42) ---\n were so eager to buy the items.<|endoftext|>I don't know why I've not got on with it, as the pie<<ced>><< centre>>< is><< all>><< joined>>< together><<,>>< backed> and quilted, and all I\n--- Snippet 12 (strength 3/10, anchor at position 117) ---\n on Monday afternoon.\nI finished it Wednesday morning.\nTurkey on an Egg kit, by Bent Creek\n<stit><<ched>>< on><< 28>>< ct> flax linen<<,>><\n><using><< ST>><<s>> Nut<meg>, Br\n--- Snippet 13 (strength 2/10, anchor at position 91) ---\n expected to be ingraft<ed> into that estate they fell from; for, saith He, Rom. 11. They shall be grafted in again,< but> that estate was their nationall Church-\n--- Snippet 14 (strength 2/10, anchor at position 84) ---\n to hang together, and each seems to draw the next after it, as though they were a string of pearls in a box, and by pulling out< one> pearl I pulled out the one following\n--- Snippet 15 (strength 2/10, anchor at position 120) ---\n the Jews (as no question it doth, seing their incoming belongeth to the same time) It is most probable-like that their Church will< be> nationall in the former respect,\n--- Snippet 16 (strength 2/10, anchor at position 65) ---\n persons whom God called, and continued in His Church, even when the body of them is broken off. 2. They may be expected to be ingraft<ed> into that estate they fell from; for\n--- Snippet 17 (strength 2/10, anchor at position 58) ---\nurches, Then the Scripture doth assert nationall Churches in the dayes of the Gospel, not only as consistent with the Gospels administration,< but> as an evident commendation of it;\n--- Snippet 18 (strength 2/10, anchor at position 19) ---\n[START], that picture does NOT do it justice. At all. I mean, I spun the yarn< and> I was sitting there petting it in\n--- Snippet 19 (strength 2/10, anchor at position 42) ---\n you can see we used 4bit communication (D4-D7). So from mere observation from above table we are connecting 6 pins of LCD to controller< in> which 4 pins are data pins and 2\n--- Snippet 20 (strength 2/10, anchor at position 79) ---\n 2 - here\nBlock 3 Progress - here\nBlock 4 - here\nBlocks 5 & 6 - here\nBlock 7 - here\nPhotos and links to< each> of the blocks may also be found on\n--- Snippet 21 (strength 2/10, anchor at position 54) ---\n (7-14 or D0-D7), 2 power supply pins (1&2 or VSS&VDD or GND&+5v<),> 3rd pin for contrast control (V\n--- Snippet 22 (strength 2/10, anchor at position 36) ---\n whatsoever. So either the doors are faulty or have not been properly installed/maintained. Dh has said you must take this further as wait rose are breaking< h>&s laws by having non-compl\n--- Snippet 23 (strength 2/10, anchor at position 71) ---\n _data;\n\t\tbyte* header2;\n\t\tbyte* header3;\n\n\t\tbyte header1[] = {0x34, 0x<00>, 0x00, 0x00\n--- Snippet 24 (strength 2/10, anchor at position 25) ---\n[START] piece the border.\nThis is how the blocks look together right now.\nI look forward to seeing what the ladies designing< the> blocks for this BOM have lined up"
+}

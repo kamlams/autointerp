@@ -1,0 +1,48 @@
+{
+ "model": "deepseek-ai/DeepSeek-V4-Flash",
+ "scorer_model": null,
+ "explain_max_tokens": 32768,
+ "max_explanation_words": 0,
+ "reuse_explanations": "outputs/own260926/to96/reasoning/L15_a",
+ "sampler": {
+  "ctx_left": 31,
+  "ctx_right": 8,
+  "n_explainer": 24,
+  "explainer_top_frac": 0.33,
+  "n_test_act": 20,
+  "n_test_neg": 20,
+  "n_fuzz": 20,
+  "n_bins": 10,
+  "top_pool": 200,
+  "bigram_cap_min": 2,
+  "bigram_share_factor": 0.5,
+  "max_per_prompt": 4,
+  "dense_threshold": 0.1,
+  "dense_highlight_q": 0.75,
+  "strong_floor": 0.3,
+  "fuzz_mark_cap": 1,
+  "n_dense_negatives": 6,
+  "seed": 0
+ },
+ "features": [
+  "outputs/feature-data/moein_L15_test32b/feature10028__260918.pt",
+  "outputs/feature-data/moein_L15_test32b/feature12170__260918.pt",
+  "outputs/feature-data/moein_L15_test32b/feature14340__260918.pt",
+  "outputs/feature-data/moein_L15_test32b/feature16411__260918.pt",
+  "outputs/feature-data/moein_L15_test32b/feature16996__260918.pt",
+  "outputs/feature-data/moein_L15_test32b/feature17031__260918.pt",
+  "outputs/feature-data/moein_L15_test32b/feature17125__260918.pt",
+  "outputs/feature-data/moein_L15_test32b/feature17458__260918.pt",
+  "outputs/feature-data/moein_L15_test32b/feature20417__260918.pt",
+  "outputs/feature-data/moein_L15_test32b/feature21368__260918.pt",
+  "outputs/feature-data/moein_L15_test32b/feature21663__260918.pt",
+  "outputs/feature-data/moein_L15_test32b/feature22384__260918.pt",
+  "outputs/feature-data/moein_L15_test32b/feature22413__260918.pt",
+  "outputs/feature-data/moein_L15_test32b/feature23224__260918.pt",
+  "outputs/feature-data/moein_L15_test32b/feature24445__260918.pt",
+  "outputs/feature-data/moein_L15_test32b/feature24624__260918.pt"
+ ],
+ "usage": {
+  "explainer": "270 calls, 131436 prompt tok, 6386 completion tok (of which 0 reasoning)"
+ }
+}

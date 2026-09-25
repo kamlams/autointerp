@@ -1,0 +1,537 @@
+{
+ "explanation_source": "outputs/own260926/qwen3-expert/reasoning/L24_a",
+ "feature_id": 23481,
+ "human_label": null,
+ "file": "feature23481__260926.pt",
+ "stats": {
+  "density": 7.22064393939394e-05,
+  "n_firings": 122,
+  "max_act": 12.915581703186035,
+  "act_quantiles": {
+   "0.25": 1.1249058246612549,
+   "0.5": 1.5843315124511719,
+   "0.75": 2.575361728668213,
+   "0.9": 3.870967388153076,
+   "0.99": 10.428547859191895
+  },
+  "highlight_threshold": 3.8746745109558103,
+  "dense": false,
+  "card_data": {
+   "density": 7.22064393939394e-05,
+   "position_profile": [
+    {
+     "lo": 0,
+     "hi": 0,
+     "rate": 0.0,
+     "mean_act": 0.0
+    },
+    {
+     "lo": 1,
+     "hi": 3,
+     "rate": 7.575757575757576e-05,
+     "mean_act": 1.8892993927001953
+    },
+    {
+     "lo": 4,
+     "hi": 15,
+     "rate": 9.46969696969697e-05,
+     "mean_act": 2.4833223819732666
+    },
+    {
+     "lo": 16,
+     "hi": 63,
+     "rate": 5.9974747474747475e-05,
+     "mean_act": 1.7665680646896362
+    },
+    {
+     "lo": 64,
+     "hi": 127,
+     "rate": 7.8125e-05,
+     "mean_act": 2.4407010078430176
+    }
+   ],
+   "strong_fired_on": [
+    [
+     "0",
+     12
+    ],
+    [
+     ".",
+     10
+    ],
+    [
+     "7",
+     8
+    ],
+    [
+     "5",
+     8
+    ],
+    [
+     "2",
+     7
+    ],
+    [
+     "9",
+     6
+    ],
+    [
+     " ",
+     5
+    ],
+    [
+     "3",
+     5
+    ]
+   ],
+   "strong_preceding": [
+    [
+     "0",
+     11
+    ],
+    [
+     ".",
+     10
+    ],
+    [
+     " ",
+     9
+    ],
+    [
+     "2",
+     8
+    ],
+    [
+     "5",
+     6
+    ],
+    [
+     "6",
+     6
+    ],
+    [
+     " (",
+     6
+    ],
+    [
+     "7",
+     5
+    ]
+   ],
+   "all_fired_on": [
+    [
+     "0",
+     12
+    ],
+    [
+     ".",
+     10
+    ],
+    [
+     "5",
+     8
+    ],
+    [
+     "7",
+     8
+    ],
+    [
+     "2",
+     7
+    ],
+    [
+     "9",
+     6
+    ],
+    [
+     " ",
+     5
+    ],
+    [
+     "6",
+     5
+    ]
+   ],
+   "all_preceding": [
+    [
+     "0",
+     11
+    ],
+    [
+     ".",
+     10
+    ],
+    [
+     " ",
+     9
+    ],
+    [
+     "2",
+     8
+    ],
+    [
+     "5",
+     6
+    ],
+    [
+     " (",
+     6
+    ],
+    [
+     "6",
+     6
+    ],
+    [
+     "1",
+     5
+    ]
+   ],
+   "cond_rate_fired_on": {
+    "0": 0.0006861455772199668,
+    ".": 0.0002447800651114973,
+    "7": 0.0016109544905356424,
+    "5": 0.0011617775196049957,
+    "2": 0.00047406203440335904,
+    "9": 0.0009917355371900827,
+    " ": 0.00021888543536313092,
+    "3": 0.0006411078343377356,
+    "6": 0.0009646922631680494
+   },
+   "cond_rate_preceding": {
+    "0": 0.000633531071819386,
+    ".": 0.0002467369044387969,
+    " ": 0.00039689539601340623,
+    "2": 0.0005460750853242321,
+    "5": 0.000878348704435661,
+    "6": 0.0011682242990654205,
+    " (": 0.0008224811514736121,
+    "7": 0.0010133765707336846,
+    "1": 0.0002634074386260668
+   },
+   "strong_top1_share": 0.09836065573770492
+  }
+ },
+ "label": "numeric interval/range tokens",
+ "explanation": "Fires on digits and decimal points inside numeric intervals: CIs, ± uncertainties, ranges. Strongest on interval endpoints like '2.77 to 10.6'; weak on indicators and non-interval numbers.",
+ "explanation_words": 27,
+ "over_limit": false,
+ "detection": {
+  "balanced_acc": 0.65,
+  "tpr": 0.5,
+  "tnr": 0.8,
+  "n_pos": 20,
+  "n_neg": 20,
+  "n_parse_errors": 5,
+  "n_failed_batches": 0,
+  "positions": [
+   56,
+   105,
+   114,
+   101,
+   103,
+   14,
+   96,
+   122,
+   34,
+   42,
+   3,
+   26,
+   116,
+   91,
+   90,
+   30,
+   69,
+   79,
+   30,
+   21,
+   102,
+   61,
+   109,
+   66,
+   92,
+   24,
+   54,
+   9,
+   106,
+   36,
+   33,
+   125,
+   61,
+   105,
+   17,
+   39,
+   121,
+   89,
+   106,
+   31
+  ],
+  "strengths": [
+   1,
+   0,
+   3,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   2,
+   1,
+   1,
+   4,
+   5,
+   0,
+   0,
+   0,
+   0,
+   3,
+   3,
+   0,
+   1,
+   0,
+   4,
+   1,
+   0,
+   2,
+   0,
+   1,
+   2,
+   0,
+   2,
+   0,
+   0,
+   0,
+   2,
+   1,
+   0,
+   0
+  ],
+  "tpr_by_strength": {
+   "1": 0.2857142857142857,
+   "2": 0.6,
+   "3": 0.6666666666666666,
+   "4": 1.0,
+   "5": 1.0
+  }
+ },
+ "fuzzing": {
+  "balanced_acc": NaN,
+  "tpr": NaN,
+  "tnr": NaN,
+  "n_pos": 0,
+  "n_neg": 0,
+  "n_parse_errors": 0,
+  "n_failed_batches": 0,
+  "positions": [],
+  "strengths": []
+ },
+ "elapsed_s": 21.4,
+ "examples_shown": [
+  "ography-proven CHD in young men across the entire BMI range, with a hazard ratio of 5.43 (<9><5>%< CI><< >>2<<.>><<7>><<7>><< to>> 1<<0>><<.>><<6>>",
+  "-proven CHD in young men across the entire BMI range, with a hazard ratio of 5.43 (<9><5>%< CI><< >>2<<.>><<7>><<7>><< to>> 1<<0>><<.>><<6>><2>",
+  " of angiography-proven CHD in young men across the entire BMI range, with a hazard ratio of 5.43 (<9><5>%< CI><< >>2<<.>><<7>><<7>><< to>> 1<<0>>",
+  "ven CHD in young men across the entire BMI range, with a hazard ratio of 5.43 (<9><5>%< CI><< >>2<<.>><<7>><<7>><< to>> 1<<0>><<.>><<6>><2>)",
+  "[START]5%< CI>< ><<3>><0><0><–>1<9><,><7>0",
+  " CHD in young men across the entire BMI range, with a hazard ratio of 5.43 (<9><5>%< CI><< >>2<<.>><<7>><<7>><< to>> 1<<0>><<.>><<6>><2>) in"
+ ],
+ "stats_card": "FEATURE STATISTICS (over all 122 firings in a 1,689,600-token corpus of 13,200 sequences x 128 tokens)\n- fires on 0.0% of all tokens (baseline: a random token fires with probability 0.0%); max activation 12.92\n- firing rate by token position: pos 0: 0.0% | pos 1-3: 0.0% | pos 4-15: 0.0% | pos 16-63: 0.0% | pos 64-127: 0.0%\n- mean activation by token position: 0.00 | 1.89 | 2.48 | 1.77 | 2.44\n- for each token below, the parenthesis gives how often ANY occurrence of that token in the corpus fires (fired-on token) or is followed by a firing (preceding token): a high rate means the token reliably triggers the feature, a low rate means it is merely frequent\n- strongest 122 firings — fired-on token: \"0\" 12 (fires on 0% of its 17.5k occurrences), \".\" 10 (fires on 0% of its 40.9k occurrences), \"7\" 8 (fires on 0% of its 4,966 occurrences), \"5\" 8 (fires on 0% of its 6,886 occurrences), \"2\" 7 (fires on 0% of its 14.8k occurrences), \"9\" 6 (fires on 0% of its 6,050 occurrences), \" \" 5 (fires on 0% of its 22.8k occurrences), \"3\" 5 (fires on 0% of its 7,799 occurrences)\n    (the single most common fired-on token covers 10% of them)\n- strongest 122 firings — preceding token: \"0\" 11 (followed by a firing 0% of its 17.4k occurrences), \".\" 10 (followed by a firing 0% of its 40.5k occurrences), \" \" 9 (followed by a firing 0% of its 22.7k occurrences), \"2\" 8 (followed by a firing 0% of its 14.7k occurrences), \"5\" 6 (followed by a firing 0% of its 6,831 occurrences), \"6\" 6 (followed by a firing 0% of its 5,136 occurrences), \" (\" 6 (followed by a firing 0% of its 7,295 occurrences), \"7\" 5 (followed by a firing 0% of its 4,934 occurrences)\n- all firings — fired-on token: \"0\" 12 (fires on 0% of its 17.5k occurrences), \".\" 10 (fires on 0% of its 40.9k occurrences), \"5\" 8 (fires on 0% of its 6,886 occurrences), \"7\" 8 (fires on 0% of its 4,966 occurrences), \"2\" 7 (fires on 0% of its 14.8k occurrences), \"9\" 6 (fires on 0% of its 6,050 occurrences), \" \" 5 (fires on 0% of its 22.8k occurrences), \"6\" 5 (fires on 0% of its 5,183 occurrences)\n- all firings — preceding token: \"0\" 11 (followed by a firing 0% of its 17.4k occurrences), \".\" 10 (followed by a firing 0% of its 40.5k occurrences), \" \" 9 (followed by a firing 0% of its 22.7k occurrences), \"2\" 8 (followed by a firing 0% of its 14.7k occurrences), \"5\" 6 (followed by a firing 0% of its 6,831 occurrences), \" (\" 6 (followed by a firing 0% of its 7,295 occurrences), \"6\" 6 (followed by a firing 0% of its 5,136 occurrences), \"1\" 5 (followed by a firing 0% of its 19.0k occurrences)\n  (\"[START]\" as preceding token = the fired-on token is the first of its sequence)",
+ "detection_raw": {
+  "balanced_acc": 0.65,
+  "tpr": 0.5,
+  "tnr": 0.8,
+  "n_pos": 20,
+  "n_neg": 20,
+  "n_parse_errors": 5,
+  "n_failed_batches": 0,
+  "preds": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   null,
+   null,
+   null,
+   null,
+   null,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   1
+  ],
+  "labels": [
+   1,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   1,
+   1,
+   1,
+   1,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   0
+  ],
+  "positions": [
+   56,
+   105,
+   114,
+   101,
+   103,
+   14,
+   96,
+   122,
+   34,
+   42,
+   3,
+   26,
+   116,
+   91,
+   90,
+   30,
+   69,
+   79,
+   30,
+   21,
+   102,
+   61,
+   109,
+   66,
+   92,
+   24,
+   54,
+   9,
+   106,
+   36,
+   33,
+   125,
+   61,
+   105,
+   17,
+   39,
+   121,
+   89,
+   106,
+   31
+  ],
+  "strengths": [
+   1,
+   0,
+   3,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0,
+   2,
+   1,
+   1,
+   4,
+   5,
+   0,
+   0,
+   0,
+   0,
+   3,
+   3,
+   0,
+   1,
+   0,
+   4,
+   1,
+   0,
+   2,
+   0,
+   1,
+   2,
+   0,
+   2,
+   0,
+   0,
+   0,
+   2,
+   1,
+   0,
+   0
+  ],
+  "tpr_by_strength": {
+   "1": 0.2857142857142857,
+   "2": 0.6,
+   "3": 0.6666666666666666,
+   "4": 1.0,
+   "5": 1.0
+  }
+ },
+ "fuzzing_raw": {
+  "balanced_acc": NaN,
+  "tpr": NaN,
+  "tnr": NaN,
+  "n_pos": 0,
+  "n_neg": 0,
+  "n_parse_errors": 0,
+  "n_failed_batches": 0,
+  "preds": [],
+  "labels": [],
+  "positions": [],
+  "strengths": []
+ },
+ "explainer_prompt": "FEATURE STATISTICS (over all 122 firings in a 1,689,600-token corpus of 13,200 sequences x 128 tokens)\n- fires on 0.0% of all tokens (baseline: a random token fires with probability 0.0%); max activation 12.92\n- firing rate by token position: pos 0: 0.0% | pos 1-3: 0.0% | pos 4-15: 0.0% | pos 16-63: 0.0% | pos 64-127: 0.0%\n- mean activation by token position: 0.00 | 1.89 | 2.48 | 1.77 | 2.44\n- for each token below, the parenthesis gives how often ANY occurrence of that token in the corpus fires (fired-on token) or is followed by a firing (preceding token): a high rate means the token reliably triggers the feature, a low rate means it is merely frequent\n- strongest 122 firings — fired-on token: \"0\" 12 (fires on 0% of its 17.5k occurrences), \".\" 10 (fires on 0% of its 40.9k occurrences), \"7\" 8 (fires on 0% of its 4,966 occurrences), \"5\" 8 (fires on 0% of its 6,886 occurrences), \"2\" 7 (fires on 0% of its 14.8k occurrences), \"9\" 6 (fires on 0% of its 6,050 occurrences), \" \" 5 (fires on 0% of its 22.8k occurrences), \"3\" 5 (fires on 0% of its 7,799 occurrences)\n    (the single most common fired-on token covers 10% of them)\n- strongest 122 firings — preceding token: \"0\" 11 (followed by a firing 0% of its 17.4k occurrences), \".\" 10 (followed by a firing 0% of its 40.5k occurrences), \" \" 9 (followed by a firing 0% of its 22.7k occurrences), \"2\" 8 (followed by a firing 0% of its 14.7k occurrences), \"5\" 6 (followed by a firing 0% of its 6,831 occurrences), \"6\" 6 (followed by a firing 0% of its 5,136 occurrences), \" (\" 6 (followed by a firing 0% of its 7,295 occurrences), \"7\" 5 (followed by a firing 0% of its 4,934 occurrences)\n- all firings — fired-on token: \"0\" 12 (fires on 0% of its 17.5k occurrences), \".\" 10 (fires on 0% of its 40.9k occurrences), \"5\" 8 (fires on 0% of its 6,886 occurrences), \"7\" 8 (fires on 0% of its 4,966 occurrences), \"2\" 7 (fires on 0% of its 14.8k occurrences), \"9\" 6 (fires on 0% of its 6,050 occurrences), \" \" 5 (fires on 0% of its 22.8k occurrences), \"6\" 5 (fires on 0% of its 5,183 occurrences)\n- all firings — preceding token: \"0\" 11 (followed by a firing 0% of its 17.4k occurrences), \".\" 10 (followed by a firing 0% of its 40.5k occurrences), \" \" 9 (followed by a firing 0% of its 22.7k occurrences), \"2\" 8 (followed by a firing 0% of its 14.7k occurrences), \"5\" 6 (followed by a firing 0% of its 6,831 occurrences), \" (\" 6 (followed by a firing 0% of its 7,295 occurrences), \"6\" 6 (followed by a firing 0% of its 5,136 occurrences), \"1\" 5 (followed by a firing 0% of its 19.0k occurrences)\n  (\"[START]\" as preceding token = the fired-on token is the first of its sequence)\n\nSNIPPETS where the feature fires (strongest first):\n--- Snippet 1 (strength 10/10, anchor at position 84) ---\nography-proven CHD in young men across the entire BMI range, with a hazard ratio of 5.43 (<9><5>%< CI><< >>2<<.>><<7>><<7>><< to>> 1<<0>><<.>><<6>>\n--- Snippet 2 (strength 9/10, anchor at position 85) ---\n-proven CHD in young men across the entire BMI range, with a hazard ratio of 5.43 (<9><5>%< CI><< >>2<<.>><<7>><<7>><< to>> 1<<0>><<.>><<6>><2>\n--- Snippet 3 (strength 6/10, anchor at position 82) ---\n of angiography-proven CHD in young men across the entire BMI range, with a hazard ratio of 5.43 (<9><5>%< CI><< >>2<<.>><<7>><<7>><< to>> 1<<0>>\n--- Snippet 4 (strength 6/10, anchor at position 86) ---\nven CHD in young men across the entire BMI range, with a hazard ratio of 5.43 (<9><5>%< CI><< >>2<<.>><<7>><<7>><< to>> 1<<0>><<.>><<6>><2>)\n--- Snippet 5 (strength 4/10, anchor at position 4) ---\n[START]5%< CI>< ><<3>><0><0><–>1<9><,><7>0\n--- Snippet 6 (strength 4/10, anchor at position 87) ---\n CHD in young men across the entire BMI range, with a hazard ratio of 5.43 (<9><5>%< CI><< >>2<<.>><<7>><<7>><< to>> 1<<0>><<.>><<6>><2>) in\n--- Snippet 7 (strength 3/10, anchor at position 111) ---\n3, Mg2SiO4, and MgSiO3 with a 550 nm optical depth of 0.6< ±> 0<<.>><<2>> and an inner and outer radii of\n--- Snippet 8 (strength 3/10, anchor at position 20) ---\n[START] 1.5 mas and a limb-darkening parameter of 1.16 ± 0<<.>><<4>><9>, indicating that the atmosphere is\n--- Snippet 9 (strength 3/10, anchor at position 65) ---\n3 and 39 patients were males and females, respectively. The median age of patients in this group was 43 years (<range><:>< >2<7>C<6><9> years). According to Sch\n--- Snippet 10 (strength 3/10, anchor at position 7) ---\n[START]5%< CI>< ><<3>><0><0><–>1<9><,><7>0<0><]> years\n--- Snippet 11 (strength 2/10, anchor at position 10) ---\n[START]5%< CI>< ><<3>><0><0><–>1<9><,><7>0<0><]> years before present[\n--- Snippet 12 (strength 2/10, anchor at position 73) ---\n Haplogroup C-M217 Y-DNA - worldwide.png\nPossible time of origin 11,900 ± <4><,><8>0<0> years before present[1]\n\n--- Snippet 13 (strength 2/10, anchor at position 78) ---\n predictor of the incidence of angiography-proven CHD in young men across the entire BMI range, with a hazard ratio of 5.43 (<9><5>%< CI><< >>2<<.>><<7>><<7>>\n--- Snippet 14 (strength 2/10, anchor at position 79) ---\n of the incidence of angiography-proven CHD in young men across the entire BMI range, with a hazard ratio of 5.43 (<9><5>%< CI><< >>2<<.>><<7>><<7>><< to>>\n--- Snippet 15 (strength 2/10, anchor at position 58) ---\nThe 159 recent high school graduates taking the assessment scored low. The mean score of 18.60, with a range< of>< ><5> - 32, out of a\n--- Snippet 16 (strength 1/10, anchor at position 22) ---\n[START] 1.5 mas and a limb-darkening parameter of 1.16 ± 0<<.>><<4>><9>, indicating that the atmosphere is more extended\n--- Snippet 17 (strength 1/10, anchor at position 116) ---\n the medical diagnosis of autoimmune encephalitis advantages from voxel-based evaluation, beyond the strategy predicated on MRI, CSF EEG and sample. <0><.>001 and 0.0\n--- Snippet 18 (strength 1/10, anchor at position 4) ---\n[START]10 ± <2>R⋆, respectively. Our modeling suggests\n--- Snippet 19 (strength 1/10, anchor at position 25) ---\n[START]ays Urofaecal cortisol concentrations had been determined utilizing a previously validated cortisol EIA for this species (Fujihara< (>2015) obtained similar results\n--- Snippet 20 (strength 1/10, anchor at position 105) ---\n.5<±><7>.3; P<0.001), particularly in upper limb-onset ALS (66.5<±><3><4>.<0>; P<0.001\n--- Snippet 21 (strength 1/10, anchor at position 127) ---\n8 patients were males and females, respectively. The median age of patients in this group was 37 years (<range><:>< >2<1>C<6><5>< years>\n--- Snippet 22 (strength 1/10, anchor at position 120) ---\n_{3}&= \\sum _{j=j_{+}+1}^{n} \\ln \\bigg ( \\sum _{k=<0>}^{a} {a \\\n--- Snippet 23 (strength 1/10, anchor at position 82) ---\nden 2007)\n\nIn Vietnam, Haplogroup C-M217 has been found in 12.5% (<6></>48) of a sample of Vietnamese\n--- Snippet 24 (strength 1/10, anchor at position 64) ---\n00||$2,292.12||$292.12||21.78%||2<0><.><7>7%|\nHere is an explanation of"
+}
