@@ -20,6 +20,25 @@ End your reply with exactly these two lines (no markdown, nothing after them):
 LABEL: <2-6 word name for the feature>
 EXPLANATION: <one to three sentences: when it fires, what makes it fire strongly, and where it does NOT fire if that is informative>"""
 
+EXPLANATION_LINE = ("EXPLANATION: <one to three sentences: when it fires, what makes it fire strongly, "
+                    "and where it does NOT fire if that is informative>")
+assert EXPLANATION_LINE in EXPLAINER_SYSTEM
+
+
+def explainer_system(max_words: int = 0) -> str:
+    """EXPLAINER_SYSTEM; with max_words > 0 the EXPLANATION line asks for at most that many words."""
+    if not max_words:
+        return EXPLAINER_SYSTEM
+    return EXPLAINER_SYSTEM.replace(EXPLANATION_LINE, (
+        f"EXPLANATION: <at most {max_words} words: when it fires, what makes it fire strongly, "
+        f"and where it does NOT fire if that is informative>"))
+
+
+# sent in the same conversation when the EXPLANATION is over the word limit
+SHORTEN_USER = """Your EXPLANATION has {n} words; the limit is {limit}. Rewrite it in at most {limit} words, keeping what best predicts which tokens the feature fires on. Reply with exactly these two lines and nothing else:
+LABEL: <2-6 word name for the feature>
+EXPLANATION: <at most {limit} words>"""
+
 EXPLAINER_DENSE_NOTE = """NOTE: this feature fires on {density:.0%} of ALL tokens — it is a dense feature, not a selective one. In the snippets, only firings above the {q:.0%} activation quantile count as strong <<...>>; the many weaker firings are marked <...>; unmarked tokens do not fire. After the firing snippets you will see CONTRAST snippets in which the [[marked]] token does NOT fire. Describe what separates firing from non-firing tokens (position, token type, ...) as well as what separates strong from weak firing."""
 
 

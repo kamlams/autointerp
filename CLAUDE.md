@@ -82,7 +82,9 @@ python summarize_features.py outputs/feature-data/my_sae_L7 outputs/my_sae_L7_ru
 Useful flags: `--data-dir DIR` (default `feature-data/`), `--out DIR` (default
 `outputs/<timestamp>_<model>`), `--workers N`
 (concurrent scorer calls; default 12, or 3 when Kimi-K3 is the examiner), `--seed`,
-`--n-explainer 24`, `--n-test 20`, `--n-fuzz 20`, `--explain-max-tokens 32768`.
+`--n-explainer 24`, `--n-test 20`, `--n-fuzz 20`, `--explain-max-tokens 32768`,
+`--max-explanation-words N` (ask for an EXPLANATION of at most N words and, if the answer is
+longer, ask once more to shorten it; 0 = no limit, the default).
 
 ### 4. Read the output
 
@@ -124,7 +126,8 @@ Reference results: `results/README.md`, and the per-latent tables
   6 non-firing contrast snippets; disjoint explainer / detection / fuzzing sets; per-feature
   seed `seed*100003 + feature_id`.
 - `prompts.py` — the three prompt templates (explainer, detection, fuzzing), verbatim.
-- `explainer.py` — one call → `LABEL` + `EXPLANATION`.
+- `explainer.py` — one call → `LABEL` + `EXPLANATION`; with a word limit, one follow-up turn
+  shortens an EXPLANATION that is too long (both versions are recorded).
 - `scorer.py` — detection and fuzzing as above; batches of 5 probes per call; parse
   failures and failed batches are excluded from the metrics and counted.
 - `sae_tools.py` — everything `extract_features.py` needs and nothing else: `TopKSAE.load`

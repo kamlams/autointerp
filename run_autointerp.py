@@ -21,10 +21,14 @@ from autointerp_pipeline.scorer import detection, fuzzing
 DEFAULT_DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "feature-data")
 
 
+# word-limit bookkeeping written next to the explanation (see explainer.explain)
+LENGTH_KEYS = ("explanation_words", "over_limit", "label_first", "explanation_first", "shorten_error")
+
+
 def process_feature(path: str, corpus, client: LLMClient, cfg: SamplerConfig,
                     workers: int, out_dir: str, scorer_client: LLMClient | None = None,
                     explain_max_tokens: int = 32768, reuse_dir: str | None = None,
-                    scorers: tuple = ("detect", "fuzz")) -> dict:
+                    scorers: tuple = ("detect", "fuzz"), max_words: int = 0) -> dict:
     """reuse_dir: take label/explanation from that run's feature JSON instead of calling
     the explainer, so a scoring-protocol change can be measured against a FIXED
     explanation (reasoning explainers are not deterministic). Scorers not in `scorers`
@@ -39,8 +43,9 @@ def process_feature(path: str, corpus, client: LLMClient, cfg: SamplerConfig,
             prev = json.load(f)
         expl = {"label": prev["label"], "explanation": prev["explanation"],
                 "raw": prev.get("explanation"), "prompt": prev.get("explainer_prompt", "")}
+        expl |= {k: prev[k] for k in LENGTH_KEYS if k in prev}
     else:
-        expl = explain(client, ex, cfg, max_tokens=explain_max_tokens)
+        expl = explain(client, ex, cfg, max_tokens=explain_max_tokens, max_words=max_words)
     if "detect" in scorers:
         det = detection(scorer_client, expl["explanation"], ex, workers=workers, seed=cfg.seed)
     else:
@@ -57,6 +62,7 @@ def process_feature(path: str, corpus, client: LLMClient, cfg: SamplerConfig,
         "stats": ex.stats,
         "label": expl["label"],
         "explanation": expl["explanation"],
+        **{k: expl[k] for k in LENGTH_KEYS if k in expl},
         "detection": {k: v for k, v in det.items() if k not in ("preds", "labels")},
         "fuzzing": {k: v for k, v in fuz.items() if k not in ("preds", "labels")},
         "elapsed_s": round(time.time() - t0, 1),
@@ -65,7 +71,8 @@ def process_feature(path: str, corpus, client: LLMClient, cfg: SamplerConfig,
     }
     with open(os.path.join(out_dir, f"feature{feat.feature_id}.json"), "w") as f:
         json.dump(result | {"detection_raw": det, "fuzzing_raw": fuz,
-                            "explainer_prompt": expl["prompt"]}, f,
+                            "explainer_prompt": expl["prompt"],
+                            **({"explainer_reply_shorten": expl["raw_shorten"]} if "raw_shorten" in expl else {})}, f,
                   ensure_ascii=False, indent=1, default=str)
     return result
 
@@ -119,6 +126,9 @@ def main():
     ap.add_argument("--explain-max-tokens", type=int, default=32768,
                     help="completion budget for the explainer call; reasoning models spend "
                          "15-30k tokens thinking on this task")
+    ap.add_argument("--max-explanation-words", type=int, default=0,
+                    help="ask for an EXPLANATION of at most this many words and, if the reply is "
+                         "longer, ask the explainer once more to shorten it (0 = no limit)")
     ap.add_argument("--reuse-explanations", default=None, metavar="RUN_DIR",
                     help="skip the explainer and score the explanations stored in RUN_DIR")
     ap.add_argument("--scorers", default="detect,fuzz",
@@ -163,7 +173,8 @@ def main():
                                 scorer_client=scorer_client,
                                 explain_max_tokens=args.explain_max_tokens,
                                 reuse_dir=args.reuse_explanations,
-                                scorers=tuple(s.strip() for s in args.scorers.split(",")))
+                                scorers=tuple(s.strip() for s in args.scorers.split(",")),
+                                max_words=args.max_explanation_words)
         except Exception as e:  # noqa: BLE001
             print(f"  FAILED: {e}", file=sys.stderr, flush=True)
             continue
@@ -177,6 +188,9 @@ def main():
         usage["scorer"] = scorer_client.usage.summary()
     with open(os.path.join(out_dir, "run_config.json"), "w") as f:
         json.dump({"model": args.model, "scorer_model": args.scorer_model,
+                   "explain_max_tokens": args.explain_max_tokens,
+                   "max_explanation_words": args.max_explanation_words,
+                   "reuse_explanations": args.reuse_explanations,
                    "sampler": vars(cfg), "features": [os.path.relpath(x) for x in feature_paths],  # never absolute: run records get committed
                    "usage": usage}, f, indent=1, default=str)
     print(f"\nusage: {usage}")
