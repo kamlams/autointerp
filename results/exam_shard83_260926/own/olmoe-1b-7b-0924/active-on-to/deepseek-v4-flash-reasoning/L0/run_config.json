@@ -1,0 +1,27 @@
+{
+ "arm": "S1",
+ "config": {
+  "ctx_len": 32,
+  "n_train": 40,
+  "n_test": 100,
+  "n_quantiles": 10,
+  "train_type": "random",
+  "test_high_only": false,
+  "match_mark_counts": false,
+  "random_mark_pos": false,
+  "single_mark": true,
+  "strong_floor": 0.3,
+  "show_activations": true,
+  "stats_card": false,
+  "drop_pos0": false,
+  "seed": 22
+ },
+ "explainer_model": "deepseek-ai/DeepSeek-V4-Flash",
+ "explain_max_tokens": null,
+ "scorer_model": "deepseek-ai/DeepSeek-V4-Flash-reasoning",
+ "explanations": "results/own_pipeline_260926/olmoe-1b-7b-0924/active-on-to/explanations-and-scores/deepseek-v4-flash-reasoning/L0",
+ "data_dir": "outputs/feature-data/moein_L0_test32b_shard83",
+ "n_done": 31,
+ "n_features": 32,
+ "usage": "0 calls, 0 prompt tok, 0 completion tok (of which 0 reasoning)"
+}
