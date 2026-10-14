@@ -81,6 +81,23 @@ at OLMoE expert-linked L15, Qwen3.8-27B +0.035 [+0.013, +0.057]. No explainer is
 better, as on 2026-09-18. The Flash examiner scores every cell lower than the reasoning examiner,
 by 0.01 to 0.16.
 
+## On the published protocol's exam (shard 84)
+
+The same explanations were also scored on the single-mark fuzzing exam of
+`../paper_protocol_260920/` (`run_s1.sh`: `run_paper_protocol.py --arm S1`, examiner
+DeepSeek-V4-Flash-reasoning, the same seed and windows), so they can be paired latent by latent with
+the published-protocol explanations of the same explainer. `analyze_s1.py` prints the comparison:
+
+| explainer | n | BA ours vs published | TPR | TNR A | TNR B | BA ours - published [95% CI] |
+|---|---|---|---|---|---|---|
+| Kimi-K3 | 198 | 0.692 vs 0.709 | 0.448 vs 0.570 | 0.962 vs 0.879 | 0.912 vs 0.818 | -0.017 [-0.027, -0.007] * |
+| Qwen3.8-27B | 190 | 0.709 vs 0.719 | 0.512 vs 0.636 | 0.930 vs 0.836 | 0.882 vs 0.767 | -0.010 [-0.021, +0.001] |
+| DeepSeek-V4-Flash-reasoning | 197 | 0.698 vs 0.684 | 0.461 vs 0.699 | 0.959 vs 0.692 | 0.910 vs 0.647 | +0.013 [+0.000, +0.027] * |
+
+This exam is not clean for our explanations: it is built from shard 84, and their statistics card
+counts every firing of shard 84, including those inside the exam windows. `../exam_shard83_260926/`
+repeats the comparison on an exam built from shard 83 and supersedes this table.
+
 ## Coverage and known issues
 
 - **Missing explanations (2 of 600).** Qwen3.8-27B wrote nothing for OLMoE active-on-to L7/32709
@@ -104,6 +121,7 @@ by 0.01 to 0.16.
 | `<model>/<set>/explanations-and-scores/<explainer>/L*/feature<id>.json` | label, explanation, word count, both scores with every probe, statistics card, explainer prompt; `run_config_<part>.json` per process |
 | `<model>/<set>/rescored-by-deepseek-v4-flash/<explainer>/L*/` | the same explanations scored by DeepSeek-V4-Flash |
 | `<model>/<set>/sampling/L*.json` | extraction record (firing counts, max activation; SAE path redacted) |
+| `<model>/<set>/paper-exam-single-mark/<explainer>/L*/feature<id>.json` | the published protocol's single-mark exam on shard 84 (`run_s1.sh`, `analyze_s1.py`); copied from `outputs/own260926_s1/` without the request logs |
 | `missing_explanations.json` | the logged calls behind the two missing explanations |
 | `run.sh`, `analyze.py`, `MANIFEST.json` | how the run was made; every number above; every file's origin and sha256 |
 

@@ -77,7 +77,9 @@ as the protocol does.
 | Kimi-K3 | shard 83 | 198 | 0.690 vs 0.707 | 0.439 vs 0.562 | 0.961 vs 0.873 | 0.922 vs 0.832 | -0.017 [-0.027, -0.007] * |
 | Kimi-K3 | shard 84 | 198 | 0.692 vs 0.709 | 0.448 vs 0.570 | 0.962 vs 0.879 | 0.912 vs 0.818 | -0.017 [-0.027, -0.007] * |
 | Qwen3.8-27B | shard 83 | 190 | 0.704 vs 0.719 | 0.501 vs 0.633 | 0.932 vs 0.831 | 0.884 vs 0.776 | -0.014 [-0.025, -0.004] * |
+| Qwen3.8-27B | shard 84 | 190 | 0.709 vs 0.719 | 0.512 vs 0.636 | 0.930 vs 0.836 | 0.882 vs 0.767 | -0.010 [-0.021, +0.001] |
 | DeepSeek-V4-Flash-reasoning | shard 83 | 197 | 0.693 vs 0.684 | 0.453 vs 0.701 | 0.956 vs 0.681 | 0.909 vs 0.653 | +0.009 [-0.005, +0.022] |
+| DeepSeek-V4-Flash-reasoning | shard 84 | 197 | 0.698 vs 0.684 | 0.461 vs 0.699 | 0.959 vs 0.692 | 0.910 vs 0.647 | +0.013 [+0.000, +0.027] * |
 
 Shard-83 exam per latent set and layer, BA ours vs published (paired n) and the difference:
 
@@ -90,13 +92,15 @@ Shard-83 exam per latent set and layer, BA ours vs published (paired n) and the 
 | olmoe-1b-7b-0924 expert-linked L15 | 0.664 vs 0.672 (55), -0.007 [-0.025, +0.012] | 0.668 vs 0.690 (54), -0.021 [-0.035, -0.007] * | 0.667 vs 0.653 (55), +0.014 [-0.006, +0.033] |
 | qwen3-30b-a3b expert-linked L24 | 0.733 vs 0.748 (19), -0.016 [-0.054, +0.022] | 0.747 vs 0.777 (18), -0.029 [-0.059, -0.002] * | 0.727 vs 0.738 (19), -0.010 [-0.047, +0.027] |
 
-The shard-84 row repeats the comparison of `../own_pipeline_260926/` on the exam of
-`../paper_protocol_260920/`; `analyze.py` prints it when those records are present
-(`../own_pipeline_260926/<model>/<set>/paper-exam-single-mark/`, Kimi-K3 at the time of writing).
+The shard-84 rows repeat the comparison of `../own_pipeline_260926/` on the exam of
+`../paper_protocol_260920/`; `analyze.py` prints them from
+`../own_pipeline_260926/<model>/<set>/paper-exam-single-mark/` (all three explainers).
 
 **Reading.** Moving the exam to a shard the explanations never saw leaves the comparison where it
-was: Kimi-K3's difference is the same to three decimals (-0.017 [-0.027, -0.007] on both shards).
-(The shard-84 records of the other two explainers are not in this repository yet.) Our
+was: Kimi-K3's difference is the same to three decimals (-0.017 [-0.027, -0.007] on both shards),
+and those of the other two explainers move by 0.004, Qwen3.8-27B from -0.010 to -0.014 and
+DeepSeek-V4-Flash-reasoning from +0.013 to +0.009, which takes each across the edge of its
+interval. Our
 explanations are narrower: they accept fewer firing tokens (TPR lower by 0.12-0.25) and reject far
 more wrong marks, of both kinds (TNR higher by 0.09-0.28). The balance is slightly against ours for Kimi-K3 and Qwen3.8-27B and even for
 DeepSeek-V4-Flash-reasoning, whose published-protocol explanations are the broadest (TPR 0.701, TNR
